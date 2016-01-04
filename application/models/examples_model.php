@@ -7,7 +7,6 @@ class Examples_model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('example_works');
-        $this->db->join('category', 'category.id = example_works.category_id');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -15,8 +14,7 @@ class Examples_model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('example_works');
-        $this->db->where("example_works.category_id = $id");
-        $this->db->join('category', 'category.id = example_works.category_id');
+        $this->db->where("example_works.id = $id");
         $query = $this->db->get();
         return $query->result_array();
     }

@@ -11,22 +11,12 @@
 -- ---------------------------------------------------------
 
 
--- CREATE TABLE "category" ---------------------------------
-CREATE TABLE `category` ( 
-	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
-	`category_name` VarChar( 255 ) NOT NULL,
-	PRIMARY KEY ( `id` ) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 8;
--- ---------------------------------------------------------
-
-
 -- CREATE TABLE "example_works" ----------------------------
 CREATE TABLE `example_works` ( 
 	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
-	`category_id` Int( 11 ) NOT NULL,
-	`photo_before` VarChar( 255 ) NOT NULL,
-	`photo_after` VarChar( 255 ) NOT NULL,
+	`category` VarChar( 255 ) NOT NULL,
+	`photo_before` Int( 11 ) NOT NULL,
+	`photo_after` Int( 11 ) NOT NULL,
 	`about` Text NOT NULL,
 	`additionally` VarChar( 255 ) NOT NULL,
 	PRIMARY KEY ( `id` ) )
@@ -35,55 +25,14 @@ AUTO_INCREMENT = 8;
 -- ---------------------------------------------------------
 
 
--- Dump data of "category" ---------------------------------
-INSERT INTO `category`(`id`,`category_name`) VALUES ( '1', 'Удаление вмятин' );
-INSERT INTO `category`(`id`,`category_name`) VALUES ( '2', 'Полировка авто' );
-INSERT INTO `category`(`id`,`category_name`) VALUES ( '3', 'Бронирование фар' );
-INSERT INTO `category`(`id`,`category_name`) VALUES ( '4', 'Химчистка салона' );
-INSERT INTO `category`(`id`,`category_name`) VALUES ( '5', 'Ремонт лобового стекла' );
-INSERT INTO `category`(`id`,`category_name`) VALUES ( '6', 'Антикорозийная обработка' );
-INSERT INTO `category`(`id`,`category_name`) VALUES ( '7', 'Покраска авто' );
--- ---------------------------------------------------------
-
-
 -- Dump data of "example_works" ----------------------------
-INSERT INTO `example_works`(`id`,`category_id`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '1', '1', 'a.jpg', 'b.jpg', 'Сделали на совесть', 'Не к чему придраться' );
-INSERT INTO `example_works`(`id`,`category_id`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '2', '2', 'a.jpg', 'b.jpg', 'И здесь делали на совесть', 'Не к чему придраться' );
-INSERT INTO `example_works`(`id`,`category_id`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '3', '3', 'a.jpg', 'b.jpg', 'И здесь тоже делали на совесть', 'Не к чему придраться' );
-INSERT INTO `example_works`(`id`,`category_id`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '4', '4', 'a.jpg', 'b.jpg', 'Здесь даже старались', 'Не к чему придраться' );
-INSERT INTO `example_works`(`id`,`category_id`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '5', '5', 'a.jpg', 'b.jpg', 'Здесь ещё и устали', 'Не к чему придраться' );
-INSERT INTO `example_works`(`id`,`category_id`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '6', '6', 'a.jpg', 'b.jpg', 'На день работы', 'Не к чему придраться' );
-INSERT INTO `example_works`(`id`,`category_id`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '7', '7', 'a.jpg', 'b.jpg', 'На неделю', 'Не к чему придраться' );
--- ---------------------------------------------------------
-
-
--- CREATE INDEX "category_id" ------------------------------
-CREATE INDEX `category_id` USING BTREE ON `example_works`( `category_id` );
--- ---------------------------------------------------------
-
-
--- CREATE INDEX "category_id_2" ----------------------------
-CREATE INDEX `category_id_2` USING BTREE ON `example_works`( `category_id` );
--- ---------------------------------------------------------
-
-
--- CREATE INDEX "category_id_3" ----------------------------
-CREATE INDEX `category_id_3` USING BTREE ON `example_works`( `category_id` );
--- ---------------------------------------------------------
-
-
--- CREATE INDEX "category_id_4" ----------------------------
-CREATE INDEX `category_id_4` USING BTREE ON `example_works`( `category_id` );
--- ---------------------------------------------------------
-
-
--- CREATE INDEX "category_id_5" ----------------------------
-CREATE INDEX `category_id_5` USING BTREE ON `example_works`( `category_id` );
--- ---------------------------------------------------------
-
-
--- CREATE INDEX "category_id_6" ----------------------------
-CREATE INDEX `category_id_6` USING BTREE ON `example_works`( `category_id` );
+INSERT INTO `example_works`(`id`,`category`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '1', 'Удаление вмятин', '1', '2', 'Сделали на совесть', 'Не к чему придраться' );
+INSERT INTO `example_works`(`id`,`category`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '2', 'Полировка авто', '5', '3', 'И здесь делали на совесть', 'Не к чему придраться' );
+INSERT INTO `example_works`(`id`,`category`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '3', 'Бронирование фар', '2', '7', 'И здесь тоже делали на совесть', 'Не к чему придраться' );
+INSERT INTO `example_works`(`id`,`category`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '4', 'Химчистка салона', '3', '1', 'Здесь даже старались', 'Не к чему придраться' );
+INSERT INTO `example_works`(`id`,`category`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '5', 'Ремонт лобового стекла', '4', '3', 'Здесь ещё и устали', 'Не к чему придраться' );
+INSERT INTO `example_works`(`id`,`category`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '6', 'Антикорозийная обработка', '5', '2', 'На день работы', 'Не к чему придраться' );
+INSERT INTO `example_works`(`id`,`category`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '7', 'Покраска авто', '3', '4', 'На неделю', 'Не к чему придраться' );
 -- ---------------------------------------------------------
 
 

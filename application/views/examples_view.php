@@ -18,11 +18,9 @@
 <?php foreach ($examples as $item):?>
 	<tr>
 
- 	<td align="center"><?=$item['category_name'];?></td>                  
-	<td align="center"><?echo '<img src ='.base_url().'img/example/before/'.$item['photo_before'];?>
-	width="150" height="150" alt="Teacher_photo"> </td>
-	<td align="center"><?echo '<img src ='.base_url().'img/example/after/'.$item['photo_after'];?>
-	width="150" height="150" alt="Teacher_photo"> </td>
+ 	<td align="center"><?=$item['category'];?></td>                  
+	<td align="center"><?=$item['photo_before']?> </td>
+	<td align="center"><?=$item['photo_after']?> </td>
 	<td align="center"><?=$item['about'];?></td>
 	<td align="center"><?=$item['additionally'];?></td>
 
