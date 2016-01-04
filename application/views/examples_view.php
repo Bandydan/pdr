@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Примеры работ</title>
-</head>
-<body>
+
 	<?php $this->load->helper('url'); ?>
 
-	<table border="2">
+	<table class="table table-striped table-bordered table-hover table-condensed">
 		<tr>
 		<th>Категория</th>
 		<th>Фото до</th>
@@ -27,6 +22,3 @@
 
 	</tr>
 <?php endforeach;?>
-
-</body>
-</html>

@@ -5,15 +5,19 @@ class Examples extends CI_Controller {
 
     public function index($id = 0)
     {
+        $data['title'] = 'Примеры работ';
+        $this->load->model('examples_model');
+
         if($id != 0) {
-            $this->load->model('examples_model');
             $data['examples'] = $this->examples_model->get_examples($id);
-            $this->load->view('examples_view', $data);
         }
         else {
-            $this->load->model('examples_model');
             $data['examples'] = $this->examples_model->get_examples_all();
-            $this->load->view('examples_view', $data);
         }
+        
+        $this->load->view('header', $data);
+        $this->load->view('examples_view', $data);
+        $this->load->view('footer', $data);
+
     }
 }
