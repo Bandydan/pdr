@@ -18,9 +18,10 @@
 <?php foreach ($examples as $item):?>
 	<tr>
 
- 	<td align="center"><?=$item['category'];?></td>                  
-	<td align="center"><?=$item['photo_before']?> </td>
-	<td align="center"><?=$item['photo_after']?> </td>
+ 	<td align="center">
+ 		<?=$this->config->item('categories')[$item['category']];?></td>                  
+	<td align="center"><?=implode(', ', $item['photo_before'])?> </td>
+	<td align="center"><?=implode(', ', $item['photo_after'])?> </td>
 	<td align="center"><?=$item['about'];?></td>
 	<td align="center"><?=$item['additionally'];?></td>
 
