@@ -11,43 +11,12 @@
 -- ---------------------------------------------------------
 
 
--- CREATE TABLE "example_works" ----------------------------
-CREATE TABLE `example_works` ( 
-	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
-	`category` VarChar( 10 ) NOT NULL,
-	`photo_before` Int( 11 ) NOT NULL,
-	`photo_after` Int( 11 ) NOT NULL,
-	`about` Text NOT NULL,
-	`additionally` VarChar( 255 ) NOT NULL,
-	PRIMARY KEY ( `id` ) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 10;
--- ---------------------------------------------------------
-
-
 -- CREATE TABLE "Content" ----------------------------------
 CREATE TABLE `Content` ( 
 	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
 	`category` VarChar( 10 ) NOT NULL,
 	`content_text` VarChar( 1000 ) NOT NULL,
 	`content_created` Timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY ( `id` ) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 1;
--- ---------------------------------------------------------
-
-
--- CREATE TABLE "users" ------------------------------------
-CREATE TABLE `users` ( 
-	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
-	`login` VarChar( 30 ) NOT NULL,
-	`name` VarChar( 30 ) NOT NULL,
-	`surname` VarChar( 30 ) NULL,
-	`email` VarChar( 20 ) NOT NULL,
-	`tel` VarChar( 13 ) NOT NULL,
-	`avto_id` Int( 11 ) NOT NULL,
-	`user_created` Timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	`birthsday` Timestamp NULL,
 	PRIMARY KEY ( `id` ) )
 ENGINE = InnoDB
 AUTO_INCREMENT = 1;
@@ -92,6 +61,31 @@ AUTO_INCREMENT = 1;
 -- ---------------------------------------------------------
 
 
+-- CREATE TABLE "example_works" ----------------------------
+CREATE TABLE `example_works` ( 
+	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
+	`category` VarChar( 10 ) NOT NULL,
+	`photo_before` Int( 11 ) NOT NULL,
+	`photo_after` Int( 11 ) NOT NULL,
+	`about` Text NOT NULL,
+	`additionally` VarChar( 255 ) NOT NULL,
+	PRIMARY KEY ( `id` ) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 10;
+-- ---------------------------------------------------------
+
+
+-- CREATE TABLE "mediafiles" -------------------------------
+CREATE TABLE `mediafiles` ( 
+	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
+	`user_id` Int( 11 ) NULL,
+	`media_link` VarChar( 255 ) NOT NULL,
+	PRIMARY KEY ( `id` ) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 1;
+-- ---------------------------------------------------------
+
+
 -- CREATE TABLE "order_for_assessment" ---------------------
 CREATE TABLE `order_for_assessment` ( 
 	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
@@ -106,11 +100,9 @@ AUTO_INCREMENT = 1;
 -- ---------------------------------------------------------
 
 
--- CREATE TABLE "mediafiles" -------------------------------
-CREATE TABLE `mediafiles` ( 
+-- CREATE TABLE "order_in_shop" ----------------------------
+CREATE TABLE `order_in_shop` ( 
 	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
-	`user_id` Int( 11 ) NULL,
-	`media_link` VarChar( 255 ) NOT NULL,
 	PRIMARY KEY ( `id` ) )
 ENGINE = InnoDB
 AUTO_INCREMENT = 1;
@@ -126,12 +118,37 @@ AUTO_INCREMENT = 1;
 -- ---------------------------------------------------------
 
 
--- CREATE TABLE "order_in_shop" ----------------------------
-CREATE TABLE `order_in_shop` ( 
+-- CREATE TABLE "users" ------------------------------------
+CREATE TABLE `users` ( 
 	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
+	`login` VarChar( 30 ) NOT NULL,
+	`name` VarChar( 30 ) NOT NULL,
+	`surname` VarChar( 30 ) NULL,
+	`email` VarChar( 20 ) NOT NULL,
+	`tel` VarChar( 13 ) NOT NULL,
+	`avto_id` Int( 11 ) NULL,
+	`user_created` Timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	`birthsday` Timestamp NULL,
+	`sex` Int( 1 ) NULL,
 	PRIMARY KEY ( `id` ) )
 ENGINE = InnoDB
 AUTO_INCREMENT = 1;
+-- ---------------------------------------------------------
+
+
+-- Dump data of "Content" ----------------------------------
+-- ---------------------------------------------------------
+
+
+-- Dump data of "authorization" ----------------------------
+-- ---------------------------------------------------------
+
+
+-- Dump data of "avto" -------------------------------------
+-- ---------------------------------------------------------
+
+
+-- Dump data of "comments" ---------------------------------
 -- ---------------------------------------------------------
 
 
@@ -148,23 +165,7 @@ INSERT INTO `example_works`(`id`,`category`,`photo_before`,`photo_after`,`about`
 -- ---------------------------------------------------------
 
 
--- Dump data of "Content" ----------------------------------
--- ---------------------------------------------------------
-
-
--- Dump data of "users" ------------------------------------
--- ---------------------------------------------------------
-
-
--- Dump data of "authorization" ----------------------------
--- ---------------------------------------------------------
-
-
--- Dump data of "avto" -------------------------------------
--- ---------------------------------------------------------
-
-
--- Dump data of "comments" ---------------------------------
+-- Dump data of "mediafiles" -------------------------------
 -- ---------------------------------------------------------
 
 
@@ -172,7 +173,7 @@ INSERT INTO `example_works`(`id`,`category`,`photo_before`,`photo_after`,`about`
 -- ---------------------------------------------------------
 
 
--- Dump data of "mediafiles" -------------------------------
+-- Dump data of "order_in_shop" ----------------------------
 -- ---------------------------------------------------------
 
 
@@ -180,7 +181,7 @@ INSERT INTO `example_works`(`id`,`category`,`photo_before`,`photo_after`,`about`
 -- ---------------------------------------------------------
 
 
--- Dump data of "order_in_shop" ----------------------------
+-- Dump data of "users" ------------------------------------
 -- ---------------------------------------------------------
 
 
