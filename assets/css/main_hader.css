@@ -1,0 +1,71 @@
+
+#header{
+	background: #ccc;
+	height: 200px;
+	padding: 5px; /* vnutrenniy*/
+}
+.icon{
+	text-align: center;
+	line-height: 190px;
+	vertical-align: middle;
+}
+
+/*.item img{
+	display: inline !important;
+	left:200px;
+	text-align: center;
+	line-height: 190px;
+	vertical-align: middle;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.item{
+	position: absolute;
+	right:200px;
+	text-align: center;
+	line-height: 190px;
+	vertical-align: middle;
+}
+
+.basket{
+	margin: 10px 0;
+	padding: 10px;
+}*/
+
+.bs-slider{
+	display: inline-block;
+	text-align: center;
+	position: relative;
+	width: 199px;
+/*	text-align: center;
+	line-height: 150px;
+	vertical-align: middle;*/
+}
+/*
+.im{
+	display: inline;
+    margin-left: auto;
+    margin-right: auto;
+	display: inline-block !important;
+	text-align: center !important;
+	list-style: none;
+	vertical-align: middle;
+   }
+*/
+/* Оформление слайдшоу */
+/* carousel-example-generic - это id блока со слайдшоу */
+
+#carousel-example-generic{
+    overflow: hidden; /* Если картинка больше нужной ширины, то она будет скрыта */
+    margin: 0 auto; /* Выравнивание слайдшоу по центру */
+}
+
+#carousel-example-generic .item {
+    max-height: 235px;  /*Максимальная высота слайдшоу в пикселях*/ 
+}
+
+#carousel-example-generic img {
+    max-height: 100%; /* Максимальная высота 100%, для того, чтобы изображения было такой же высоты как слайд */
+    margin: 0 auto; /* Выравнивание изображения по центру */
+}
