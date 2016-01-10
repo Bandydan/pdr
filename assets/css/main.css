@@ -5,3 +5,29 @@ body {
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: #D1F119;
 }
+
+#main-table thead tr {
+	background: #555;
+	color: #fff;
+}
+
+#main-table thead th {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.table{
+	margin: 10px 0;
+}
+
+.sidebar{
+	background: #666;
+	padding: 5px;
+	height: 100%;
+}
+
+.left_sidebar{
+	background: #123;
+	/*height: 136vh;*/
+	/*height: 100%;*/
+}

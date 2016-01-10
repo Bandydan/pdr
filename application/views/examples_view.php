@@ -1,24 +1,35 @@
 
 	<?php $this->load->helper('url'); ?>
 
-	<table class="table table-striped table-bordered table-hover table-condensed">
-		<tr>
-		<th>Категория</th>
-		<th>Фото до</th>
-		<th>Фото после</th>
-		<th>Описание работы</th>
-		<th>Дополнительная информация</th>
-		</tr>
+<div class="row" id="content">
+    <div class="col-md-2 left_sidebar"></div>
+    <div class="col-md-10 sidebar">
 
-<?php foreach ($examples as $item):?>
-	<tr>
+	<table id="main-table" class="table table-striped table-bordered table-hover table-condensed">
+		<thead>
+            <tr>
+        		<th>Категория</th>
+        		<th>Фото до</th>
+        		<th>Фото после</th>
+        		<th>Описание работы</th>
+        		<th>Дополнительная информация</th>
+    		</tr>
+        </thead>
 
- 	<td align="center">
- 		<?=$this->config->item('categories')[$item['category']];?></td>                  
-	<td align="center"><?=implode(', ', $item['photo_before'])?> </td>
-	<td align="center"><?=implode(', ', $item['photo_after'])?> </td>
-	<td align="center"><?=$item['about'];?></td>
-	<td align="center"><?=$item['additionally'];?></td>
+        <tbody>
+            <?php foreach ($examples as $item):?>
+            	<tr>
 
-	</tr>
-<?php endforeach;?>
+             	<td align="center">
+             		<?=$this->config->item('categories')[$item['category']];?></td>                  
+            	<td align="center"><?=implode(', ', $item['photo_before'])?> </td>
+            	<td align="center"><?=implode(', ', $item['photo_after'])?> </td>
+            	<td align="center"><?=$item['about'];?></td>
+            	<td align="center"><?=$item['additionally'];?></td>
+
+            	</tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+    </div>
+</div>
