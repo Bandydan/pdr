@@ -28,11 +28,11 @@ CREATE TABLE `authorization` (
 	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
 	`user_id` Int( 11 ) NOT NULL,
 	`password` VarChar( 50 ) NOT NULL,
-	`user_rights` Int( 1 ) NOT NULL DEFAULT '0',
+	`user_rights` Int( 1 ) NOT NULL DEFAULT '1',
 	`user_enabled` Int( 1 ) NOT NULL DEFAULT '1',
 	PRIMARY KEY ( `id` ) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+AUTO_INCREMENT = 12;
 -- ---------------------------------------------------------
 
 
@@ -42,6 +42,18 @@ CREATE TABLE `avto` (
 	`manufacture` VarChar( 25 ) NOT NULL,
 	`model` VarChar( 25 ) NOT NULL,
 	`year` Year NOT NULL,
+	PRIMARY KEY ( `id` ) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 1;
+-- ---------------------------------------------------------
+
+
+-- CREATE TABLE "ci_session" -------------------------------
+CREATE TABLE `ci_session` ( 
+	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
+	`ip_address` VarChar( 40 ) NOT NULL,
+	`timestamp` Timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`data` Blob NOT NULL,
 	PRIMARY KEY ( `id` ) )
 ENGINE = InnoDB
 AUTO_INCREMENT = 1;
@@ -130,9 +142,10 @@ CREATE TABLE `users` (
 	`user_created` Timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	`birthsday` Timestamp NULL,
 	`sex` Int( 1 ) NULL,
+	`avatar` VarChar( 30 ) NULL,
 	PRIMARY KEY ( `id` ) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+AUTO_INCREMENT = 17;
 -- ---------------------------------------------------------
 
 
@@ -145,6 +158,10 @@ AUTO_INCREMENT = 1;
 
 
 -- Dump data of "avto" -------------------------------------
+-- ---------------------------------------------------------
+
+
+-- Dump data of "ci_session" -------------------------------
 -- ---------------------------------------------------------
 
 
