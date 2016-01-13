@@ -96,8 +96,8 @@
             </div>
 
             <div class="col-md-4">
-                <button type="button" class="btn btn-success">Войти</button>
-                <button type="button" class="btn btn-success">Регистрация</button>
+                <button type="button" class="btn btn-success"><a href="http://pdr/index.php/login">Войти</a></button>
+                <button type="button" class="btn btn-success"><a href="http://pdr/index.php/register">Регистрация</a></button>
                 <button type="button" class="">
                     <img class="" src="assets/img/basket_2.png" alt="Basket" width="64px" height="70px"/>
                 </button>
