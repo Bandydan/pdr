@@ -22,7 +22,7 @@
 			<?= form_open() ?>
 				<div class="form-group">
 					<label for="Login">Логин</label>
-					<input type="text" class="form-control" id="login" name="login" value="<?= $_SESSION['login'] ?>">
+					<input type="text" class="form-control" id="login" name="login" value="">
 				</div>
 				<div class="form-group">
 					<label for="password">Пароль</label>
