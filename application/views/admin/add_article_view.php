@@ -14,9 +14,12 @@
 						<fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Категория</label>
 							<select style="width:92%;">
-								<option>Articles</option>
-								<option>Tutorials</option>
-								<option>Freebies</option>
+								<option>Главная</option>
+								<option>Примеры работ</option>
+								<option>Обучение</option>
+								<option>Инструмент</option>
+								<option>Оценить вмятину</option>
+								<option>Контакты</option>
 							</select>
 						</fieldset>
 						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
