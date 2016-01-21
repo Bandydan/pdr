@@ -20,7 +20,7 @@
 	</ul>
 	<h3>Страницы</h3>
 	<ul class="toggle">
-		<li class="icn_new_article"><a href="#">Добавить</a></li>
+		<li class="icn_new_article"><a href="<?=base_url();?>index.php/admin/index/add_article">Добавить</a></li>
 		<li class="icn_edit_article"><a href="#">Редактировать</a></li>
 		<li class="icn_delete"><a href="#">Удалить</a></li>
 		<!--<li class="icn_categories"><a href="#">Меню</a></li>
