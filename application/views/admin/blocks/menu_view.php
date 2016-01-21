@@ -21,7 +21,7 @@
 	<h3>Страницы</h3>
 	<ul class="toggle">
 		<li class="icn_new_article"><a href="<?=base_url();?>index.php/admin/index/add_article">Добавить</a></li>
-		<li class="icn_edit_article"><a href="<?=base_url();?>index.php/admin/index/edit_article">Просмотреть все</a></li>
+		<li class="icn_edit_article"><a href="<?=base_url();?>index.php/admin/index/all_article">Просмотреть все</a></li>
 		<!--<li class="icn_delete"><a href="#">Удалить</a></li>
 		<li class="icn_categories"><a href="#">Меню</a></li>
 		<li class="icn_tags"><a href="#">Tags</a></li>-->
