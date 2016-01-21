@@ -13,6 +13,8 @@ class Admin extends CI_Controller {
             $this->load->view('admin/blocks/menu_view', $data);
             $this->load->view('admin/'. $name .'_view', $data);
             $this->load->view('admin/blocks/footer_view', $data);
+
+            //$this->load->view('admin/index', $data);
         }
         
         elseif (!empty($_SESSION['login']) and $_SESSION['user_rights'] !== '2')
@@ -143,5 +145,18 @@ class Admin extends CI_Controller {
             // redirect him to site root
             redirect('/');
         }   
+    }
+
+    //metods for work with data in admin panel
+    public function pages()
+    {
+        if (!empty($_SESSION['login']) and $_SESSION['user_rights'] == '2')
+        {
+            echo "Здесь будет код для работы со страницами";
+        }
+        else
+        {
+            $this->login();
+        }
     }
 }
