@@ -17,6 +17,8 @@ CREATE TABLE `Content` (
 	`category` VarChar( 10 ) NOT NULL,
 	`content_text` VarChar( 1000 ) NOT NULL,
 	`content_created` Timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	`title` VarChar( 30 ) NOT NULL,
+	`meta` VarChar( 255 ) NOT NULL,
 	PRIMARY KEY ( `id` ) )
 ENGINE = InnoDB
 AUTO_INCREMENT = 1;
@@ -32,7 +34,7 @@ CREATE TABLE `authorization` (
 	`user_enabled` Int( 1 ) NOT NULL DEFAULT '1',
 	PRIMARY KEY ( `id` ) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 15;
+AUTO_INCREMENT = 16;
 -- ---------------------------------------------------------
 
 
@@ -54,7 +56,7 @@ CREATE TABLE `ci_session` (
 	`ip_address` VarChar( 16 ) NOT NULL DEFAULT '0',
 	`user_agent` VarChar( 40 ) NOT NULL,
 	`last_activity` Int( 11 ) UNSIGNED NOT NULL DEFAULT '0',
-	`user_data` Text NOT NULL,
+	`user_id` Int( 11 ) NOT NULL,
 	PRIMARY KEY ( `session_id` ) )
 ENGINE = InnoDB;
 -- ---------------------------------------------------------
@@ -145,7 +147,7 @@ CREATE TABLE `users` (
 	`avatar` VarChar( 30 ) NULL,
 	PRIMARY KEY ( `id` ) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 20;
+AUTO_INCREMENT = 21;
 -- ---------------------------------------------------------
 
 
@@ -154,9 +156,7 @@ AUTO_INCREMENT = 20;
 
 
 -- Dump data of "authorization" ----------------------------
-INSERT INTO `authorization`(`id`,`user_id`,`password`,`user_rights`,`user_enabled`) VALUES ( '12', '17', 'e10adc3949ba59abbe56e057f20f883e', '1', '1' );
-INSERT INTO `authorization`(`id`,`user_id`,`password`,`user_rights`,`user_enabled`) VALUES ( '13', '18', 'e10adc3949ba59abbe56e057f20f883e', '1', '1' );
-INSERT INTO `authorization`(`id`,`user_id`,`password`,`user_rights`,`user_enabled`) VALUES ( '14', '19', 'e10adc3949ba59abbe56e057f20f883e', '1', '1' );
+INSERT INTO `authorization`(`id`,`user_id`,`password`,`user_rights`,`user_enabled`) VALUES ( '15', '20', 'e10adc3949ba59abbe56e057f20f883e', '2', '1' );
 -- ---------------------------------------------------------
 
 
@@ -202,9 +202,7 @@ INSERT INTO `example_works`(`id`,`category`,`photo_before`,`photo_after`,`about`
 
 
 -- Dump data of "users" ------------------------------------
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`avto_id`,`user_created`,`birthsday`,`sex`,`avatar`) VALUES ( '17', 'skvak', 'Sasha', 'Kv', 'sfdr@ukr.net', '0997968599', NULL, '2016-01-14 00:06:34', '0000-00-00 00:00:00', '1', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`avto_id`,`user_created`,`birthsday`,`sex`,`avatar`) VALUES ( '18', 'mfa', 'Alex', 'kjwfwjkn', 'sf@ukr.net', '0990594859', NULL, '2016-01-14 00:11:48', '2012-02-20 00:00:00', '1', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`avto_id`,`user_created`,`birthsday`,`sex`,`avatar`) VALUES ( '19', 'killer', 'Sasha', 'bobo', 'ah@ukr.net', '0875748312', NULL, '2016-01-14 00:44:53', '0000-00-00 00:00:00', '1', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`avto_id`,`user_created`,`birthsday`,`sex`,`avatar`) VALUES ( '20', 'skvak', 'Alex', 'Bobov', 'ddt3000@ukr.net', '0991234567', NULL, '2016-01-18 21:23:09', '0000-00-00 00:00:00', '1', NULL );
 -- ---------------------------------------------------------
 
 
