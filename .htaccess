@@ -2,6 +2,6 @@
     Options Indexes FollowSymLinks
 	DirectoryIndex index.php
 	RewriteEngine on
-	RewriteCond $1 !^(index\.php|robots\.txt|img|styles|js)
+	RewriteCond $1 !^(index\.php|robots\.txt|img|styles|js|assets)
 	RewriteRule ^(.*)$ /index.php?/$1 [L]
 </IfModule>

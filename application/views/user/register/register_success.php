@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<?php echo '<meta http-equiv="Refresh" content="5; url=http://pdr/index.php/login">';?>
+<?php echo '<meta http-equiv="Refresh" content="5; url=http://pdr/login">';?>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
