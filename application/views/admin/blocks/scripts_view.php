@@ -5,15 +5,15 @@
         <meta charset="utf-8"/>
         <title>PDR Admin Panel</title>
         
-        <link rel="stylesheet" href="<?=base_url();?>assets/css/layout.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="/assets/css/layout.css" type="text/css" media="screen" />
         <!--[if lt IE 9]>
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <script src="<?=base_url();?>assets/js/jquery-1.11.3.js" type="text/javascript"></script>
-        <script src="<?=base_url();?>assets/js/hideshow.js" type="text/javascript"></script>
-        <script src="<?=base_url();?>assets/js/jquery.tablesorter.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="<?=base_url();?>assets/js/jquery.equalHeight.js"></script>
+        <script src="/assets/js/jquery-1.11.3.js" type="text/javascript"></script>
+        <script src="/assets/js/hideshow.js" type="text/javascript"></script>
+        <script src="/assets/js/jquery.tablesorter.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/assets/js/jquery.equalHeight.js"></script>
         <script type="text/javascript">
         $(document).ready(function() 
         { 
