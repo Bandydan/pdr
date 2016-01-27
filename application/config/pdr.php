@@ -10,3 +10,5 @@ $config['categories'] = array(
     'atk' => 'Антикорозийная обработка',
     'pnt' => 'Покраска авто'
 );
+
+$config['admin_rights'] = 2;
