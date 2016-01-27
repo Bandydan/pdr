@@ -12,7 +12,7 @@
 	</ul>
 	<h3>Заказы и запросы</h3>
 	<ul class="toggle">
-		<li class="icn_profile"><a href="<?=base_url();?>index.php/admin/index/pdr_request">Запросы на оценку вмятин</a></li>
+		<li class="icn_profile"><a href="<?=base_url();?>admin/index/pdr_request">Запросы на оценку вмятин</a></li>
 		<li class="icn_profile"><a href="#">Заказы интернет-магазина</a></li>
 		
 		<!--<li class="icn_categories"><a href="#">Меню</a></li>
@@ -20,8 +20,8 @@
 	</ul>
 	<h3>Страницы</h3>
 	<ul class="toggle">
-		<li class="icn_new_article"><a href="<?=base_url();?>index.php/admin/index/add_article">Добавить</a></li>
-		<li class="icn_edit_article"><a href="<?=base_url();?>index.php/admin/index/all_article">Просмотреть все</a></li>
+		<li class="icn_new_article"><a href="<?=base_url();?>admin/index/add_article">Добавить</a></li>
+		<li class="icn_edit_article"><a href="<?=base_url();?>admin/index/all_article">Просмотреть все</a></li>
 		<!--<li class="icn_delete"><a href="#">Удалить</a></li>
 		<li class="icn_categories"><a href="#">Меню</a></li>
 		<li class="icn_tags"><a href="#">Tags</a></li>-->
@@ -51,7 +51,7 @@
 		<li class="icn_settings"><a href="#">Валюта</a></li>
 		<li class="icn_security"><a href="#">Язык</a></li>
 		<li class="icn_profile"><a href="#">Настройки профиля</a></li>
-		<li class="icn_jump_back"><a href="<?=base_url();?>index.php/admin/logout">Выход</a></li>
+		<li class="icn_jump_back"><a href="<?=base_url();?>admin/logout">Выход</a></li>
 	</ul>
 	
 	<footer>

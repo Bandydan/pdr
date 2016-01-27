@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- <link href="assets/css/bootstrap.css" rel="stylesheet"> -->
         <!-- <link href="assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
-        <link rel="stylesheet" href="assets/css/main_hader.css">
-        <link rel="stylesheet" href="assets/css/main.css">
-        <link rel="stylesheet" href="assets/css/main_footer.css">
+        <link rel="stylesheet" href="/assets/css/main_hader.css">
+        <link rel="stylesheet" href="/assets/css/main.css">
+        <link rel="stylesheet" href="/assets/css/main_footer.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"> 
         <!--<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -24,7 +24,7 @@
     <div class="container">
         <div class="row" id="header">
             <div class="col-md-2 icon">
-                <img class="" src="assets/img/logo.jpg" alt="Basket" width="100" height="100"/>
+                <img class="" src="/assets/img/logo.jpg" alt="Basket" width="100" height="100"/>
             </div>
 
             <div class="col-md-6">
@@ -46,32 +46,32 @@
                         <li data-target="#carousel-example-generic" data-slide-to="4"></li>
                     </ol>
 
-            <!-- Блок в котором находятся слайды -->
+                    <!-- Блок в котором находятся слайды -->
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
-            <!-- Слайд 1 -->
+                    <!-- Слайд 1 -->
                         <div class="item active">
-            <!-- Изображение слайда -->
-            <!-- В поле src нужно написать адрес картинки -->
-            <!-- В поле alt нужно написать название картинки -->
-                            <img class="img-thumbnail im" src="img/example/after/0_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
+                            <!-- Изображение слайда -->
+                            <!-- В поле src нужно написать адрес картинки -->
+                            <!-- В поле alt нужно написать название картинки -->
+                            <img class="img-thumbnail im" src="/img/example/after/0_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
                         </div>
 
                         <div class="item">
-                            <img class="img-thumbnail im" src="img/example/after/1_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
+                            <img class="img-thumbnail im" src="/img/example/after/1_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
                         </div>
 
                         <div class="item">
-                            <img class="img-thumbnail im" src="img/example/after/2_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
+                            <img class="img-thumbnail im" src="/img/example/after/2_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
                         </div>
 
                         <div class="item">
-                            <img class="img-thumbnail im" src="img/example/after/3_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
+                            <img class="img-thumbnail im" src="/img/example/after/3_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
                         </div>
 
                         <div class="item">
-                            <img class="img-thumbnail im" src="img/example/after/4_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
+                            <img class="img-thumbnail im" src="/img/example/after/4_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
                         </div>
 
                     </div>
@@ -96,10 +96,10 @@
             </div>
 
             <div class="col-md-4">
-                <button type="button" class="btn btn-success"><a href="http://pdr/index.php/login">Войти</a></button>
-                <button type="button" class="btn btn-success"><a href="http://pdr/index.php/register">Регистрация</a></button>
+                <button type="button" class="btn btn-success"><a href="<?=base_url();?>login">Войти</a></button>
+                <button type="button" class="btn btn-success"><a href="<?=base_url();?>register">Регистрация</a></button>
                 <button type="button" class="">
-                    <img class="" src="assets/img/basket_2.png" alt="Basket" width="64px" height="70px"/>
+                <img class="" src="/assets/img/basket_2.png" alt="Basket" width="64px" height="70px"/>
                 </button>
             </div>
         </div>

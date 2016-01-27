@@ -146,7 +146,7 @@ class User_model extends CI_Model {
 			'ip_address'  => $this->input->ip_address(),
 			'last_activity'   => '1',
 			'user_agent'   	=> '1',
-			'user_id' => $_SESSION['user_id'],
+			'user_id' => $this->session->userdata('user_id'),
 		);
 
 		$this->db->insert('ci_session', $data);

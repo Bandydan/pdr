@@ -6,19 +6,19 @@ class Admin extends CI_Controller {
     {
         $data['title'] = 'Административная панель';
         
-        if (!empty($_SESSION['login']) and $_SESSION['user_rights'] == '2')
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == '2')
         {
             $this->load->view('admin/blocks/scripts_view', $data);
             $this->load->view('admin/blocks/header_view', $data);
             $this->load->view('admin/blocks/menu_view', $data);
             $this->load->view('admin/'. $name .'_view', $data);
             $this->load->view('admin/blocks/footer_view', $data);
-
-            //$this->load->view('admin/index', $data);
         }
         
-        elseif (!empty($_SESSION['login']) and $_SESSION['user_rights'] !== '2')
+        elseif ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') !== '2')
         {
+            $this->session->sess_destroy();
+            
             echo "У вас нет прав доступа.";
         }
 
@@ -36,77 +36,87 @@ class Admin extends CI_Controller {
      */
     public function login() 
     {
-        // create the data object
-        $data = new stdClass();
-        $this->load->model('user_model');
-        
-        // load form helper and validation library
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        
-        // set validation rules
-        $this->form_validation->set_rules('login', 'Login', 'required|alpha_numeric');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-        
-        if ($this->form_validation->run() == false) 
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == '2')
         {
-            // validation not ok, send validation errors to the view
-            $this->load->view('header');
-            $this->load->view('user/login/login');
-            $this->load->view('footer');    
-        } 
-        
-        else 
+            $this->index();
+        }
+        else
         {
-            // set variables from the form
-            $login = $this->input->post('login');
-            $password = $this->input->post('password');
+            // create the data object
+            $data = new stdClass();
+            $this->load->model('user_model');
             
-            if ($this->user_model->resolve_user_login($login, $password)) 
+            // load form helper and validation library
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            
+            // set validation rules
+            $this->form_validation->set_rules('login', 'Login', 'required|alpha_numeric');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+            
+            if ($this->form_validation->run() == false) 
             {
-                $user_id = $this->user_model->get_user_id_from_username($login);
-                $user    = $this->user_model->get_user($user_id);
-                $user_data = $this->user_model->get_user_data($user_id);
+                // validation not ok, send validation errors to the view
+                $this->load->view('header');
+                $this->load->view('user/login/login');
+                $this->load->view('footer');    
+            } 
+            
+            else 
+            {
+                // set variables from the form
+                $login = $this->input->post('login');
+                $password = $this->input->post('password');
                 
-                //set session user data
-                $_SESSION['id'] = session_id();
-                $_SESSION['user_id']      = (int)$user->id;
-                $_SESSION['login']     = (string)$user->login;
-                $_SESSION['logged_in']    = (bool)true;
-                $_SESSION['user_enabled'] = (int)$user_data->user_enabled;
-                $_SESSION['user_rights']     = (int)$user_data->user_rights;
-                
-                if ($_SESSION['user_rights'] == '2')
+                if ($this->user_model->resolve_user_login($login, $password)) 
                 {
-                    $this->user_model->set_user_session();
-        
-                    // user login ok
-                    $this->load->view('header');
-                    $this->load->view('user/login/login_admin_success', $data);
-                    $this->load->view('footer'); 
-                }
+                    $user_id = $this->user_model->get_user_id_from_username($login);
+                    $user    = $this->user_model->get_user($user_id);
+                    $user_data = $this->user_model->get_user_data($user_id);
+                    
+                    //set session user data
+                    $session_data = array(
+                                    'id' => session_id(),
+                                    'user_id' => (int)$user->id,
+                                    'login' => (string)$user->login,
+                                    'logged_in' => (bool)true,
+                                    'user_enabled' => (int)$user_data->user_enabled,
+                                    'user_rights' => (int)$user_data->user_rights, );
 
-                else
+                    $this->session->set_userdata($session_data);
+                    
+                    if ($this->session->userdata('user_rights') == '2')
+                    {
+                        $this->user_model->set_user_session();
+            
+                        // user login ok
+                        $this->load->view('header');
+                        $this->load->view('user/login/login_admin_success', $data);
+                        $this->load->view('footer'); 
+                    }
+
+                    else
+                    {
+                        // login failed
+                        $data->error = 'У Вас не достаточно прав для доступа к этой странице';
+
+                        // send error to the view
+                        $this->load->view('header');
+                        $this->load->view('user/login/login', $data);
+                        $this->load->view('footer');
+                    }
+                } 
+
+                else 
                 {
                     // login failed
-                    $data->error = 'У Вас не достаточно прав для доступа к этой странице';
-
+                    $data->error = 'Неверный логин или пароль. Повторите ввод.';
+                    
                     // send error to the view
                     $this->load->view('header');
                     $this->load->view('user/login/login', $data);
-                    $this->load->view('footer');
+                    $this->load->view('footer');    
                 }
-            } 
-
-            else 
-            {
-                // login failed
-                $data->error = 'Неверный логин или пароль. Повторите ввод.';
-                
-                // send error to the view
-                $this->load->view('header');
-                $this->load->view('user/login/login', $data);
-                $this->load->view('footer');    
             }
         }   
     }
@@ -122,16 +132,10 @@ class Admin extends CI_Controller {
         // create the data object
         $data = new stdClass();
         
-        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) 
+        if ($this->session->has_userdata('logged_in') != NULL && $this->session->userdata('logged_in') === true) 
         {
-            $data->login = $_SESSION['login'];
-
-            // remove session datas
-            foreach ($_SESSION as $key => $value) 
-            {
-                unset($_SESSION[$key]);
-            }
-            session_destroy();
+            $data->login = $this->session->userdata('login');
+            $this->session->sess_destroy();
 
             // user logout ok
             $this->load->view('header');
@@ -150,7 +154,7 @@ class Admin extends CI_Controller {
     //metods for work with data in admin panel
     public function pages()
     {
-        if (!empty($_SESSION['login']) and $_SESSION['user_rights'] == '2')
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == '2')
         {
             echo "Здесь будет код для работы со страницами";
         }
