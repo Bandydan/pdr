@@ -142,14 +142,20 @@ class User_model extends CI_Model {
 	public function set_user_session()
 	{
 		$data = array(
-			'session_id' => $_SESSION['__ci_last_regenerate'],
+			'session_id' => session_id(),
 			'ip_address'  => $this->input->ip_address(),
 			'last_activity'   => '1',
 			'user_agent'   	=> '1',
-			'user_id' => $_SESSION['user_id'],
+			'user_id' => $this->session->userdata('user_id'),
 		);
 
 		$this->db->insert('ci_session', $data);
 	}
 
+	public function get_user_session($session_id)
+	{
+		$this->db->from('ci_session');
+		$this->db->where('session_id', $session_id);
+		return $this->db->get()->row();
+	}
 }

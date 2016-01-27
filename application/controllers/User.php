@@ -136,7 +136,7 @@ class User extends CI_Controller {
 				$_SESSION['login']     = (string)$user->login;
 				$_SESSION['logged_in']    = (bool)true;
 				$_SESSION['user_enabled'] = (int)$user_data->user_enabled;
-				$_SESSION['user_right']     = (int)$user_data->user_rights;
+				$_SESSION['user_rights']     = (int)$user_data->user_rights;
 		
 				// user login ok
 				$this->load->view('header');
@@ -170,12 +170,16 @@ class User extends CI_Controller {
 		
 		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) 
 		{
+			$data->login = $_SESSION['login'];
+
 			// remove session datas
 			foreach ($_SESSION as $key => $value) 
 			{
 				unset($_SESSION[$key]);
 			}
-			
+
+			session_destroy();
+
 			// user logout ok
 			$this->load->view('header');
 			$this->load->view('user/logout/logout_success', $data);
