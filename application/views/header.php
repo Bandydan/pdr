@@ -102,5 +102,4 @@
                     <img class="" src="assets/img/basket_2.png" alt="Basket" width="64px" height="70px"/>
                 </button>
             </div>
-
         </div>
