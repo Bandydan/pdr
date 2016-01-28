@@ -34,7 +34,7 @@ CREATE TABLE `authorization` (
 	`user_enabled` Int( 1 ) NOT NULL DEFAULT '1',
 	PRIMARY KEY ( `id` ) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 16;
+AUTO_INCREMENT = 21;
 -- ---------------------------------------------------------
 
 
@@ -143,11 +143,11 @@ CREATE TABLE `users` (
 	`avto_id` Int( 11 ) NULL,
 	`user_created` Timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	`birthsday` Timestamp NULL,
-	`sex` Int( 1 ) NULL,
+	`sex` Char( 10 ) NULL,
 	`avatar` VarChar( 30 ) NULL,
 	PRIMARY KEY ( `id` ) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 21;
+AUTO_INCREMENT = 26;
 -- ---------------------------------------------------------
 
 
@@ -157,6 +157,7 @@ AUTO_INCREMENT = 21;
 
 -- Dump data of "authorization" ----------------------------
 INSERT INTO `authorization`(`id`,`user_id`,`password`,`user_rights`,`user_enabled`) VALUES ( '15', '20', 'e10adc3949ba59abbe56e057f20f883e', '2', '1' );
+INSERT INTO `authorization`(`id`,`user_id`,`password`,`user_rights`,`user_enabled`) VALUES ( '21', '26', 'e10adc3949ba59abbe56e057f20f883e', '1', '1' );
 -- ---------------------------------------------------------
 
 
@@ -202,7 +203,7 @@ INSERT INTO `example_works`(`id`,`category`,`photo_before`,`photo_after`,`about`
 
 
 -- Dump data of "users" ------------------------------------
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`avto_id`,`user_created`,`birthsday`,`sex`,`avatar`) VALUES ( '20', 'skvak', 'Alex', 'Bobov', 'ddt3000@ukr.net', '0991234567', NULL, '2016-01-18 21:23:09', '0000-00-00 00:00:00', '1', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`avto_id`,`user_created`,`birthsday`,`sex`,`avatar`) VALUES ( '20', 'skvak', 'Alex', 'Bobov', 'ddt3000@ukr.net', '0991234567', NULL, '2016-01-27 23:14:20', '0000-00-00 00:00:00', 'мужчина', NULL );
 -- ---------------------------------------------------------
 
 
