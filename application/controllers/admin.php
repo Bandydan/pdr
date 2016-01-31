@@ -6,7 +6,7 @@ class Admin extends CI_Controller {
     {
         $data['title'] = 'Административная панель';
         
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == '2')
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $this->load->view('admin/blocks/scripts_view', $data);
             $this->load->view('admin/blocks/header_view', $data);
@@ -15,11 +15,16 @@ class Admin extends CI_Controller {
             $this->load->view('admin/blocks/footer_view', $data);
         }
         
-        elseif ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') !== '2')
+        elseif ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') !== $this->config->item('admin_rights'))
         {
             $this->session->sess_destroy();
-            
-            echo "У вас нет прав доступа.";
+            $data['error'] = 'У Вас не достаточно прав для доступа к этой странице';
+
+            // send error to the view
+            $this->load->view('header');
+            $this->load->view('user/error', $data);
+            $this->load->view('user/login/login_admin');
+            $this->load->view('footer');
         }
 
         else
@@ -36,7 +41,7 @@ class Admin extends CI_Controller {
      */
     public function login() 
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == '2')
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $this->index();
         }
@@ -58,7 +63,8 @@ class Admin extends CI_Controller {
             {
                 // validation not ok, send validation errors to the view
                 $this->load->view('header');
-                $this->load->view('user/login/login');
+                $this->load->view('user/error', $data);
+                $this->load->view('user/login/login_admin');
                 $this->load->view('footer');    
             } 
             
@@ -85,7 +91,7 @@ class Admin extends CI_Controller {
 
                     $this->session->set_userdata($session_data);
                     
-                    if ($this->session->userdata('user_rights') == '2')
+                    if ($this->session->userdata('user_rights') == $this->config->item('admin_rights'))
                     {
                         $this->user_model->set_user_session();
             
@@ -102,7 +108,8 @@ class Admin extends CI_Controller {
 
                         // send error to the view
                         $this->load->view('header');
-                        $this->load->view('user/login/login', $data);
+                        $this->load->view('user/error', $data);
+                        $this->load->view('user/login/login_admin', $data);
                         $this->load->view('footer');
                     }
                 } 
@@ -114,7 +121,8 @@ class Admin extends CI_Controller {
                     
                     // send error to the view
                     $this->load->view('header');
-                    $this->load->view('user/login/login', $data);
+                    $this->load->view('user/error', $data);
+                    $this->load->view('user/login/login_admin', $data);
                     $this->load->view('footer');    
                 }
             }
@@ -154,7 +162,7 @@ class Admin extends CI_Controller {
     //metods for work with data in admin panel
     public function pages()
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == '2')
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             echo "Здесь будет код для работы со страницами";
         }
