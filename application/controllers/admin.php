@@ -171,4 +171,39 @@ class Admin extends CI_Controller {
             $this->login();
         }
     }
+
+    public function add() 
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == '2')
+        {
+        
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            $this->load->model('admin_model');
+        
+            $this->form_validation->set_rules('title', 'title', 'required');
+            $this->form_validation->set_rules('text', 'text', 'required');
+            $this->form_validation->set_rules('meta', 'meta', 'required');
+            $this->form_validation->set_rules('category', 'category', 'required');
+        
+            if ($this->form_validation->run() === false) 
+            {
+                $this->index('add_article');  
+            }
+
+            else
+            {
+                $this->admin_model->create_content();
+                $this->index('all_article');
+            
+            }
+        }
+
+        else
+        {
+            $this->login();
+        }
+
+    }
+    
 }
