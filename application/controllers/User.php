@@ -33,12 +33,11 @@ class User extends CI_Controller {
 	 */
 	public function register() 
 	{
-		// create the data object
-		$data = new stdClass();
-		
 		// load form helper and validation library
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->load->model('admin_model');
+		$data['avtos'] = $this->admin_model->get_avtos();
 		
 		// set validation rules
 		$this->form_validation->set_rules('login', 'Логин', 'trim|required|alpha_numeric|min_length[3]|is_unique[users.login]', array('is_unique' => 'Этот логин уже занят. Пожалуйста введите другой.'));
@@ -71,8 +70,12 @@ class User extends CI_Controller {
 			$tel = $this->input->post('tel');
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
+			$manufacture = $this->input->post('ManufactureName');
+			$model = $this->input->post('ModelName');
+			$year = $this->input->post('year');
+
 			
-			if ($this->user_model->create_user($login, $name, $surname, $sex, $birthsday, $tel, $email, $password)) 
+			if ($this->user_model->create_user($login, $name, $surname, $sex, $birthsday, $tel, $email, $password, $manufacture, $model, $year)) 
 			{
 				// user creation ok
 				$this->load->view('header');
@@ -83,7 +86,7 @@ class User extends CI_Controller {
 			else 
 			{
 				// user creation failed, this should never happen
-				$data->error = 'Что-то пошло не так. Please try again.';
+				$data['error'] = 'Что-то пошло не так. Please try again.';
 				
 				// send error to the view
 				$this->load->view('header');

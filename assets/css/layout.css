@@ -393,6 +393,17 @@ border-radius: 5px;
 background: #ffffff;
 }
 
+.module_avto {
+text-align: center;
+vertical-align: top;
+margin: 20px 3% 0 3%;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+height: 100%;
+background: #ffffff;
+}
+
 #main .module header h3 {
 display: block;
 width: 90%;
@@ -508,13 +519,14 @@ border-bottom: 1px dotted #ccc;
 .tablesorter thead tr {
 height: 34px;
 background: url(../img/admin/table_sorter_header.png) repeat-x;
-text-align: left;
+text-align: center;
 text-indent: 10px;
 cursor: pointer;
 }
 
 .tablesorter td {
 padding: 15px 10px;
+text-align: center;
 }
 
 .tablesorter input[type=image] {

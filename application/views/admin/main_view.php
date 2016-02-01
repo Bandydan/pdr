@@ -48,42 +48,20 @@
 				<th>Действия</th> 
 			</tr> 
 		</thead> 
-		<tbody> 
+		<tbody>
+			<?php foreach ($requests as $request):?> 
 			<tr> 
 				<td><input type="checkbox"></td> 
-				<td>Оцените мою вмятину...</td> 
-				<td>Вася</td> 
-				<td>5th April 2011</td> 
-				<td><input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото"><input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить"><input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Trash"></td> 
-			</tr> 
-			<tr> 
-				<td><input type="checkbox"></td> 
-				<td>Оцените мою вмятину...</td> 
-				<td>Вася</td> 
-				<td>6th April 2011</td> 
-				<td><input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото"><input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить"><input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Trash"></td> 
+				<td><?=$request['order_text']?></td> 
+				<td><?=$request['login']?></td> 
+				<td><?=$request['order_created']?></td> 
+				<td>
+					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото">
+					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить">
+					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
+				</td> 
 			</tr>
-			<tr> 
-					<td><input type="checkbox"></td> 
-				<td>Оцените мою вмятину...</td> 
-				<td>Вася</td> 
-				<td>10th April 2011</td> 
-				<td><input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото"><input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить"><input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Trash"></td> 
-			</tr> 
-			<tr> 
-				<td><input type="checkbox"></td> 
-				<td>Оцените мою вмятину...</td> 
-				<td>Вася</td> 
-				<td>16th April 2011</td> 
-				<td><input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото"><input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить"><input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Trash"></td> 
-			</tr>
-			<tr> 
-				<td><input type="checkbox"></td> 
-				<td>Оцените мою вмятину...</td> 
-				<td>Вася</td> 
-				<td>16th April 2011</td> 
-				<td><input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото"><input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить"><input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Trash"></td> 
-			</tr>  
+			<?php endforeach;?>   
 		</tbody> 
 		</table>
 		</div><!-- end of #tab1 -->
@@ -92,7 +70,8 @@
 		<table class="tablesorter" cellspacing="0"> 
 		<thead> 
 			<tr> 
-				<th></th> 
+				<th></th>
+				<th>Наша работа</th> 
 				<th>Комментарий</th> 
 				<th>Пользователь</th> 
 				<th>Дата создания</th> 
@@ -100,41 +79,20 @@
 			</tr> 
 		</thead> 
 		<tbody> 
+			<?php foreach ($comments as $comment):?> 
 			<tr> 
-				<td><input type="checkbox"></td> 
-				<td>Прекрасный сайт</td> 
-				<td>Василий</td> 
-				<td>5th April 2011</td> 
-				<td><input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить"><input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Trash"></td> 
-			</tr> 
-			<tr> 
-				<td><input type="checkbox"></td> 
-				<td>Полезный сайт</td> 
-				<td>Василий</td> 
-				<td>6th April 2011</td> 
-				<td><input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить"><input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Trash"></td> 
+				<td><input type="checkbox"></td>
+				<td><a href="#">Полировка Lexus RX350</a></td> 
+				<td><?=$comment['comment_text']?></td> 
+				<td><?=$comment['login']?></td> 
+				<td><?=$comment['comment_created']?></td> 
+				<td>
+					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото">
+					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить">
+					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
+				</td> 
 			</tr>
-			<tr> 
-				<td><input type="checkbox"></td> 
-				<td>Прекрасный сайт</td> 
-				<td>Василий</td> 
-				<td>10th April 2011</td> 
-				<td><input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить"><input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Trash"></td> 
-			</tr> 
-			<tr> 
-				<td><input type="checkbox"></td> 
-				<td>Прекрасный сайт</td> 
-				<td>Супермен</td> 
-				<td>16th April 2011</td> 
-				<td><input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить"><input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Trash"></td> 
-			</tr> 
-			<tr> 
-				<td><input type="checkbox"></td> 
-				<td>Прекрасный сайт</td> 
-				<td>Василий</td> 
-				<td>16th April 2011</td> 
-				<td><input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить"><input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Trash"></td> 
-			</tr> 
+			<?php endforeach;?> 
 		</tbody> 
 		</table>
 
@@ -183,32 +141,7 @@
 			</div>
 		</div>
 	</article><!-- end of messages article -->
-	
-	<!--<h4 class="alert_warning">A Warning Alert</h4>
-	
-	<h4 class="alert_error">An Error Message</h4>
-	
-	<h4 class="alert_success">A Success Message</h4>
-	
-	<article class="module width_full">
-		<header><h3>Basic Styles</h3></header>
-			<div class="module_content">
-				<h1>Header 1</h1>
-				<h2>Header 2</h2>
-				<h3>Header 3</h3>
-				<h4>Header 4</h4>
-				<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum. Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
 
-<p>Donec id elit non mi porta <a href="#">link text</a> gravida at eget metus. Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
-
-				<ul>
-					<li>Donec ullamcorper nulla non metus auctor fringilla. </li>
-					<li>Cras mattis consectetur purus sit amet fermentum.</li>
-					<li>Donec ullamcorper nulla non metus auctor fringilla. </li>
-					<li>Cras mattis consectetur purus sit amet fermentum.</li>
-				</ul>
-			</div>
-	</article>-->
-	<!-- end of styles article -->
-	<div class="spacer"></div>
+	<div class="spacer">
+	</div>
 </section>
