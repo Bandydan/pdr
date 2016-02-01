@@ -33,28 +33,28 @@ class User extends CI_Controller {
 	 */
 	public function register() 
 	{
-		// create the data object
-		$data = new stdClass();
-		
 		// load form helper and validation library
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->load->model('admin_model');
+		$data['avtos'] = $this->admin_model->get_avtos();
 		
 		// set validation rules
-		$this->form_validation->set_rules('login', 'login', 'trim|required|alpha_numeric|min_length[3]|is_unique[users.login]', array('is_unique' => 'This username already exists. Please choose another one.'));
-		$this->form_validation->set_rules('name', 'name', 'trim|required|alpha_numeric|min_length[2]');
-		$this->form_validation->set_rules('surname', 'surname', 'trim|required|alpha_numeric|min_length[2]');
-		$this->form_validation->set_rules('sex', 'sex', 'trim|required|alpha_numeric');
-		$this->form_validation->set_rules('birthsday', 'birthsday', 'trim|required');
-		$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|is_unique[users.email]', array('is_unique' => 'This e-mail already exists. Please choose another one.'));
-		$this->form_validation->set_rules('tel', 'tel', 'trim|required|alpha_numeric|min_length[10]');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
-		$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|min_length[6]|matches[password]');
+		$this->form_validation->set_rules('login', 'Логин', 'trim|required|alpha_numeric|min_length[3]|is_unique[users.login]', array('is_unique' => 'Этот логин уже занят. Пожалуйста введите другой.'));
+		$this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_numeric|min_length[2]');
+		$this->form_validation->set_rules('surname', 'Фамилия', 'trim|required|alpha_numeric|min_length[2]');
+		$this->form_validation->set_rules('sex', 'Пол', 'required');
+		$this->form_validation->set_rules('birthsday', 'Дата рождения', 'trim|required');
+		$this->form_validation->set_rules('email', 'e-mail', 'trim|required|valid_email|is_unique[users.email]', array('is_unique' => 'Данный e-mail уже используется. Пожалуйста введите другой.'));
+		$this->form_validation->set_rules('tel', 'Телефон', 'trim|required|alpha_numeric|min_length[10]');
+		$this->form_validation->set_rules('password', 'Пароль', 'trim|required|min_length[6]');
+		$this->form_validation->set_rules('password_confirm', 'Подтверждение пароля', 'trim|required|min_length[6]|matches[password]');
 		
 		if ($this->form_validation->run() === false) 
 		{
 			// validation not ok, send validation errors to the view
 			$this->load->view('header');
+			$this->load->view('user/error', $data);
 			$this->load->view('user/register/register', $data);
 			$this->load->view('footer');	
 		}
@@ -70,8 +70,12 @@ class User extends CI_Controller {
 			$tel = $this->input->post('tel');
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
+			$manufacture = $this->input->post('ManufactureName');
+			$model = $this->input->post('ModelName');
+			$year = $this->input->post('year');
+
 			
-			if ($this->user_model->create_user($login, $name, $surname, $sex, $birthsday, $tel, $email, $password)) 
+			if ($this->user_model->create_user($login, $name, $surname, $sex, $birthsday, $tel, $email, $password, $manufacture, $model, $year)) 
 			{
 				// user creation ok
 				$this->load->view('header');
@@ -82,10 +86,11 @@ class User extends CI_Controller {
 			else 
 			{
 				// user creation failed, this should never happen
-				$data->error = 'Что-то пошло не так. Please try again.';
+				$data['error'] = 'Что-то пошло не так. Please try again.';
 				
 				// send error to the view
 				$this->load->view('header');
+				$this->load->view('user/error', $data);
 				$this->load->view('user/register/register', $data);
 				$this->load->view('footer');
 			}	
@@ -115,6 +120,7 @@ class User extends CI_Controller {
 		{
 			// validation not ok, send validation errors to the view
 			$this->load->view('header');
+			$this->load->view('user/error', $data);
 			$this->load->view('user/login/login');
 			$this->load->view('footer');	
 		} 
@@ -151,6 +157,7 @@ class User extends CI_Controller {
 				
 				// send error to the view
 				$this->load->view('header');
+				$this->load->view('user/error', $data);
 				$this->load->view('user/login/login', $data);
 				$this->load->view('footer');	
 			}
@@ -168,22 +175,15 @@ class User extends CI_Controller {
 		// create the data object
 		$data = new stdClass();
 		
-		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) 
+		if ($this->session->has_userdata('logged_in') != NULL && $this->session->has_userdata('logged_in') === true) 
 		{
-			$data->login = $_SESSION['login'];
+            $data->login = $this->session->userdata('login');
+            $this->session->sess_destroy();
 
-			// remove session datas
-			foreach ($_SESSION as $key => $value) 
-			{
-				unset($_SESSION[$key]);
-			}
-
-			session_destroy();
-
-			// user logout ok
-			$this->load->view('header');
-			$this->load->view('user/logout/logout_success', $data);
-			$this->load->view('footer');	
+            // user logout ok
+            $this->load->view('header');
+            $this->load->view('user/logout/logout_success', $data);
+            $this->load->view('footer');  	
 		} 
 
 		else 

@@ -2,10 +2,10 @@
 			<div class="page-header">
 				<h1>Авторизация</h1>
 			</div>
-			<?= form_open('/user/login') ?>
+			<?= form_open('/admin/login') ?>
 				<div class="form-group">
 					<label for="Login">Логин</label>
-					<input type="text" class="form-control" id="login" name="login" value="<?= set_value('login'); ?>" placeholder="Ваш логин">
+					<input type="text" class="form-control" id="login" name="login" value="" placeholder="Ваш логин">
 				</div>
 				<div class="form-group">
 					<label for="password">Пароль</label>
