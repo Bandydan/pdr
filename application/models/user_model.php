@@ -29,8 +29,17 @@ class User_model extends CI_Model {
 	 * @param mixed $password
 	 * @return bool true on success, false on failure
 	 */
-	public function create_user($login, $name, $surname, $sex, $birthsday, $tel, $email, $password) 
+	public function create_user($login, $name, $surname, $sex, $birthsday, $tel, $email, $password, $manufacture, $model, $year) 
 	{
+		$this->db->select('id');
+		$this->db->from('avto');
+		$this->db->where('manufacture', $manufacture);
+		$this->db->where('model', $model);
+		$this->db->where('year', $year);
+		$query = $this->db->get();
+
+		$avto_id = $query->result_array();
+
 		$data1 = array(
 			'login'   	=> $login,
 			'name'   	=> $name,
@@ -39,14 +48,14 @@ class User_model extends CI_Model {
 			'birthsday' => $birthsday,
 			'tel'   	=> $tel,
 			'email'     => $email,
+			'avto_id'	=> $avto_id['0']['id'],
 		);
 
 		$this->db->insert('users', $data1);
-		//$u_id = $this->db->query('SELECT id FROM users WHERE login = '.$this->db->escape($login).'');
-		$id = $this->db->insert_id();
+		$insert_id = $this->db->insert_id();
 
 		$data2 = array(
-			'user_id' => $id,
+			'user_id' => $insert_id,
 			'user_enabled'  => '1',
 			'user_rights'   => '1',
 			'password'   	=> $this->hash_password($password),
@@ -55,7 +64,6 @@ class User_model extends CI_Model {
 		$this->db->insert('authorization', $data2);
 		
 		return TRUE;
-		//return $this->db->insert('users', $data);
 	}	
 	
 	/**
@@ -157,5 +165,18 @@ class User_model extends CI_Model {
 		$this->db->from('ci_session');
 		$this->db->where('session_id', $session_id);
 		return $this->db->get()->row();
+	}
+
+	public function get_users()
+	{
+		$this->db->select('users.login, users.name, users.surname, users.sex, 
+			users.birthsday, users.tel, users.email, avto.manufacture, avto.model, 
+			users.user_created, users.avatar, authorization.user_rights, authorization.user_enabled');
+		$this->db->from('users');
+		$this->db->join('avto', 'users.avto_id = avto.id', 'left');
+		$this->db->join('authorization', 'users.id = authorization.user_id');
+		$query = $this->db->get();
+
+		return $query->result_array();
 	}
 }
