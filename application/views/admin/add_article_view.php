@@ -2,10 +2,9 @@
 <section id="main" class="column">		
 		<article class="module width_full">
 			<header><h3>Добавить страницу</h3></header>
-
-			<?php echo validation_errors(); ?>
-			<?= form_open('admin/add') ?>
-				<div class="module_content">
+				<?php echo validation_errors(); ?>
+				<?= form_open('admin/add_article') ?>
+					<div class="module_content">
 						<fieldset>
 							<label>Заголовок</label>
 							<input name="title" value="<?= set_value('title'); ?>" type="text">
@@ -29,14 +28,13 @@
 							<label>Тэги</label>
 							<input name="meta" value="<?= set_value('meta'); ?>" type="text" style="width:92%;">
 						</fieldset><div class="clear"></div>
-				</div>
-			<footer>
-				<div class="submit_link">
-					<input type="submit" value="Опубликовать" class="alt_btn">
-					<input type="reset" value="Отмена">
-				</div>
-			</footer>
+					</div>
+					<footer>
+						<div class="submit_link">
+							<input type="submit" value="Опубликовать" class="alt_btn">
+							<input type="reset" value="Отмена">
+						</div>
+					</footer>
 			</form>
-
 		</article><!-- end of post new article -->
 </section>

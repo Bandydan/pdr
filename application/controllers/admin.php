@@ -2,16 +2,26 @@
 
 class Admin extends CI_Controller {
 
-    public function index($name = 'main')
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('admin_model');
+    }
+
+    public function index()
     {
         $data['title'] = 'Административная панель';
         
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
+            $data['comments'] = $this->admin_model->get_comments('4');
+            $data['requests'] = $this->admin_model->get_requests('4');
+            //$data['orders'] = $this->admin_model->get_orders('4');
+
             $this->load->view('admin/blocks/scripts_view', $data);
             $this->load->view('admin/blocks/header_view', $data);
             $this->load->view('admin/blocks/menu_view', $data);
-            $this->load->view('admin/'. $name .'_view', $data);
+            $this->load->view('admin/main_view', $data);
             $this->load->view('admin/blocks/footer_view', $data);
         }
         
@@ -160,11 +170,17 @@ class Admin extends CI_Controller {
     }
 
     //metods for work with data in admin panel
-    public function pages()
+    public function show_articles()
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            echo "Здесь будет код для работы со страницами";
+            $data['articles'] = $this->admin_model->get_all('content');
+            
+            $this->load->view('admin/blocks/scripts_view', $data);
+            $this->load->view('admin/blocks/header_view', $data);
+            $this->load->view('admin/blocks/menu_view', $data);
+            $this->load->view('admin/all_articles_view', $data);
+            $this->load->view('admin/blocks/footer_view', $data);
         }
         else
         {
@@ -172,14 +188,105 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function add() 
+    public function show_users()
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == '2')
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-        
+            $this->load->model('user_model');
+            $data['users'] = $this->user_model->get_users();
+            
+            $this->load->view('admin/blocks/scripts_view', $data);
+            $this->load->view('admin/blocks/header_view', $data);
+            $this->load->view('admin/blocks/menu_view', $data);
+            $this->load->view('admin/all_users_view', $data);
+            $this->load->view('admin/blocks/footer_view', $data);
+        }
+        else
+        {
+            $this->login();
+        }
+    }
+
+    public function show_comments($limit = '0')
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {
+            $data['comments'] = $this->admin_model->get_comments($limit);
+            
+            $this->load->view('admin/blocks/scripts_view', $data);
+            $this->load->view('admin/blocks/header_view', $data);
+            $this->load->view('admin/blocks/menu_view', $data);
+            $this->load->view('admin/all_comments_view', $data);
+            $this->load->view('admin/blocks/footer_view', $data);
+        }
+        else
+        {
+            $this->login();
+        }
+    }
+
+    public function show_requests($limit = '0')
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {
+            $data['requests'] = $this->admin_model->get_requests($limit);
+            
+            $this->load->view('admin/blocks/scripts_view', $data);
+            $this->load->view('admin/blocks/header_view', $data);
+            $this->load->view('admin/blocks/menu_view', $data);
+            $this->load->view('admin/pdr_requests_view', $data);
+            $this->load->view('admin/blocks/footer_view', $data);
+        }
+        else
+        {
+            $this->login();
+        }
+    }
+
+    public function show_avtos()
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {
+            $data['avtos'] = $this->admin_model->get_avtos();
+            
+            $this->load->view('admin/blocks/scripts_view', $data);
+            $this->load->view('admin/blocks/header_view', $data);
+            $this->load->view('admin/blocks/menu_view', $data);
+            $this->load->view('admin/all_avto_view', $data);
+            $this->load->view('admin/blocks/footer_view', $data);
+        }
+        else
+        {
+            $this->login();
+        }
+    }
+
+    public function add_avto()
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {
+            $data['avtos'] = $this->admin_model->get_avtos();
+            
+            $this->load->view('admin/blocks/scripts_view', $data);
+            $this->load->view('admin/blocks/header_view', $data);
+            $this->load->view('admin/blocks/menu_view', $data);
+            $this->load->view('admin/all_avto_view', $data);
+            $this->load->view('admin/blocks/footer_view', $data);
+        }
+        else
+        {
+            $this->login();
+        }
+    }
+
+    public function add_article() 
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {
+            $data = array();
+
             $this->load->helper('form');
             $this->load->library('form_validation');
-            $this->load->model('admin_model');
         
             $this->form_validation->set_rules('title', 'title', 'required');
             $this->form_validation->set_rules('text', 'text', 'required');
@@ -188,22 +295,28 @@ class Admin extends CI_Controller {
         
             if ($this->form_validation->run() === false) 
             {
-                $this->index('add_article');  
+                $this->load->view('admin/blocks/scripts_view', $data);
+                $this->load->view('admin/blocks/header_view', $data);
+                $this->load->view('admin/blocks/menu_view', $data);
+                $this->load->view('admin/add_article_view', $data);
+                $this->load->view('admin/blocks/footer_view', $data);  
             }
-
+            
             else
             {
                 $this->admin_model->create_content();
-                $this->index('all_article');
-            
+
+                $this->load->view('admin/blocks/scripts_view', $data);
+                $this->load->view('admin/blocks/header_view', $data);
+                $this->load->view('admin/blocks/menu_view', $data);
+                $this->load->view('admin/all_articles_view', $data);
+                $this->load->view('admin/blocks/footer_view', $data);
             }
         }
-
+        
         else
         {
             $this->login();
         }
-
     }
-    
 }
