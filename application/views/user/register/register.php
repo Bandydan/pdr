@@ -40,20 +40,18 @@
 					<input type="text" class="form-control" id="tel" name="tel" value="<?= set_value('tel'); ?>" placeholder="Введите номер телефона">
 					<p class="help-block"> </p>
 				</div>
-
 				<div class="form-group">
 					<label for="email">E-mail</label>
 					<input type="email" class="form-control" id="email" name="email" value="<?= set_value('email'); ?>" placeholder="Введите ваш e-mail">
 					<p class="help-block"> </p>
 				</div>
-
 				<div class="form-group">
 					<label for="Avto">Какой у Вас автомобиль</label>
 					<p><select id="manufacture_name" name="ManufactureName">
 						<option>--</option>
-		                <? foreach ($avtos as $data) : ?>
-		                <option value="<?= $data['manufacture'] ?>">
-		                <?= $data['manufacture'] ?></option>
+		                <? foreach ($avtos as $manufact) : ?>
+		                <option value="<?= $manufact['manufacture'] ?>">
+		                <?= $manufact['manufacture'] ?></option>
 		                <? endforeach; ?>
             		</select>
 
@@ -67,9 +65,10 @@
 
             		<select id="year" name="year">
 		            	<option>--</option>
-		                <? for ($i=1970; $i <= date('Y'); $i++) { ?>
-		                <option value="<?= $i; ?>"><?= $i ?></option>
-		                <? } ?>
+		                <? foreach ($avtos as $year) : ?>
+		                <option value="<?= $year['year'] ?>" class="
+		                <?= $year['model'] ?>"><?= $year['year'] ?></option>
+		                <? endforeach; ?>
             		</select></p>
 					<p class="help-block"> </p>
 				</div>
@@ -89,7 +88,10 @@
 				</div>
 			</form>
 
-			<script type="text/javascript">$("#model_name").chained("#manufacture_name");</script>
+			<script type="text/javascript">
+				$("#model_name").chained("#manufacture_name");
+				$("#year").chained("#model_name");	
+			</script>
 		</div>
 	</div><!-- .row -->
 </div><!-- .container -->
