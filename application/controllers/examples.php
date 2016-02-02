@@ -53,4 +53,18 @@ class Examples extends CI_Controller {
         //echo json_encode($data);
         die(); //чтоб лишнего не передавал, а именно HTML 
     }
+
+    public function config_arr(){
+        $config['categories'] = array(
+            'pdr' => 'Беспокрасочное удаление вмятин',
+            'pol' => 'Полировка авто', 
+            'brn' => 'Бронирование фар',
+            'chm' => 'Химчистка салона',
+            'gls' => 'Ремонт лобового стекла',
+            'atk' => 'Антикорозийная обработка',
+            'pnt' => 'Покраска авто'
+        );
+
+        echo json_encode($config['categories']);
+    }
 }
