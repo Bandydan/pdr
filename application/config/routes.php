@@ -5,6 +5,6 @@ $route['register'] = 'user/register';
 $route['login'] = 'user/login';
 $route['logout'] = 'user/logout';
 
-$route['default_controller'] = '';
+$route['default_controller'] = 'start';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

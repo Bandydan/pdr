@@ -1,106 +1,90 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <link href="assets/css/bootstrap.css" rel="stylesheet"> -->
-        <!-- <link href="assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
-        <link rel="stylesheet" href="/assets/css/main_hader.css">
-        <link rel="stylesheet" href="/assets/css/main.css">
-        <link rel="stylesheet" href="/assets/css/main_footer.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"> 
-        <!--<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>-->
-        <style type="text/css">
-        </style>
-
-        <head>
-    </head>
-
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>garage</title>
+    <link rel="stylesheet" type="text/css" href="<?=base_url();?>/assets/libs/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="<?=base_url();?>/assets/libs/slick/slick.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="<?=base_url();?>/assets/css/main.css">
+  <!--   <link type="text/css" rel="stylesheet" href="assets/css/media.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/fonts.css" /> -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="<?=base_url();?>/assets/libs/parallax/parallax.min.js"></script>
+    <script type="text/javascript" src="<?=base_url();?>/assets/libs/slick/slick.min.js"></script>
+    <script src="<?=base_url();?>/assets/js/common.js"></script>
+</head>
 <body>
-
-    <div class="container">
-        <div class="row" id="header">
-            <div class="col-md-2 icon">
-                <img class="" src="/assets/img/logo.jpg" alt="Basket" width="100" height="100"/>
-            </div>
-
-            <div class="col-md-6">
-
-            <!-- Начало блока со слайдшоу -->
-                <div id="carousel-example-generic" class="carousel slide bs-slider" data-ride="carousel">
-
-            <!-- Индикаторы слайдов -->
-            <!-- Количество пунктов должно совпадать с количеством слайдов, в данном примере их 5-->
-            <!-- Класс active присваивается тому слайду, с котрого начинается слайдшоу -->
-            <!-- Значение data-target у пунктов должно соответствовать идентификатору(id) блока со слайдшоу(первая строчка) -->
-
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="4"></li>
-                    </ol>
-
-                    <!-- Блок в котором находятся слайды -->
-
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox">
-                    <!-- Слайд 1 -->
-                        <div class="item active">
-                            <!-- Изображение слайда -->
-                            <!-- В поле src нужно написать адрес картинки -->
-                            <!-- В поле alt нужно написать название картинки -->
-                            <img class="img-thumbnail im" src="/img/example/after/0_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
-                        </div>
-
-                        <div class="item">
-                            <img class="img-thumbnail im" src="/img/example/after/1_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
-                        </div>
-
-                        <div class="item">
-                            <img class="img-thumbnail im" src="/img/example/after/2_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
-                        </div>
-
-                        <div class="item">
-                            <img class="img-thumbnail im" src="/img/example/after/3_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
-                        </div>
-
-                        <div class="item">
-                            <img class="img-thumbnail im" src="/img/example/after/4_0.jpg" alt="Photo Avto" width="199px" height="150px"/>
-                        </div>
-
+    <div class="myMain">
+        <header class="header">
+            <div class="container">
+                <div class="row hedFirstRow">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <img src="<?=base_url();?>/assets/img/logo.png" class="img-responsive">
                     </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="wrapImg">
+                        <img src="<?=base_url();?>/img/example/after/1_0.jpg" class="img-responsive"> <!-- для примера, в будующем нужно уточнить какое фото будет выводиться -->
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="regist">
+                            <a href="<?=base_url();?>login">Вход</a>
+                            <a href="<?=base_url();?>register">Регистрация</a>
+                        </div>  
+                        <div class="callBack">
+                            <a href="#">Заказать звонок
+                                <img src="<?=base_url();?>/assets/img/callback.png" class="img-responsive"></a>
+                            </div>
+                            <div class="info">
+                                <p>тел. (057)000-00-00</p>
+                                <p>моб. (057)000-00-00</p>
+                                <p>моб. (057)000-00-00</p>
 
-            <!-- Кнопки управления слайдщоу (стрелки влево и вправо) -->
-            <!-- Значение href у ссылки должно соответствовать идентификатору(id) блока со слайдшоу(первая строчка) -->
-            
-                    <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="row hedSecRow">
+                        <div class="hidden-xs col-sm-12 col-md-12 col-lg-12">
+                            <nav class="nav">
+                                <ul class="siteNav">
+                                    <li>
+                                        <a href="<?=base_url();?>">Главная</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?=base_url();?>examples/paginate">Примеры работ</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Обучение</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Аренда оборудования</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Оценить вмятину</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Отзывы</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Контакты</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
+            </header>
 
-                <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-            </div>
-
-            <div class="col-md-4">
-                <button type="button" class="btn btn-success"><a href="<?=base_url();?>login">Войти</a></button>
-                <button type="button" class="btn btn-success"><a href="<?=base_url();?>register">Регистрация</a></button>
-                <button type="button" class="">
-                <img class="" src="/assets/img/basket_2.png" alt="Basket" width="64px" height="70px"/>
-                </button>
-            </div>
-
-        </div>
