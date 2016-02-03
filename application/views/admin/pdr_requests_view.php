@@ -19,9 +19,9 @@
 				<td>Вася</td> 
 				<td>5th April 2011</td> 
 				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_photo.png" alt="Просмотр фото"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_edit.png" alt="Ответить"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a>
 				</td> 
 			</tr> 
 			<tr> 
@@ -30,9 +30,9 @@
 				<td>Вася</td> 
 				<td>6th April 2011</td> 
 				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_photo.png" alt="Просмотр фото"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_edit.png" alt="Ответить"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a>
 				</td>
 			</tr>
 			<tr> 
@@ -41,9 +41,9 @@
 				<td>Вася</td> 
 				<td>10th April 2011</td> 
 				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_photo.png" alt="Просмотр фото"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_edit.png" alt="Ответить"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a>
 				</td>
 			</tr> 
 			<tr> 
@@ -52,9 +52,9 @@
 				<td>Вася</td> 
 				<td>16th April 2011</td> 
 				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_photo.png" alt="Просмотр фото"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_edit.png" alt="Ответить"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a>
 				</td>
 			</tr>
 			<tr> 
@@ -63,9 +63,9 @@
 				<td>Вася</td> 
 				<td>16th April 2011</td> 
 				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_photo.png" alt="Просмотр фото"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_edit.png" alt="Ответить"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a>
 				</td>
 			</tr>  
 		</tbody> 
