@@ -23,6 +23,25 @@ class Examples_model extends CI_Model {
         return $result;
     }
 
+    // возвращает общее кол-во записей в таблице example_works 
+    function count_all() 
+    { 
+        return $this->db->count_all('example_works');//$this->table); 
+    } 
+    // $limit - кол-во получаемых записей 
+    // $offset - смещение, с какой записи начинать выборку 
+
+    public function get_scrolling($limit,$offset)
+    {
+        $this->db->limit($limit,$offset); 
+        $query = $this->db->get('example_works');//$this->table); 
+        $result = $query->result_array();
+        //var_dump($result);
+        $result = $this->__add_photo($result);
+        return $result;
+    }
+
+
     /**
      * @access private
      * 
@@ -41,12 +60,12 @@ class Examples_model extends CI_Model {
             $photo_after = $photo_before = array();
 
             for ($i=0; $i < $num_before; $i++) { 
-                $photo_before[] = '/img/example/before/' 
+                $photo_before[] = base_url().'/img/example/before/' 
                 . $id . '_' . $i . '.jpg';    
             }
 
             for ($i=0; $i < $num_after; $i++) { 
-                $photo_after[] = '/img/example/after/' 
+                $photo_after[] = base_url().'/img/example/after/' 
                 . $id . '_' . $i . '.jpg';    
             }
 

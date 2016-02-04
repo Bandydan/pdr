@@ -40,13 +40,11 @@
 					<input type="text" class="form-control" id="tel" name="tel" value="<?= set_value('tel'); ?>" placeholder="Введите номер телефона">
 					<p class="help-block"> </p>
 				</div>
-
 				<div class="form-group">
 					<label for="email">E-mail</label>
 					<input type="email" class="form-control" id="email" name="email" value="<?= set_value('email'); ?>" placeholder="Введите ваш e-mail">
 					<p class="help-block"> </p>
 				</div>
-				<?php //$result = array_unique($avtos); var_dump($result); ?>
 				<div class="form-group">
 					<label for="Avto">Какой у Вас автомобиль</label>
 					<p><select id="manufacture_name" name="ManufactureName">

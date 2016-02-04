@@ -22,9 +22,9 @@
 				<td><?=$comment['login']?></td> 
 				<td><?=$comment['comment_created']?></td>
 				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотреть на странице">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_photo.png" alt="Просмотреть на странице"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_edit.png" alt="Ответить"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a>
 				</td> 
 			</tr> 
 			<?php endforeach;?>	

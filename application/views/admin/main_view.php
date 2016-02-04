@@ -56,9 +56,9 @@
 				<td><?=$request['login']?></td> 
 				<td><?=$request['order_created']?></td> 
 				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_photo.png" alt="Просмотр фото"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_edit.png" alt="Ответить"></a>
+					<a href="<?=base_url();?>admin/delete_request/<?=$request['id']?>"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a>
 				</td> 
 			</tr>
 			<?php endforeach;?>   
@@ -87,9 +87,9 @@
 				<td><?=$comment['login']?></td> 
 				<td><?=$comment['comment_created']?></td> 
 				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотр фото">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Ответить">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_photo.png" alt="Просмотр фото"></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_edit.png" alt="Ответить"></a>
+					<a href="<?=base_url();?>admin/delete_comment/<?=$comment['id']?>"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a>
 				</td> 
 			</tr>
 			<?php endforeach;?> 

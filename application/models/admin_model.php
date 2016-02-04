@@ -26,7 +26,7 @@ class Admin_model extends CI_Model {
 	public function get_comments($limit)
 	{
 		//get comments
-		$this->db->select('users.login, comments.comment_text, comments.comment_created');
+		$this->db->select('comments.id, users.login, comments.comment_text, comments.comment_created');
 		$this->db->from('comments');
 		$this->db->join('users', 'users.id = comments.user_id');
 		$this->db->order_by('comments.comment_created', 'DESC');
@@ -39,7 +39,7 @@ class Admin_model extends CI_Model {
 	public function get_requests($limit)
 	{
 		//get requests
-		$this->db->select('order_for_assessment.order_text, order_for_assessment.order_created, users.login, mediafiles.media_link');
+		$this->db->select('order_for_assessment.id, order_for_assessment.order_text, order_for_assessment.order_created, users.login, mediafiles.media_link');
 		$this->db->from('order_for_assessment');
 		$this->db->join('users', 'users.id = order_for_assessment.user_id');
 		$this->db->join('mediafiles', 'mediafiles.id = order_for_assessment.photo_id');
@@ -70,6 +70,16 @@ class Admin_model extends CI_Model {
 			);
 		
 		return $this->db->insert('Content', $data);
+	}
+
+	public function delete_data($id, $table)
+	{
+		//delete data
+		$this->db->from($table);
+		$this->db->where('id', $id);
+		$query = $this->db->delete();
+		
+		return TRUE;
 	}
 
 	//public function get_all($title, )
