@@ -36,9 +36,9 @@
 				<td><?=$user['avatar']?></td> 
 				<td><?=$user['user_enabled']?></td>
 				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_jump_back.png" title="Отключить">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Редактировать">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
+					<a href="#"><img type="image" src="<?=base_url();?>assets/img/admin/icn_jump_back.png" alt="Отключить" /></a>
+					<a href="#"><img type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" alt="Редактировать" /></a>
+					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить" /></a>
 				</td> 
 			</tr> 
 			<?php endforeach;?>	

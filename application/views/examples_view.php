@@ -1,35 +1,79 @@
+<?php $this->load->helper('url'); ?>
 
-	<?php $this->load->helper('url'); ?>
+<section class="firstSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar">
+                <nav class="secNav">
+                    <ul class="secSiteNav">
+                        <li>
+                            <a href="<?=base_url();?>examples/index/1">Удаление вмятин без покраски</a>
+                        </li>
+                        <li>
+                            <a href="<?=base_url();?>examples/index/2">Полировка авто</a>
+                        </li>
+                        <li>
+                            <a href="<?=base_url();?>examples/index/3">Бронирование фар</a>
+                        </li>
+                        <li>
+                            <a href="<?=base_url();?>examples/index/4">Химчистка салона</a>
+                        </li>
+                        <li>
+                            <a href="<?=base_url();?>examples/index/5">Ремонт стекол</a>
+                        </li>
+                        <li>
+                            <a href="<?=base_url();?>examples/index/6">Антикорозийная обработка</a>
+                        </li>
+                        <li>
+                            <a href="<?=base_url();?>examples/index/7">Покраска авто</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="advertising">
+                </div>
+            </div>
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 main">
+        <?php foreach ($examples as $item):?>
+                <div class="wrapSlider">
+                    <div class="slider">
 
-<div class="row" id="content">
-    <div class="col-md-2 left_sidebar"></div>
-    <div class="col-md-10 sidebar">
+                        <div>
+                            <img src="<?=$item['photo_before'][0]?>" class="img-responsive">           
+                        </div>
 
-	<table id="main-table" class="table table-striped table-bordered table-hover table-condensed">
-		<thead>
-            <tr>
-        		<th>Категория</th>
-        		<th>Фото до</th>
-        		<th>Фото после</th>
-        		<th>Описание работы</th>
-        		<th>Дополнительная информация</th>
-    		</tr>
-        </thead>
+                        <div>
+                            <img src="<?=$item['photo_after'][0]?>" class="img-responsive">
+                        </div>
 
-        <tbody>
-            <?php foreach ($examples as $item):?>
-            	<tr>
+                        <div>
+                            <img src="<?=$item['photo_before'][1]?>" class="img-responsive">
+                        </div>
+                        <div>
+                            <img src="<?=$item['photo_after'][1]?>" class="img-responsive">
+                        </div>
+                        <!-- <div>
+                            <img src="<?=$item['photo_before'][2]?>" class="img-responsive">
+                        </div>
+                        <div>
+                            <img src="<?=$item['photo_after'][2]?>" class="img-responsive">
+                        </div>
+                        <div>
+                            <img src="<?=$item['photo_before'][3]?>" class="img-responsive">
+                        </div>
+                        <div>
+                            <img src="<?=$item['photo_after'][3]?>" class="img-responsive">
+                        </div> -->
+                    </div>
+                </div>
+                <h3><?php $arr=$this->config->item("categories");?>
+                        <?=$arr[$item['category']];?></h3>
+                <p><?=$item['about'];?></p>
+        <?php endforeach;?> 
 
-             	<td align="center">
-             		<?=$this->config->item('categories')[$item['category']];?></td>                  
-            	<td align="center"><?=implode(', ', $item['photo_before'])?> </td>
-            	<td align="center"><?=implode(', ', $item['photo_after'])?> </td>
-            	<td align="center"><?=$item['about'];?></td>
-            	<td align="center"><?=$item['additionally'];?></td>
-
-            	</tr>
-            <?php endforeach;?>
-        </tbody>
-    </table>
+            
+            </div> <!--  main  -->
+        </div>
     </div>
-</div>
+</section>
+        
+<script type="text/javascript" src="<?=base_url();?>/assets/js/script.js"></script>

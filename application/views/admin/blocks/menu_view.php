@@ -36,7 +36,7 @@
 	</ul>
 	<h3>Пользователи</h3>
 	<ul class="toggle">
-		<li class="icn_add_user"><a href="#">Добавить</a></li>
+		<li class="icn_add_user"><a href="<?=base_url();?>admin/add_user">Добавить</a></li>
 		<li class="icn_view_users"><a href="<?=base_url();?>admin/show_users">Просмотреть всех</a></li>
 		<!--<li class="icn_delete"><a href="#">Удалить</a></li>-->
 	</ul>

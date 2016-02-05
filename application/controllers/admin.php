@@ -319,4 +319,84 @@ class Admin extends CI_Controller {
             $this->login();
         }
     }
+
+    public function add_user()
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {
+            $data = array();
+            
+            $this->load->view('admin/blocks/scripts_view', $data);
+            $this->load->view('admin/blocks/header_view', $data);
+            $this->load->view('admin/blocks/menu_view', $data);
+            $this->load->view('admin/add_user_view', $data);
+            $this->load->view('admin/blocks/footer_view', $data);
+        }
+        else
+        {
+            $this->login();
+        }
+    }
+
+    public function delete_request($id)
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {
+            if ($this->admin_model->delete_data($id, 'order_for_assessment')) 
+            {
+                // request delete ok
+                $this->index();    
+            } 
+            
+            else 
+            {
+                // request delete failed, this should never happen
+                $data['error'] = 'Что-то пошло не так. Please try again.';
+                
+                // send error to the view
+                $this->load->view('admin/blocks/scripts_view', $data);
+                $this->load->view('admin/blocks/header_view', $data);
+                $this->load->view('admin/blocks/menu_view', $data);
+                $this->load->view('admin/error', $data);
+                $this->load->view('admin/main_view', $data);
+                $this->load->view('admin/blocks/footer_view', $data);
+            }   
+            
+        }
+        else
+        {
+            $this->login();
+        }
+    }
+
+    public function delete_comment($id)
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {
+            if ($this->admin_model->delete_data($id, 'comments')) 
+            {
+                // request delete ok
+                $this->index();    
+            } 
+            
+            else 
+            {
+                // request delete failed, this should never happen
+                $data['error'] = 'Что-то пошло не так. Please try again.';
+                
+                // send error to the view
+                $this->load->view('admin/blocks/scripts_view', $data);
+                $this->load->view('admin/blocks/header_view', $data);
+                $this->load->view('admin/blocks/menu_view', $data);
+                $this->load->view('admin/error', $data);
+                $this->load->view('admin/main_view', $data);
+                $this->load->view('admin/blocks/footer_view', $data);
+            }   
+            
+        }
+        else
+        {
+            $this->login();
+        }
+    }
 }
