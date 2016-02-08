@@ -61,12 +61,15 @@ class Admin_model extends CI_Model {
 
 	public function create_content() 
 	{	
+
 		//add content
 		$data = array(
 			'title'   		=> $this->input->post('title'),
 			'content_text'  => $this->input->post('text'),
 			'meta'   		=> $this->input->post('meta'),
 			'category'  	=> $this->input->post('category'),
+			'status'  		=> $this->input->post('status'),
+			'adress'  		=> $this->category_url().$this->input->post('adress'),
 			);
 		
 		return $this->db->insert('Content', $data);
@@ -80,6 +83,39 @@ class Admin_model extends CI_Model {
 		$query = $this->db->delete();
 		
 		return TRUE;
+	}
+
+	public function category_url(){
+
+		$data = $this->input->post('category');
+
+		switch ($data) {
+			case 'Главная':
+				$url = 'pdr/';
+				break;
+
+			case 'Примеры работ':
+				$url = 'pdr/examples/';
+				break;
+
+			case 'Обучение':
+				$url = 'pdr/#/';
+				break;
+			
+			case 'Инструмент':
+				$url = 'pdr/#/';
+				break;
+
+			case 'Оценить вмятину':
+				$url = 'pdr/#/';
+				break;
+
+			case 'Контакты':
+				$url = 'pdr/#/';
+				break;
+		}
+		
+		return $url;
 	}
 
 	//public function get_all($title, )

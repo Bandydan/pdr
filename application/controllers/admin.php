@@ -288,10 +288,10 @@ class Admin extends CI_Controller {
             $this->load->helper('form');
             $this->load->library('form_validation');
         
-            $this->form_validation->set_rules('title', 'title', 'required');
-            $this->form_validation->set_rules('text', 'text', 'required');
-            $this->form_validation->set_rules('meta', 'meta', 'required');
-            $this->form_validation->set_rules('category', 'category', 'required');
+            $this->form_validation->set_rules('title', 'Заголовок', 'required');
+            $this->form_validation->set_rules('text', 'Содержимое', 'required');
+            $this->form_validation->set_rules('meta', 'Теги', 'required');
+            $this->form_validation->set_rules('adress', 'Адрес', 'required|is_unique[Content.adress]', array('is_unique' => 'Этот адрес уже занят. Пожалуйста введите другой.'));
         
             if ($this->form_validation->run() === false) 
             {
