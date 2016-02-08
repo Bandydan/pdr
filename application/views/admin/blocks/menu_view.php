@@ -26,6 +26,11 @@
 		<li class="icn_categories"><a href="#">Меню</a></li>
 		<li class="icn_tags"><a href="#">Tags</a></li>-->
 	</ul>
+	<h3>Примеры работ</h3>
+	<ul class="toggle">
+		<li class="icn_new_article"><a href="<?=base_url();?>admin/add_example">Добавить</a></li>
+		<li class="icn_edit_article"><a href="<?=base_url();?>admin/#">Просмотреть все</a></li>
+	</ul>
 	<h3>Медиафайлы</h3>
 	<ul class="toggle">
 		<!--<li class="icn_folder"><a href="#">Файловый менеджер</a></li>-->
