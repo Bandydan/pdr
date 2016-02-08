@@ -72,6 +72,20 @@ class Admin_model extends CI_Model {
 		return $this->db->insert('Content', $data);
 	}
 
+	public function create_example() 
+	{	
+		//add example
+		$data = array(
+			'category'  	=> $this->input->post('category'),
+			'about'   		=> $this->input->post('text'),
+			'photo_before'  => $this->input->post('foto_before'),
+			'photo_after'	=> $this->input->post('foto_after'),
+			'additionally'   => $this->input->post('additionally'),
+			);
+		
+		return $this->db->insert('example_works', $data);
+	}
+
 	public function delete_data($id, $table)
 	{
 		//delete data
@@ -83,4 +97,25 @@ class Admin_model extends CI_Model {
 	}
 
 	//public function get_all($title, )
+
+
+
+	public function migration_select()
+	{
+		$query = $this->db->query('select DISTINCT manufacture FROM avto');
+		//$query = $this->db->get();
+		
+		return $query->result_array();
+	}
+
+	public function migration_add($data)
+	{
+		foreach ($data as $item) 
+		{	
+			$element['mark'] = $item['manufacture'];
+			$this->db->insert('cars_mark', $element);
+		}
+		
+		return TRUE;
+	}
 }
