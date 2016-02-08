@@ -6,6 +6,7 @@
         <title>PDR Admin Panel</title>
         
         <link rel="stylesheet" href="/assets/css/layout.css" type="text/css" media="screen" />
+        <link href="/assets/css/button.css" rel="stylesheet">
         <!--[if lt IE 9]>
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
