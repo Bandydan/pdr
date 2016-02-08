@@ -320,6 +320,48 @@ class Admin extends CI_Controller {
         }
     }
 
+    public function add_example() 
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {
+            $data = array();
+
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+        
+            $this->form_validation->set_rules('category', 'category', 'required');
+            $this->form_validation->set_rules('text', 'text', 'required');
+            $this->form_validation->set_rules('foto_before', 'foto_before', 'required');
+            $this->form_validation->set_rules('foto_after', 'foto_after', 'required');
+            $this->form_validation->set_rules('additionally', 'additionally', 'required');            
+        
+            if ($this->form_validation->run() === false) 
+            {
+                $this->load->view('admin/blocks/scripts_view', $data);
+                $this->load->view('admin/blocks/header_view', $data);
+                $this->load->view('admin/blocks/menu_view', $data);
+                $this->load->view('admin/add_example_view', $data);
+                $this->load->view('admin/blocks/footer_view', $data);  
+            }
+            
+            else
+            {
+                $this->admin_model->create_example();
+
+                $this->load->view('admin/blocks/scripts_view', $data);
+                $this->load->view('admin/blocks/header_view', $data);
+                $this->load->view('admin/blocks/menu_view', $data);
+                $this->load->view('admin/all_examples_view', $data);
+                $this->load->view('admin/blocks/footer_view', $data);
+            }
+        }
+        
+        else
+        {
+            $this->login();
+        }
+    }
+
     public function add_user()
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
@@ -398,5 +440,13 @@ class Admin extends CI_Controller {
         {
             $this->login();
         }
+    }
+
+    public function migration()
+    {
+        $data = array();
+        $data = $this->admin_model->migration_select();
+        $this->admin_model->migration_add($data);
+
     }
 }
