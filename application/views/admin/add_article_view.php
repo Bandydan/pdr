@@ -2,7 +2,7 @@
 <section id="main" class="column">		
 		<article class="module width_full">
 			<header><h3>Добавить страницу</h3></header>
-				<?php echo validation_errors(); ?>
+			<?php echo validation_errors(); ?>
 				<?= form_open('admin/add_article') ?>
 					<div class="module_content">
 						<fieldset>
@@ -28,6 +28,15 @@
 							<label>Тэги</label>
 							<input name="meta" value="<?= set_value('meta'); ?>" type="text" style="width:92%;">
 						</fieldset><div class="clear"></div>
+						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
+							<label>Адрес</label>
+							<input name="adress" value="<?= set_value('adress'); ?>" type="text" style="width:92%;">
+						</fieldset><div class="clear"></div>
+						<h3>Включить страницу</h3>
+						<div class="switch">
+    						<input name="status" type="checkbox">
+    						<label><i></i</label>
+						</div>
 					</div>
 					<footer>
 						<div class="submit_link">

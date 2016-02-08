@@ -79,17 +79,3 @@
                     </div>
                 </div>
             </header>
-
-                <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-            </div>
-
-            <div class="col-md-4">
-                <button type="button" class="btn btn-success"><a href="<?=base_url();?>login">Войти</a></button>
-                <button type="button" class="btn btn-success"><a href="<?=base_url();?>register">Регистрация</a></button>
-                <button type="button" class="">
-                <img class="" src="/assets/img/basket_2.png" alt="Basket" width="64px" height="70px"/>
-                </button>
-            </div>
-        </div>

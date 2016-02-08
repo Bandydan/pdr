@@ -181,18 +181,14 @@ body {
 .firstSection .main p{
 	text-align: justify;
 }
+
 .firstSection .wrapSlider{
 
-<<<<<<< HEAD
-.left_sidebar{
-	background: #123;
-	/*height: 136vh;*/
-	/*height: 100%;*/
-=======
-	max-width: 692px;
+ max-width: 692px;
     margin: 0 auto;
 }
- .firstSection .slick-next {
+
+.firstSection .slick-next {
 	width: 0;
     height: 0;
     border-top: 30px solid transparent;
