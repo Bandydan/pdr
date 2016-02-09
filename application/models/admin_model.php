@@ -61,15 +61,23 @@ class Admin_model extends CI_Model {
 
 	public function create_content() 
 	{	
-
 		//add content
+		if ($this->input->post('status') == 'on')
+		{
+			$status = '1';
+		}
+		else
+		{
+			$status = '0';
+		}
+
 		$data = array(
 			'title'   		=> $this->input->post('title'),
 			'content_text'  => $this->input->post('text'),
 			'meta'   		=> $this->input->post('meta'),
 			'category'  	=> $this->input->post('category'),
-			'status'  		=> $this->input->post('status'),
-			'adress'  		=> $this->category_url().$this->input->post('adress'),
+			'status'  		=> $status,
+			'address'  		=> $this->category_url().$this->input->post('address'),
 			);
 		
 		return $this->db->insert('Content', $data);
