@@ -56,8 +56,8 @@ class User_model extends CI_Model {
 
 		$data2 = array(
 			'user_id' => $insert_id,
-			'user_enabled'  => '1',
-			'user_rights'   => '1',
+			'user_enabled'  => $this->config->item('STATUS_ON'),
+			'user_rights'   => $this->config->item('user_rights'),
 			'password'   	=> $this->hash_password($password),
 		);
 		
