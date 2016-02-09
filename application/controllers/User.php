@@ -61,21 +61,9 @@ class User extends CI_Controller {
 
 		else 
 		{
-			// set variables from the form
-			$login = $this->input->post('login');
-			$name = $this->input->post('name');
-			$surname = $this->input->post('surname');
-			$sex = $this->input->post('sex');
-			$birthsday = $this->input->post('birthsday');
-			$tel = $this->input->post('tel');
-			$email = $this->input->post('email');
-			$password = $this->input->post('password');
-			$manufacture = $this->input->post('ManufactureName');
-			$model = $this->input->post('ModelName');
-			$year = $this->input->post('year');
-
+			$register = $this->input->post();
 			
-			if ($this->user_model->create_user($login, $name, $surname, $sex, $birthsday, $tel, $email, $password, $manufacture, $model, $year)) 
+			if ($this->user_model->create_user($register)) 
 			{
 				// user creation ok
 				$this->load->view('header');
@@ -137,12 +125,16 @@ class User extends CI_Controller {
 				$user    = $this->user_model->get_user($user_id);
 				$user_data = $this->user_model->get_user_data($user_id);
 				
-				//set session user datas
-				$_SESSION['user_id']      = (int)$user->id;
-				$_SESSION['login']     = (string)$user->login;
-				$_SESSION['logged_in']    = (bool)true;
-				$_SESSION['user_enabled'] = (int)$user_data->user_enabled;
-				$_SESSION['user_rights']     = (int)$user_data->user_rights;
+				//set session user data
+				$session_data = array(
+						'id' => session_id(),
+						'user_id' => (int)$user->id,
+						'login' => (string)$user->login,
+						'logged_in' => (bool)true,
+						'user_enabled' => (int)$user_data->user_enabled,
+						'user_rights' => (int)$user_data->user_rights, );
+
+				$this->session->set_userdata($session_data);
 		
 				// user login ok
 				$this->load->view('header');
