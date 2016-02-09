@@ -55,10 +55,17 @@ class User_model extends CI_Model {
 		$insert_id = $this->db->insert_id();
 
 		$data2 = array(
+<<<<<<< HEAD
 			'user_id' 		=> $insert_id,
 			'user_enabled'  => $this->config->item('STATUS_ON'),
 			'user_rights'   => $this->config->item('user_rights'),
 			'password'   	=> $this->hash_password($data['password']),
+=======
+			'user_id' => $insert_id,
+			'user_enabled'  => $this->config->item('STATUS_ON'),
+			'user_rights'   => $this->config->item('user_rights'),
+			'password'   	=> $this->hash_password($password),
+>>>>>>> upstream/master
 		);
 		
 		$this->db->insert('authorization', $data2);

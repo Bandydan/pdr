@@ -64,11 +64,11 @@ class Admin_model extends CI_Model {
 		//add content
 		if ($this->input->post('status') == 'on')
 		{
-			$status = '1';
+			$status = $this->config->item('STATUS_ON');
 		}
 		else
 		{
-			$status = '0';
+			$status = $this->config->item('STATUS_OFF');
 		}
 
 		$data = array(
