@@ -33,15 +33,7 @@ class User_model extends CI_Model {
 	{
 		if ($data['ManufactureName'] !== '--') 
 		{
-			$this->db->select('id');
-			$this->db->from('avto');
-			$this->db->where('manufacture', $data['ManufactureName']);
-			$this->db->where('model', $data['ModelName']);
-			$this->db->where('year', $data['year']);
-			$query = $this->db->get();
-
-			$avto_id = $query->result_array();
-			$avto = $avto_id['0']['id'];
+			$avto = $this->get_avto_id($data);
 		}
 		else
 		{
@@ -74,6 +66,21 @@ class User_model extends CI_Model {
 		return TRUE;
 	}	
 	
+	private function get_avto_id($data) 
+	{
+		$this->db->select('id');
+		$this->db->from('avto');
+		$this->db->where('manufacture', $data['ManufactureName']);
+		$this->db->where('model', $data['ModelName']);
+		$this->db->where('year', $data['year']);
+		$query = $this->db->get();
+
+		$avto_id = $query->result_array();
+		$avto = $avto_id['0']['id'];
+
+		return $avto;
+	}
+
 	/**
 	 * resolve_user_login function.
 	 * 
