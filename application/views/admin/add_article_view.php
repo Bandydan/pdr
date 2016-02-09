@@ -30,7 +30,7 @@
 						</fieldset><div class="clear"></div>
 						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Адрес</label>
-							<input name="adress" value="<?= set_value('adress'); ?>" type="text" style="width:92%;">
+							<input name="address" value="<?= set_value('address'); ?>" type="text" style="width:92%;">
 						</fieldset><div class="clear"></div>
 						<h3>Включить страницу</h3>
 						<div class="switch">
