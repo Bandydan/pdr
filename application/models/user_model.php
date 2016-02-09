@@ -29,36 +29,43 @@ class User_model extends CI_Model {
 	 * @param mixed $password
 	 * @return bool true on success, false on failure
 	 */
-	public function create_user($login, $name, $surname, $sex, $birthsday, $tel, $email, $password, $manufacture, $model, $year) 
+	public function create_user($data) 
 	{
-		$this->db->select('id');
-		$this->db->from('avto');
-		$this->db->where('manufacture', $manufacture);
-		$this->db->where('model', $model);
-		$this->db->where('year', $year);
-		$query = $this->db->get();
-
-		$avto_id = $query->result_array();
+		if ($data['ManufactureName'] !== '--') 
+		{
+			$avto = $this->get_avto_id($data);
+		}
+		else
+		{
+			$avto = NULL;
+		}
 
 		$data1 = array(
-			'login'   	=> $login,
-			'name'   	=> $name,
-			'surname'   => $surname,
-			'sex'   	=> $sex,
-			'birthsday' => $birthsday,
-			'tel'   	=> $tel,
-			'email'     => $email,
-			'avto_id'	=> $avto_id['0']['id'],
+			'login'   	=> $data['login'],
+			'name'   	=> $data['name'],
+			'surname'   => $data['surname'],
+			'sex'   	=> $data['sex'],
+			'birthsday' => $data['birthsday'],
+			'tel'   	=> $data['tel'],
+			'email'     => $data['email'],
+			'avto_id'	=> $avto,
 		);
 
 		$this->db->insert('users', $data1);
 		$insert_id = $this->db->insert_id();
 
 		$data2 = array(
+<<<<<<< HEAD
+			'user_id' 		=> $insert_id,
+			'user_enabled'  => $this->config->item('STATUS_ON'),
+			'user_rights'   => $this->config->item('user_rights'),
+			'password'   	=> $this->hash_password($data['password']),
+=======
 			'user_id' => $insert_id,
 			'user_enabled'  => $this->config->item('STATUS_ON'),
 			'user_rights'   => $this->config->item('user_rights'),
 			'password'   	=> $this->hash_password($password),
+>>>>>>> upstream/master
 		);
 		
 		$this->db->insert('authorization', $data2);
@@ -66,6 +73,21 @@ class User_model extends CI_Model {
 		return TRUE;
 	}	
 	
+	private function get_avto_id($data) 
+	{
+		$this->db->select('id');
+		$this->db->from('avto');
+		$this->db->where('manufacture', $data['ManufactureName']);
+		$this->db->where('model', $data['ModelName']);
+		$this->db->where('year', $data['year']);
+		$query = $this->db->get();
+
+		$avto_id = $query->result_array();
+		$avto = $avto_id['0']['id'];
+
+		return $avto;
+	}
+
 	/**
 	 * resolve_user_login function.
 	 * 
