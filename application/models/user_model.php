@@ -1,17 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+//auto, not aVto ;)
+
 /**
  * User_model class.
  * 
- * @extends CI_Model
+ * @category Database
+ * @package	Pdr
+ * @subpackage Pdr
+ * @author Dream Team <dreamteam@gmail.com>
+ * @license private 	
+ * @link https://github.com/Bandydan/pdr
  */
 class User_model extends CI_Model {
 
 	/**
-	 * __construct function.
+	 * Almost empty constructor
 	 * 
-	 * @access public
 	 * @return void
 	 */
 	public function __construct() 
@@ -21,44 +27,40 @@ class User_model extends CI_Model {
 	}
 	
 	/**
-	 * create_user function.
+	 * Method creates user by given data.
 	 * 
-	 * @access public
-	 * @param mixed $username
-	 * @param mixed $email
-	 * @param mixed $password
+	 * @param array $data - array of incoming user data
+	 * 
 	 * @return bool true on success, false on failure
 	 */
-	public function create_user($login, $name, $surname, $sex, $birthsday, $tel, $email, $password, $manufacture, $model, $year) 
+	public function create_user($data) 
 	{
-		$this->db->select('id');
-		$this->db->from('avto');
-		$this->db->where('manufacture', $manufacture);
-		$this->db->where('model', $model);
-		$this->db->where('year', $year);
-		$query = $this->db->get();
+		$avto = NULL;
+		if ($data['ManufactureName'] !== '--') 
+		{
+			$avto = $this->_get_avto_id($data);
+		}
 
-		$avto_id = $query->result_array();
-
+		//TODO: Why don't you use $data itself to insert into database?
 		$data1 = array(
-			'login'   	=> $login,
-			'name'   	=> $name,
-			'surname'   => $surname,
-			'sex'   	=> $sex,
-			'birthsday' => $birthsday,
-			'tel'   	=> $tel,
-			'email'     => $email,
-			'avto_id'	=> $avto_id['0']['id'],
+			'login'   	=> $data['login'],
+			'name'   	=> $data['name'],
+			'surname'   => $data['surname'],
+			'sex'   	=> $data['sex'],
+			'birthsday' => $data['birthsday'],
+			'tel'   	=> $data['tel'],
+			'email'     => $data['email'],
+			'avto_id'	=> $avto,
 		);
 
 		$this->db->insert('users', $data1);
 		$insert_id = $this->db->insert_id();
 
 		$data2 = array(
-			'user_id' => $insert_id,
+			'user_id' 		=> $insert_id,
 			'user_enabled'  => $this->config->item('STATUS_ON'),
 			'user_rights'   => $this->config->item('user_rights'),
-			'password'   	=> $this->hash_password($password),
+			'password'   	=> $this->hash_password($data['password']),
 		);
 		
 		$this->db->insert('authorization', $data2);
@@ -67,11 +69,38 @@ class User_model extends CI_Model {
 	}	
 	
 	/**
-	 * resolve_user_login function.
+	 * @access private
+	 * Method gets id of given auto by its data
+	 * TODO:
+	 * @deprecated METHOD SHOULD BE REMOVED, ID SHOULD COME FROM THE FORM!!!
+	 * @param array $data 
+	 * @return integer
+	 * 
+	 */
+	private function _get_avto_id($data) 
+	{
+		$this->db->select('id');
+		$this->db->from('avto');
+		$this->db->where('manufacture', $data['ManufactureName']);
+		$this->db->where('model', $data['ModelName']);
+		$this->db->where('year', $data['year']);
+		$query = $this->db->get();
+
+		$avto_id = $query->result_array();
+		$avto = $avto_id['0']['id'];
+
+		return $avto;
+	}
+
+
+//I would suggest to make one check_password function from
+// resolve_user_login and _verify_password_hash functions.
+	/**
+	 * Gets user password from DB and compares it with the given one.
 	 * 
 	 * @access public
-	 * @param mixed $username
-	 * @param mixed $password
+	 * @param mixed $login    user login
+	 * @param mixed $password user password
 	 * @return bool true on success, false on failure
 	 */
 	public function resolve_user_login($login, $password) 
@@ -89,8 +118,8 @@ class User_model extends CI_Model {
 	 * get_user_id_from_username function.
 	 * 
 	 * @access public
-	 * @param mixed $username
-	 * @return int the user id
+	 * @param mixed $login - Login
+	 * @return integer - the user id
 	 */
 	public function get_user_id_from_username($login) 
 	{
@@ -104,8 +133,7 @@ class User_model extends CI_Model {
 	/**
 	 * get_user function.
 	 * 
-	 * @access public
-	 * @param mixed $user_id
+	 * @param integer $user_id - Id of user
 	 * @return object the user object
 	 */
 	public function get_user($user_id) 
@@ -115,21 +143,29 @@ class User_model extends CI_Model {
 		return $this->db->get()->row();
 	}
 
+	/**
+	 * Method gets user data by its ID
+	 * @param integer $user_id - ID of user
+	 * @return array of user data
+	 */
 	public function get_user_data($user_id)
 	{
 		$this->db->from('authorization');
 		$this->db->where('user_id', $user_id);
 		return $this->db->get()->row();
 	}
-	
+
+
+
+//I suggest changing md5 to http://php.net/manual/ru/function.hash.php with sha256 and use its part (substr) to compare
 	/**
 	 * hash_password function.
 	 * 
 	 * @access private
-	 * @param mixed $password
+	 * @param mixed $password - password
 	 * @return string|bool could be a string on success, or bool false on failure
 	 */
-	private function hash_password($password) 
+	private function _hash_password($password) 
 	{
 		return md5($password);
 	}
@@ -138,15 +174,19 @@ class User_model extends CI_Model {
 	 * verify_password_hash function.
 	 * 
 	 * @access private
-	 * @param mixed $password
-	 * @param mixed $hash
+	 * @param mixed $password - password
+	 * @param mixed $hash     - hash
 	 * @return bool
 	 */
-	private function verify_password_hash($password, $hash) 
+	private function _verify_password_hash($password, $hash) 
 	{
-		return $this->hash_password($password) === $hash;
+		return $this->_hash_password($password) === $hash;
 	}	
 
+	/**
+	 * Method saves user session additional data to DB
+	 * @return void
+	 */
 	public function set_user_session()
 	{
 		$data = array(
@@ -160,6 +200,11 @@ class User_model extends CI_Model {
 		$this->db->insert('ci_session', $data);
 	}
 
+	/**
+	 * Method retrieves user session additional data from DB
+	 * @param string $session_id 
+	 * @return array of data
+	 */
 	public function get_user_session($session_id)
 	{
 		$this->db->from('ci_session');
@@ -167,8 +212,15 @@ class User_model extends CI_Model {
 		return $this->db->get()->row();
 	}
 
+	/**
+	 * Method gets array of users from DB
+	 * 
+	 * @return query result array
+	 */
 	public function get_users()
 	{
+
+		//I suggest moving user fields to array and then to join it using implode. Instead of user table mentioning, it'd be better to use u. and then user as u
 		$this->db->select('users.login, users.name, users.surname, users.sex, 
 			users.birthsday, users.tel, users.email, avto.manufacture, avto.model, 
 			users.user_created, users.avatar, authorization.user_rights, authorization.user_enabled');
