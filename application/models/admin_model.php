@@ -53,7 +53,7 @@ class Admin_model extends CI_Model {
 	public function get_avtos()
 	{
 		//get comments
-		$this->db->from('avto');
+		$this->db->from('cars');
 		$query = $this->db->get();
 		
 		return $query->result_array();

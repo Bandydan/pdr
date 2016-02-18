@@ -6,11 +6,15 @@ class Admin extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('admin_model');
+        //$this->output->cache(5);
     }
 
     public function index()
     {
         $data['title'] = 'Административная панель';
+
+        //echo $this->session->has_userdata('login');
+        //echo $this->session->userdata('user_rights');
         
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
