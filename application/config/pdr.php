@@ -13,9 +13,6 @@ $config['categories'] = array(
 
 $config['admin_rights'] = 2;
 $config['user_rights'] = 1;
-<<<<<<< HEAD
 
-=======
->>>>>>> upstream/master
 $config['STATUS_ON'] = 1;
 $config['STATUS_OFF'] = 0;
