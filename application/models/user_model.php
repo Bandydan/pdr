@@ -1,8 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-//auto, not aVto ;)
-
 /**
  * User_model class.
  * 
@@ -35,35 +33,28 @@ class User_model extends CI_Model {
 	 */
 	public function create_user($data) 
 	{
-		$avto = NULL;
+		$car = NULL;
 		if ($data['ManufactureName'] !== '--') 
 		{
-			$avto = $this->_get_avto_id($data);
+			$car = $this->_get_car_id($data);
 		}
 
+		$pass = $data['password'];
 		//TODO: Why don't you use $data itself to insert into database?
-		$data1 = array(
-			'login'   	=> $data['login'],
-			'name'   	=> $data['name'],
-			'surname'   => $data['surname'],
-			'sex'   	=> $data['sex'],
-			'birthsday' => $data['birthsday'],
-			'tel'   	=> $data['tel'],
-			'email'     => $data['email'],
-			'avto_id'	=> $avto,
-		);
+		$data['avto_id'] = $car;
+		unset($data['password'], $data['ManufactureName'], $data['ModelName'], $data['year'], $data['password_confirm']);
 
-		$this->db->insert('users', $data1);
+		$this->db->insert('users', $data);
 		$insert_id = $this->db->insert_id();
 
-		$data2 = array(
+		$data1 = array(
 			'user_id' 		=> $insert_id,
 			'user_enabled'  => $this->config->item('STATUS_ON'),
 			'user_rights'   => $this->config->item('user_rights'),
-			'password'   	=> $this->hash_password($data['password']),
+			'password'   	=> $this->_hash_password($pass),
 		);
 		
-		$this->db->insert('authorization', $data2);
+		$this->db->insert('authorization', $data1);
 		
 		return TRUE;
 	}	
@@ -77,7 +68,7 @@ class User_model extends CI_Model {
 	 * @return integer
 	 * 
 	 */
-	private function _get_avto_id($data) 
+	private function _get_car_id($data) 
 	{
 		$this->db->select('id');
 		$this->db->from('avto');
@@ -86,10 +77,10 @@ class User_model extends CI_Model {
 		$this->db->where('year', $data['year']);
 		$query = $this->db->get();
 
-		$avto_id = $query->result_array();
-		$avto = $avto_id['0']['id'];
+		$car_id = $query->result_array();
+		$car = $car_id['0']['id'];
 
-		return $avto;
+		return $car;
 	}
 
 
@@ -111,7 +102,7 @@ class User_model extends CI_Model {
 		$this->db->where('users.login', $login);
 		$hash = $this->db->get()->row('password');
 		
-		return $this->verify_password_hash($password, $hash);
+		return $this->_verify_password_hash($password, $hash);
 	}
 	
 	/**
@@ -222,10 +213,10 @@ class User_model extends CI_Model {
 
 		//I suggest moving user fields to array and then to join it using implode. Instead of user table mentioning, it'd be better to use u. and then user as u
 		$this->db->select('users.login, users.name, users.surname, users.sex, 
-			users.birthsday, users.tel, users.email, avto.manufacture, avto.model, 
+			users.birthsday, users.tel, users.email, cars.manufacture, cars.model, 
 			users.user_created, users.avatar, authorization.user_rights, authorization.user_enabled');
 		$this->db->from('users');
-		$this->db->join('avto', 'users.avto_id = avto.id', 'left');
+		$this->db->join('cars', 'users.avto_id = cars.id', 'left');
 		$this->db->join('authorization', 'users.id = authorization.user_id');
 		$query = $this->db->get();
 
