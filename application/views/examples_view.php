@@ -1,5 +1,7 @@
 <?php $this->load->helper('url'); ?>
 
+ <script src="<?=base_url();?>/assets/js/common.js"></script>
+
 <section class="firstSection">
     <div class="container">
         <div class="row">
@@ -51,18 +53,6 @@
                         <div>
                             <img src="<?=$item['photo_after'][1]?>" class="img-responsive">
                         </div>
-                        <!-- <div>
-                            <img src="<?=$item['photo_before'][2]?>" class="img-responsive">
-                        </div>
-                        <div>
-                            <img src="<?=$item['photo_after'][2]?>" class="img-responsive">
-                        </div>
-                        <div>
-                            <img src="<?=$item['photo_before'][3]?>" class="img-responsive">
-                        </div>
-                        <div>
-                            <img src="<?=$item['photo_after'][3]?>" class="img-responsive">
-                        </div> -->
                     </div>
                 </div>
                 <h3><?php $arr=$this->config->item("categories");?>
@@ -75,5 +65,5 @@
         </div>
     </div>
 </section>
-        
+           
 <script type="text/javascript" src="<?=base_url();?>/assets/js/script.js"></script>
