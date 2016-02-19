@@ -7,6 +7,8 @@ class Education extends CI_Controller {
     {
         $data['title'] = 'Обучение';     
         
+        $data['nav'] = $this->load->view('navigation', '',TRUE);
+        
         $this->load->view('header', $data);
         $this->load->view('education_view', $data);
         $this->load->view('footer', $data);
