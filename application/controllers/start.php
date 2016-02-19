@@ -12,6 +12,7 @@ class Start extends CI_Controller {
 
         $data['examples'] = $this->examples_model->get_examples($id);
         
+        $data['nav'] = $this->load->view('navigation', '',TRUE);
         
         $this->load->view('header', $data);
         $this->load->view('start_view', $data);

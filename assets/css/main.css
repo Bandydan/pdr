@@ -219,10 +219,16 @@ body {
 }
 .footer{
 	display: block;
-	margin: 0 auto;
+	margin: 0 auto 10px auto;
 	max-width: 1170px;
 	height: 70px;
 	line-height: 70px;
+
+	padding-left: 10px;
+	margin-bottom: 20px;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px; 
+
 	background-color: #DEDEE1;
 	/*box-shadow: 0px 10px 0px 0px rgba(0,0,0,0.9);
 	border-bottom: 10px solid #18D0F7;*/
@@ -232,4 +238,10 @@ body {
 }
 .footer p{
 	margin: 0;
+}
+
+.EducImg{
+	height: 250px;
+	width: 550px;
+	overflow: hidden;
 }

@@ -15,6 +15,8 @@ class Examples extends CI_Controller {
             $data['examples'] = $this->examples_model->get_examples_all();
         }
         
+        $data['nav'] = $this->load->view('navigation', '',TRUE);
+        
         $this->load->view('header', $data);
         $this->load->view('examples_view', $data);
         $this->load->view('footer', $data);
@@ -33,6 +35,8 @@ class Examples extends CI_Controller {
             
             $data['examples'] = $this->examples_model->get_scrolling($limit,$offset); 
          
+            $data['nav'] = $this->load->view('navigation', '',TRUE);
+
             $this->load->view('header', $data); 
             $this->load->view('examples_view', $data); 
             $this->load->view('footer', $data);           
