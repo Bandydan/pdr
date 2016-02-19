@@ -12,9 +12,6 @@ class Admin extends CI_Controller {
     public function index()
     {
         $data['title'] = 'Административная панель';
-
-        //echo $this->session->has_userdata('login');
-        //echo $this->session->userdata('user_rights');
         
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
@@ -446,11 +443,11 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function migration()
-    {
-        $data = array();
-        $data = $this->admin_model->migration_select();
-        $this->admin_model->migration_add($data);
+    // public function migration()
+    // {
+    //     $data = array();
+    //     $data = $this->admin_model->migration_select();
+    //     $this->admin_model->migration_add($data);
 
-    }
+    // }
 }
