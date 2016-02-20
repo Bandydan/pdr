@@ -12,62 +12,20 @@
 				<th>Действия</th> 
 			</tr> 
 		</thead> 
-		<tbody> 
+		<tbody>
+			<?php foreach ($articles as $article):?> 
 			<tr> 
 				<td><input type="checkbox"></td> 
-				<td>Главная</td> 
-				<td>Полировка фар</td> 
-				<td>5th April 2011</td> 
+				<td><?=$article['category']?></td>
+				<td><?=$article['title']?></td> 
+				<td><?=$article['content_created']?></td> 
 				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотреть">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Редактировать">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
-				</td> 
-			</tr> 
-			<tr> 
-				<td><input type="checkbox"></td> 
-				<td>Оцените мою вмятину...</td> 
-				<td>Вася</td> 
-				<td>6th April 2011</td> 
-				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотреть">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Редактировать">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
+					<a href=""><img src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотреть"></a>
+					<a href="<?=base_url();?>admin/edit_article/<?=$article['id'];?>"><img src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Редактировать"></a>
+					<a href=""><img src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить"></a>
 				</td> 
 			</tr>
-			<tr> 
-				<td><input type="checkbox"></td> 
-				<td>Оцените мою вмятину...</td> 
-				<td>Вася</td> 
-				<td>10th April 2011</td> 
-				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотреть">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Редактировать">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
-				</td> 
-			</tr> 
-			<tr> 
-				<td><input type="checkbox"></td> 
-				<td>Оцените мою вмятину...</td> 
-				<td>Вася</td> 
-				<td>16th April 2011</td> 
-				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотреть">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Редактировать">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
-				</td> 
-			</tr>
-			<tr> 
-				<td><input type="checkbox"></td> 
-				<td>Оцените мою вмятину...</td> 
-				<td>Вася</td> 
-				<td>16th April 2011</td> 
-				<td>
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотреть">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Редактировать">
-					<input type="image" src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить">
-				</td> 
-			</tr>  
+			<?php endforeach;?>	  
 		</tbody> 
 		</table>
 		</div><!-- end of #tab1 -->

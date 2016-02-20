@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
+        <script type="text/javascript" src="/assets/js/ckeditor/ckeditor.js"></script>
         <script src="/assets/js/jquery-1.11.3.js" type="text/javascript"></script>
         <script src="/assets/js/hideshow.js" type="text/javascript"></script>
         <script src="/assets/js/jquery.tablesorter.min.js" type="text/javascript"></script>

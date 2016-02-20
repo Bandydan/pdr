@@ -178,7 +178,7 @@ class Admin extends CI_Controller {
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            $data['articles'] = $this->admin_model->get_all('content');
+            $data['articles'] = $this->admin_model->get_articles();
             
             $this->load->view('admin/blocks/scripts_view', $data);
             $this->load->view('admin/blocks/header_view', $data);
@@ -310,11 +310,7 @@ class Admin extends CI_Controller {
             {
                 $this->admin_model->create_content();
 
-                $this->load->view('admin/blocks/scripts_view', $data);
-                $this->load->view('admin/blocks/header_view', $data);
-                $this->load->view('admin/blocks/menu_view', $data);
-                $this->load->view('admin/all_articles_view', $data);
-                $this->load->view('admin/blocks/footer_view', $data);
+                $this->show_articles();
             }
         }
         
@@ -323,6 +319,52 @@ class Admin extends CI_Controller {
             $this->login();
         }
     }
+
+
+
+        public function edit_article($id = '') 
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+
+        {
+            $data = array();
+            $data['get_article'] = $this->admin_model->get_article($id);
+            
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+        
+            $this->form_validation->set_rules('title', 'Заголовок', 'required');
+            $this->form_validation->set_rules('text', 'Содержимое', 'required');
+            $this->form_validation->set_rules('meta', 'Теги', 'required');
+            $this->form_validation->set_rules('address', 'Адрес', 'required');
+        
+            if ($this->form_validation->run() === false) 
+            {
+
+                $this->load->view('admin/blocks/scripts_view', $data);
+                $this->load->view('admin/blocks/header_view', $data);
+                $this->load->view('admin/blocks/menu_view', $data);
+                $this->load->view('admin/edit_article_view', $data);
+                $this->load->view('admin/blocks/footer_view', $data);  
+            }
+            
+            else
+            {
+                $this->admin_model->edit_content($id);
+                
+                $this->show_articles();
+            }
+        }
+        
+        else
+        {
+            $this->login();
+        }
+    }
+
+
+
+
 
     public function add_example() 
     {
