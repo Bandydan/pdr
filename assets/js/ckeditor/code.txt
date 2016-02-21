@@ -1,0 +1,8 @@
+<script type="text/javascript" src="<?=base_url();?>ckeditor/ckeditor.js"></script>
+
+
+
+
+<script type="text/javascript">
+CKEDITOR.replace( 'text');
+</script>

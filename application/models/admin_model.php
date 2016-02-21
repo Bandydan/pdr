@@ -121,7 +121,7 @@ class Admin_model extends CI_Model {
 				break;
 
 			case 'Обучение':
-				$url = 'pdr/#/';
+				$url = 'pdr/education/';
 				break;
 			
 			case 'Инструмент':
@@ -133,14 +133,62 @@ class Admin_model extends CI_Model {
 				break;
 
 			case 'Контакты':
-				$url = 'pdr/#/';
+				$url = 'pdr/contact/';
 				break;
 		}
 		
 		return $url;
 	}
 
-	//public function get_all($title, )
+
+
+
+	public function get_articles(){
+
+		$this->db->select('id, category, title, content_text, content_created, meta, address, status');
+		$this->db->from('Content');
+		$query = $this->db->get();
+
+		return $query->result_array();
+
+	}
+
+	public function get_article($id){
+		
+		$this->db->where('id',$id);
+		$query = $this->db->get('Content');
+
+		return $query->row_array();
+
+	}
+
+	public function edit_content($id) 
+	{	
+		
+		if ($this->input->post('status') == 'on')
+		{
+			$status = $this->config->item('STATUS_ON');
+		}
+		else
+		{
+			$status = $this->config->item('STATUS_OFF');
+		}
+
+		$data = array(
+			'title'   		=> $this->input->post('title'),
+			'content_text'  => $this->input->post('text'),
+			'meta'   		=> $this->input->post('meta'),
+			'category'  	=> $this->input->post('category'),
+			'status'  		=> $status,
+			'address'  		=> $this->input->post('address'),
+			);
+		$this->db->where('id',$id);
+		
+		$this->db->update('Content', $data);
+		
+	}
+
+
 
 
 

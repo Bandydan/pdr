@@ -11,7 +11,10 @@
 						</fieldset>
 						<fieldset>
 							<label>Содержимое</label>
-							<textarea name="text" value="<?= set_value('text'); ?>" rows="12"></textarea>
+							<textarea name="text" rows="12"><?= set_value('text'); ?></textarea>
+							<script type="text/javascript">
+							CKEDITOR.replace('text');
+							</script>
 						</fieldset>
 						<fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Категория</label>
