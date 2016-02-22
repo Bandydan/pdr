@@ -244,11 +244,11 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function show_avtos()
+    public function show_cars()
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            $data['avtos'] = $this->admin_model->get_avtos();
+            $data['cars'] = $this->admin_model->get_cars();
             
             $this->load->view('admin/blocks/scripts_view', $data);
             $this->load->view('admin/blocks/header_view', $data);
@@ -262,11 +262,11 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function add_avto()
+    public function add_car()
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            $data['avtos'] = $this->admin_model->get_avtos();
+            $data['cars'] = $this->admin_model->get_cars();
             
             $this->load->view('admin/blocks/scripts_view', $data);
             $this->load->view('admin/blocks/header_view', $data);
@@ -358,10 +358,6 @@ class Admin extends CI_Controller {
             $this->login();
         }
     }
-
-
-
-
 
     public function add_example() 
     {

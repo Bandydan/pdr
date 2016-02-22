@@ -37,7 +37,7 @@
 		<li class="icn_photo"><a href="#">Галлерея</a></li>
 		<!--<li class="icn_audio"><a href="#">Аудио</a></li>-->
 		<!--<li class="icn_video"><a href="#">Видео</a></li>-->
-		<li class="icn_photo"><a href="<?=base_url();?>admin/show_avtos">Каталог автомобилей</a></li>
+		<li class="icn_photo"><a href="<?=base_url();?>admin/show_cars">Каталог автомобилей</a></li>
 	</ul>
 	<h3>Пользователи</h3>
 	<ul class="toggle">
