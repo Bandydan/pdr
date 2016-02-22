@@ -53,11 +53,19 @@ class Admin_model extends CI_Model {
 	public function get_cars()
 	{
 		//get cars
-		$query = $this->db->query('SELECT cars_model.model, cars_mark.mark as manufacture FROM cars_model JOIN cars_mark ON cars_model.mark_id = cars_mark.id');
+		$query = $this->db->query('SELECT cars_model.id, cars_model.model, cars_mark.mark as manufacture FROM cars_model JOIN cars_mark ON cars_model.mark_id = cars_mark.id');
 		//$query = $this->db->get();
 		
 		return $query->result_array();
 	}
+
+	// public function add_car($data)
+	// {
+	// 	//add car in DB
+	// 	$this->db->insert('cars_model', $item);
+		
+	// 	return $query->result_array();
+	// }
 
 	public function create_content() 
 	{	
@@ -178,27 +186,4 @@ class Admin_model extends CI_Model {
 		$this->db->update('Content', $data);
 		
 	}
-
-
-
-
-
-	// public function migration_select()
-	// {
-	// 	$query = $this->db->query('SELECT DISTINCT cars.model, cars_mark.id as mark_id FROM cars join cars_mark ON cars.manufacture = cars_mark.mark');
-		
-	// 	return $query->result_array();
-	// }
-
-	// public function migration_add($data)
-	// {
-	// 	foreach ($data as $item) 
-	// 	{	
-	// 		//$element['mark'] = $item['manufacture'];
-	// 		//$element['mark'] = $item['manufacture'];
-	// 		$this->db->insert('cars_model', $item);
-	// 	}
-		
-	// 	return TRUE;
-	// }
 }

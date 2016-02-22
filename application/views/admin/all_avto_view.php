@@ -7,7 +7,7 @@
 			<tr> 
 				<th>Производитель</th> 
 				<th>Модель</th> 
-				<th>Год выпуска</th> 
+				<th>Удалить</th>
 			</tr> 
 		</thead> 
 		<tbody> 
@@ -15,6 +15,7 @@
 			<tr> 
 				<td><?=$avto['manufacture']?></td> 
 				<td><?=$avto['model']?></td>
+				<td><a href="<?=base_url();?>admin/delete_item/<?=$avto['id'].'%3D'.'cars_model'?>"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a></td>
 			</tr> 
 			<?php endforeach;?>	
 		</tbody> 
@@ -23,11 +24,11 @@
 		<div>
 			<?php echo form_open('/admin/add_car'); ?>
 
-			<input type="text" id="manufacture" name="manufacture" placeholder="Производитель авто">
+			<input type="text" id="mark" name="mark" placeholder="Производитель авто">
 
             <input type="text" id="model" name="model" placeholder="Модель">
 
-            <?php echo form_submit('add_new_avto', 'Добавить') ;?>
+            <?php echo form_submit('add_car', 'Добавить') ;?>
        
         </form>
         </div>
