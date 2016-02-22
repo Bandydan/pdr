@@ -15,7 +15,6 @@
 			<tr> 
 				<td><?=$avto['manufacture']?></td> 
 				<td><?=$avto['model']?></td>
-				<td><?=$avto['year']?></td>
 			</tr> 
 			<?php endforeach;?>	
 		</tbody> 
@@ -28,12 +27,6 @@
 
             <input type="text" id="model" name="model" placeholder="Модель">
 
-            <select id="year" name="year">
-            	<option>--</option>
-                <?php for ($i=1970; $i <= date('Y'); $i++) { ;?>
-                <option value="<?= $i; ?>"><?= $i ?></option>
-                <?php } ;?>
-            </select>
             <?php echo form_submit('add_new_avto', 'Добавить') ;?>
        
         </form>

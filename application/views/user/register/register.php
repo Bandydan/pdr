@@ -63,13 +63,6 @@
 		                <?php endforeach; ?>
             		</select>
 
-            		<select id="year" name="year">
-		            	<option>--</option>
-		                <?php foreach ($cars as $year) : ;?>
-		                <option value="<?= $year['year'] ?>" class="
-		                <?= $year['model'] ?>"><?= $year['year'] ?></option>
-		                <?php endforeach; ?>
-            		</select></p>
 					<p class="help-block"> </p>
 				</div>
 
@@ -90,7 +83,6 @@
 
 			<script type="text/javascript">
 				$("#model_name").chained("#manufacture_name");
-				$("#year").chained("#model_name");	
 			</script>
 		</div>
 	</div><!-- .row -->

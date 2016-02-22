@@ -171,11 +171,11 @@ class Admin extends CI_Controller {
     }
 
     //metods for work with data in admin panel
-    public function show_articles()
+    public function show_articles($id = '')
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            $data['articles'] = $this->admin_model->get_articles();
+            $data['articles'] = $this->admin_model->get_article($id);
             
             $this->load->view('admin/blocks/scripts_view', $data);
             $this->load->view('admin/blocks/header_view', $data);
@@ -485,6 +485,7 @@ class Admin extends CI_Controller {
     // {
     //     $data = array();
     //     $data = $this->admin_model->migration_select();
+        
     //     $this->admin_model->migration_add($data);
 
     // }

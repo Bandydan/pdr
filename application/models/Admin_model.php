@@ -52,9 +52,9 @@ class Admin_model extends CI_Model {
 
 	public function get_cars()
 	{
-		//get comments
-		$this->db->from('cars');
-		$query = $this->db->get();
+		//get cars
+		$query = $this->db->query('SELECT cars_model.model, cars_mark.mark as manufacture FROM cars_model JOIN cars_mark ON cars_model.mark_id = cars_mark.id');
+		//$query = $this->db->get();
 		
 		return $query->result_array();
 	}
@@ -91,7 +91,7 @@ class Admin_model extends CI_Model {
 			'about'   		=> $this->input->post('text'),
 			'photo_before'  => $this->input->post('foto_before'),
 			'photo_after'	=> $this->input->post('foto_after'),
-			'additionally'   => $this->input->post('additionally'),
+			'additionally'  => $this->input->post('additionally'),
 			);
 		
 		return $this->db->insert('example_works', $data);
@@ -140,22 +140,16 @@ class Admin_model extends CI_Model {
 		return $url;
 	}
 
-	public function get_articles(){
-
-		$this->db->select('id, category, title, content_text, content_created, meta, address, status');
-		$this->db->from('Content');
-		$query = $this->db->get();
-
-		return $query->result_array();
-
-	}
-
 	public function get_article($id){
 		
-		$this->db->where('id',$id);
-		$query = $this->db->get('Content');
+		if ($id != null) 
+		{
+			$this->db->where('id',$id);
+		}
+		
+		else $query = $this->db->get('Content');
 
-		return $query->row_array();
+		return $query->result_array();
 
 	}
 
@@ -189,22 +183,22 @@ class Admin_model extends CI_Model {
 
 
 
-	public function migration_select()
-	{
-		$query = $this->db->query('select DISTINCT manufacture FROM avto');
-		//$query = $this->db->get();
+	// public function migration_select()
+	// {
+	// 	$query = $this->db->query('SELECT DISTINCT cars.model, cars_mark.id as mark_id FROM cars join cars_mark ON cars.manufacture = cars_mark.mark');
 		
-		return $query->result_array();
-	}
+	// 	return $query->result_array();
+	// }
 
-	public function migration_add($data)
-	{
-		foreach ($data as $item) 
-		{	
-			$element['mark'] = $item['manufacture'];
-			$this->db->insert('cars_mark', $element);
-		}
+	// public function migration_add($data)
+	// {
+	// 	foreach ($data as $item) 
+	// 	{	
+	// 		//$element['mark'] = $item['manufacture'];
+	// 		//$element['mark'] = $item['manufacture'];
+	// 		$this->db->insert('cars_model', $item);
+	// 	}
 		
-		return TRUE;
-	}
+	// 	return TRUE;
+	// }
 }
