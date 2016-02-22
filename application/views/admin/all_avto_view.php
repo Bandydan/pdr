@@ -11,7 +11,7 @@
 			</tr> 
 		</thead> 
 		<tbody> 
-			<?php foreach ($avtos as $avto):?> 
+			<?php foreach ($cars as $avto): ;?> 
 			<tr> 
 				<td><?=$avto['manufacture']?></td> 
 				<td><?=$avto['model']?></td>
@@ -22,7 +22,7 @@
 		</table>
 		
 		<div>
-			<?php echo form_open('/admin/add_avto'); ?>
+			<?php echo form_open('/admin/add_car'); ?>
 
 			<input type="text" id="manufacture" name="manufacture" placeholder="Производитель авто">
 
@@ -30,11 +30,11 @@
 
             <select id="year" name="year">
             	<option>--</option>
-                <? for ($i=1970; $i <= date('Y'); $i++) { ?>
+                <?php for ($i=1970; $i <= date('Y'); $i++) { ;?>
                 <option value="<?= $i; ?>"><?= $i ?></option>
-                <? } ?>
+                <?php } ;?>
             </select>
-            <?php echo form_submit('add_new_avto', 'Добавить');?>
+            <?php echo form_submit('add_new_avto', 'Добавить') ;?>
        
         </form>
         </div>

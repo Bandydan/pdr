@@ -49,26 +49,26 @@
 					<label for="Avto">Какой у Вас автомобиль</label>
 					<p><select id="manufacture_name" name="ManufactureName">
 						<option>--</option>
-		                <? foreach ($avtos as $manufact) : ?>
+		                <?php foreach ($cars as $manufact) : ;?>
 		                <option value="<?= $manufact['manufacture'] ?>">
 		                <?= $manufact['manufacture'] ?></option>
-		                <? endforeach; ?>
+		                <?php endforeach; ?>
             		</select>
 
             		<select id="model_name" name="ModelName">
 		            	<option>--</option>
-		                <? foreach ($avtos as $model) : ?>
+		                <?php foreach ($cars as $model) : ;?>
 		                <option value="<?= $model['model'] ?>" class="
 		                <?= $model['manufacture'] ?>"><?= $model['model'] ?></option>
-		                <? endforeach; ?>
+		                <?php endforeach; ?>
             		</select>
 
             		<select id="year" name="year">
 		            	<option>--</option>
-		                <? foreach ($avtos as $year) : ?>
+		                <?php foreach ($cars as $year) : ;?>
 		                <option value="<?= $year['year'] ?>" class="
 		                <?= $year['model'] ?>"><?= $year['year'] ?></option>
-		                <? endforeach; ?>
+		                <?php endforeach; ?>
             		</select></p>
 					<p class="help-block"> </p>
 				</div>
