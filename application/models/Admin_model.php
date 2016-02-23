@@ -153,11 +153,14 @@ class Admin_model extends CI_Model {
 		if ($id != null) 
 		{
 			$this->db->where('id',$id);
+			$query = $this->db->get('Content')->row_array();
 		}
 		
-		else $query = $this->db->get('Content');
+		else {
+			$query = $this->db->get('Content')->result_array();
+			}
 
-		return $query->result_array();
+		return $query;
 
 	}
 
