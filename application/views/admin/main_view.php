@@ -58,7 +58,7 @@
 				<td>
 					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_photo.png" alt="Просмотр фото"></a>
 					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_edit.png" alt="Ответить"></a>
-					<a href="<?=base_url();?>admin/delete_request/<?=$request['id']?>"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a>
+					<a href="<?=base_url();?>admin/delete_item/<?=$request['id'].'%3D'.'order_for_assessment'?>"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a>
 				</td> 
 			</tr>
 			<?php endforeach;?>   
@@ -89,7 +89,7 @@
 				<td>
 					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_photo.png" alt="Просмотр фото"></a>
 					<a href="#"><img src="<?=base_url();?>assets/img/admin/icn_edit.png" alt="Ответить"></a>
-					<a href="<?=base_url();?>admin/delete_comment/<?=$comment['id']?>"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a>
+					<a href="<?=base_url();?>admin/delete_item/<?=$comment['id'].'%3D'.'comments'?>"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" alt="Удалить"></a>
 				</td> 
 			</tr>
 			<?php endforeach;?> 

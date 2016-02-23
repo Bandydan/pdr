@@ -40,7 +40,6 @@ class User_model extends CI_Model {
 		}
 
 		$pass = $data['password'];
-		//TODO: Why don't you use $data itself to insert into database?
 		$data['avto_id'] = $car;
 		unset($data['password'], $data['ManufactureName'], $data['ModelName'], $data['year'], $data['password_confirm']);
 
@@ -210,14 +209,12 @@ class User_model extends CI_Model {
 	 */
 	public function get_users()
 	{
-
-		//I suggest moving user fields to array and then to join it using implode. Instead of user table mentioning, it'd be better to use u. and then user as u
-		$this->db->select('users.login, users.name, users.surname, users.sex, 
-			users.birthsday, users.tel, users.email, cars.manufacture, cars.model, 
-			users.user_created, users.avatar, authorization.user_rights, authorization.user_enabled');
-		$this->db->from('users');
-		$this->db->join('cars', 'users.avto_id = cars.id', 'left');
-		$this->db->join('authorization', 'users.id = authorization.user_id');
+		$this->db->select('u.login, u.name, u.surname, u.sex, 
+			u.birthsday, u.tel, u.email, c.manufacture, c.model, 
+			u.user_created, u.avatar, a.user_rights, a.user_enabled');
+		$this->db->from('users as u');
+		$this->db->join('cars as c', 'u.avto_id = c.id', 'left');
+		$this->db->join('authorization as a', 'u.id = a.user_id');
 		$query = $this->db->get();
 
 		return $query->result_array();

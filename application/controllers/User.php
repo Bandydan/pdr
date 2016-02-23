@@ -37,7 +37,7 @@ class User extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->model('admin_model');
-		$data['avtos'] = $this->admin_model->get_avtos();
+		$data['cars'] = $this->admin_model->get_cars();
 		
 		// set validation rules
 		$this->form_validation->set_rules('login', 'Логин', 'trim|required|alpha_numeric|min_length[3]|is_unique[users.login]', array('is_unique' => 'Этот логин уже занят. Пожалуйста введите другой.'));

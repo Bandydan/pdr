@@ -26,10 +26,10 @@ class Admin_model extends CI_Model {
 	public function get_comments($limit)
 	{
 		//get comments
-		$this->db->select('comments.id, users.login, comments.comment_text, comments.comment_created');
-		$this->db->from('comments');
-		$this->db->join('users', 'users.id = comments.user_id');
-		$this->db->order_by('comments.comment_created', 'DESC');
+		$this->db->select('c.id, users.login, c.comment_text, c.comment_created');
+		$this->db->from('comments as c');
+		$this->db->join('users', 'users.id = c.user_id');
+		$this->db->order_by('c.comment_created', 'DESC');
 		$this->db->limit($limit);
 		$query = $this->db->get();
 		
@@ -39,25 +39,33 @@ class Admin_model extends CI_Model {
 	public function get_requests($limit)
 	{
 		//get requests
-		$this->db->select('order_for_assessment.id, order_for_assessment.order_text, order_for_assessment.order_created, users.login, mediafiles.media_link');
-		$this->db->from('order_for_assessment');
-		$this->db->join('users', 'users.id = order_for_assessment.user_id');
-		$this->db->join('mediafiles', 'mediafiles.id = order_for_assessment.photo_id');
-		$this->db->order_by('order_for_assessment.order_created', 'DESC');
+		$this->db->select('o.id, o.order_text, o.order_created, users.login, mediafiles.media_link');
+		$this->db->from('order_for_assessment as o');
+		$this->db->join('users', 'users.id = o.user_id');
+		$this->db->join('mediafiles', 'mediafiles.id = o.photo_id');
+		$this->db->order_by('o.order_created', 'DESC');
 		$this->db->limit($limit);
 		$query = $this->db->get();
 
         return $query->result_array();
 	}
 
-	public function get_avtos()
+	public function get_cars()
 	{
-		//get comments
-		$this->db->from('cars');
-		$query = $this->db->get();
+		//get cars
+		$query = $this->db->query('SELECT cars_model.id, cars_model.model, cars_mark.mark as manufacture FROM cars_model JOIN cars_mark ON cars_model.mark_id = cars_mark.id');
+		//$query = $this->db->get();
 		
 		return $query->result_array();
 	}
+
+	// public function add_car($data)
+	// {
+	// 	//add car in DB
+	// 	$this->db->insert('cars_model', $item);
+		
+	// 	return $query->result_array();
+	// }
 
 	public function create_content() 
 	{	
@@ -91,7 +99,7 @@ class Admin_model extends CI_Model {
 			'about'   		=> $this->input->post('text'),
 			'photo_before'  => $this->input->post('foto_before'),
 			'photo_after'	=> $this->input->post('foto_after'),
-			'additionally'   => $this->input->post('additionally'),
+			'additionally'  => $this->input->post('additionally'),
 			);
 		
 		return $this->db->insert('example_works', $data);
@@ -140,25 +148,16 @@ class Admin_model extends CI_Model {
 		return $url;
 	}
 
-
-
-
-	public function get_articles(){
-
-		$this->db->select('id, category, title, content_text, content_created, meta, address, status');
-		$this->db->from('Content');
-		$query = $this->db->get();
-
-		return $query->result_array();
-
-	}
-
 	public function get_article($id){
 		
-		$this->db->where('id',$id);
-		$query = $this->db->get('Content');
+		if ($id != null) 
+		{
+			$this->db->where('id',$id);
+		}
+		
+		else $query = $this->db->get('Content');
 
-		return $query->row_array();
+		return $query->result_array();
 
 	}
 
@@ -186,28 +185,5 @@ class Admin_model extends CI_Model {
 		
 		$this->db->update('Content', $data);
 		
-	}
-
-
-
-
-
-	public function migration_select()
-	{
-		$query = $this->db->query('select DISTINCT manufacture FROM avto');
-		//$query = $this->db->get();
-		
-		return $query->result_array();
-	}
-
-	public function migration_add($data)
-	{
-		foreach ($data as $item) 
-		{	
-			$element['mark'] = $item['manufacture'];
-			$this->db->insert('cars_mark', $element);
-		}
-		
-		return TRUE;
 	}
 }

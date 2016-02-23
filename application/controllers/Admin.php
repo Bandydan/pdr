@@ -12,9 +12,6 @@ class Admin extends CI_Controller {
     public function index()
     {
         $data['title'] = 'Административная панель';
-
-        //echo $this->session->has_userdata('login');
-        //echo $this->session->userdata('user_rights');
         
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
@@ -174,11 +171,11 @@ class Admin extends CI_Controller {
     }
 
     //metods for work with data in admin panel
-    public function show_articles()
+    public function show_articles($id = '')
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            $data['articles'] = $this->admin_model->get_articles();
+            $data['articles'] = $this->admin_model->get_article($id);
             
             $this->load->view('admin/blocks/scripts_view', $data);
             $this->load->view('admin/blocks/header_view', $data);
@@ -247,11 +244,11 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function show_avtos()
+    public function show_cars()
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            $data['avtos'] = $this->admin_model->get_avtos();
+            $data['cars'] = $this->admin_model->get_cars();
             
             $this->load->view('admin/blocks/scripts_view', $data);
             $this->load->view('admin/blocks/header_view', $data);
@@ -265,11 +262,17 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function add_avto()
+    public function add_car()
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            $data['avtos'] = $this->admin_model->get_avtos();
+            if ($this->input->post() != null) 
+            {
+                $newCar = $this->input->post();
+                $this->admin_model->add_car($newCar);
+            }
+
+            $data['cars'] = $this->admin_model->get_cars();
             
             $this->load->view('admin/blocks/scripts_view', $data);
             $this->load->view('admin/blocks/header_view', $data);
@@ -362,10 +365,6 @@ class Admin extends CI_Controller {
         }
     }
 
-
-
-
-
     public function add_example() 
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
@@ -426,11 +425,12 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function delete_request($id)
+    public function delete_item($data)
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            if ($this->admin_model->delete_data($id, 'order_for_assessment')) 
+            $data = explode('%3D', $data);
+            if ($this->admin_model->delete_data($data[0], $data[1])) 
             {
                 // request delete ok
                 $this->index();    
@@ -455,44 +455,5 @@ class Admin extends CI_Controller {
         {
             $this->login();
         }
-    }
-
-    public function delete_comment($id)
-    {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
-        {
-            if ($this->admin_model->delete_data($id, 'comments')) 
-            {
-                // request delete ok
-                $this->index();    
-            } 
-            
-            else 
-            {
-                // request delete failed, this should never happen
-                $data['error'] = 'Что-то пошло не так. Please try again.';
-                
-                // send error to the view
-                $this->load->view('admin/blocks/scripts_view', $data);
-                $this->load->view('admin/blocks/header_view', $data);
-                $this->load->view('admin/blocks/menu_view', $data);
-                $this->load->view('admin/error', $data);
-                $this->load->view('admin/main_view', $data);
-                $this->load->view('admin/blocks/footer_view', $data);
-            }   
-            
-        }
-        else
-        {
-            $this->login();
-        }
-    }
-
-    public function migration()
-    {
-        $data = array();
-        $data = $this->admin_model->migration_select();
-        $this->admin_model->migration_add($data);
-
     }
 }
