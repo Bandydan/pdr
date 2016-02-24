@@ -1,0 +1,56 @@
+{% extends 'admin/admin_template.twig' %}
+
+{% block scripts %}
+{{parent()}}
+{% endblock %}
+
+{% block header %}
+{{parent()}}
+{% endblock %}
+
+{% block menu %}
+{{parent()}}
+{% endblock %}
+
+{% block content %}
+
+<article class="module width_3_quarter">
+	<header><h3 class="tabs_involved" align="center">Запросы на оценку вмятин</h3></header>
+	{{ error }}
+	<div class="tab_container">
+		<table class="tablesorter" cellspacing="0"> 
+		<thead> 
+			<tr> 
+				<th></th> 
+				<th>Сообщение</th> 
+				<th>Пользователь</th> 
+				<th>Дата создания</th> 
+				<th>Действия</th> 
+			</tr> 
+		</thead> 
+		<tbody> 
+			{% for request in requests %} 
+	            <tr> 
+	                <td><input type="checkbox"></td> 
+	                <td>{{request.order_text}}</td> 
+	                <td>{{request.login}}</td> 
+	                <td>{{request.order_created}}</td> 
+	                <td>
+						<a href="#"><img src="/assets/img/admin/icn_photo.png" alt="Просмотр фото"></a>
+	                    <a href="#"><img src="/assets/img/admin/icn_edit.png" alt="Ответить"></a>
+	                    <a href="/admin/delete_item/{{request.id}}%3Dorder_for_assessment"><img src="/assets/img/admin/icn_trash.png" alt="Удалить"></a>
+	                </td>
+	                {% else %}
+	                <td align="center">Нет запросов</td> 
+	            </tr>
+	            {% endfor %}
+		</tbody> 
+		</table>
+		</div><!-- end of #tab1 -->
+</article><!-- end of content manager article -->
+
+{% endblock %}
+
+{% block footer %}
+{{parent()}}
+{% endblock %}

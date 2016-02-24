@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block scripts %}
+
+        <meta charset="utf-8"/>
+        <title>PDR Admin Panel</title>
+        
+        <link rel="stylesheet" href="/assets/css/layout.css" type="text/css" media="screen" />
+    
+    {% endblock %}
+</head>
+
+<body>
+
+
+{% block header %}
+
+<header id="header">
+    <hgroup>
+        <h1 class="site_title"><a href="/admin">PDR Admin</a></h1>
+        <h2 class="section_title">{{page_name}}</h2>
+        <div class="btn_view_site">
+            <a href="http://pdr/" target="_blank" title="Перейти на сайт">На сайт</a>
+        </div>
+    </hgroup>
+</header> <!-- end of header bar -->
+    
+<section id="secondary_bar">
+    <div class="user">
+        <p><?=$_SESSION['login'];?> (<a href="#">Сообщения</a>)</p>
+        <a class="logout_user" href="/admin/logout" title="Завершить сеанс">Выйти</a>
+    </div>
+    <div class="breadcrumbs_container">
+        <article class="breadcrumbs"><a href="/admin">PDR Admin</a> 
+        <div class="breadcrumb_divider"></div> <a class="current">{{page_name}}</a></article>
+    </div>
+</section><!-- end of secondary bar -->
+
+{% endblock %}
+
+{% block menu %}
+
+<aside id="sidebar" class="column">
+    <form class="quick_search">
+        <input type="text" value="Быстрый поиск" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
+    </form>
+    <hr/>
+    <h3>Статистика</h3>
+    <ul class="toggle">
+        <li class="icn_categories"><a href="#">Посещения страниц сайта</a></li>
+        <li class="icn_categories"><a href="#">Заказов</a></li>
+        <li class="icn_categories"><a href="#">Покупок</a></li>
+        <li class="icn_categories"><a href="#">Комментариев</a></li>
+    </ul>
+    <h3>Заказы и запросы</h3>
+    <ul class="toggle">
+        <li class="icn_profile"><a href="/admin/show_requests">Запросы на оценку вмятин</a></li>
+        <li class="icn_profile"><a href="#">Заказы интернет-магазина</a></li>
+        
+        <!--<li class="icn_categories"><a href="#">Меню</a></li>
+        <li class="icn_tags"><a href="#">Tags</a></li>-->
+    </ul>
+    <h3>Страницы</h3>
+    <ul class="toggle">
+        <li class="icn_new_article"><a href="/admin/add_article">Добавить</a></li>
+        <li class="icn_edit_article"><a href="/admin/show_articles">Просмотреть все</a></li>
+        <!--<li class="icn_delete"><a href="#">Удалить</a></li>
+        <li class="icn_categories"><a href="#">Меню</a></li>
+        <li class="icn_tags"><a href="#">Tags</a></li>-->
+    </ul>
+    <h3>Примеры работ</h3>
+    <ul class="toggle">
+        <li class="icn_new_article"><a href="/admin/add_example">Добавить</a></li>
+        <li class="icn_edit_article"><a href="/admin/#">Просмотреть все</a></li>
+    </ul>
+    <h3>Медиафайлы</h3>
+    <ul class="toggle">
+        <!--<li class="icn_folder"><a href="#">Файловый менеджер</a></li>-->
+        <li class="icn_photo"><a href="#">Галлерея</a></li>
+        <!--<li class="icn_audio"><a href="#">Аудио</a></li>-->
+        <!--<li class="icn_video"><a href="#">Видео</a></li>-->
+        <li class="icn_photo"><a href="/admin/show_cars">Каталог автомобилей</a></li>
+    </ul>
+    <h3>Пользователи</h3>
+    <ul class="toggle">
+        <li class="icn_add_user"><a href="/admin/add_user">Добавить</a></li>
+        <li class="icn_view_users"><a href="/admin/show_users">Просмотреть всех</a></li>
+        <!--<li class="icn_delete"><a href="#">Удалить</a></li>-->
+    </ul>
+    <h3>Комментарии</h3>
+    <ul class="toggle">
+        <li class="icn_tags"><a href="/admin/show_comments">Просмотреть все</a></li>
+        <li class="icn_delete"><a href="#">Удалить</a></li>
+    </ul>
+    <h3>Настройки</h3>
+    <ul class="toggle">
+        <li class="icn_categories"><a href="#">Меню</a></li>
+        <li class="icn_settings"><a href="#">Валюта</a></li>
+        <li class="icn_security"><a href="#">Язык</a></li>
+        <li class="icn_profile"><a href="#">Настройки профиля</a></li>
+        <li class="icn_jump_back"><a href="/admin/logout">Выход</a></li>
+    </ul>
+    
+    <footer>
+        <hr />
+        <p><strong>Copyright &copy; Little Dream Team | 2016</strong></p>
+    </footer>
+</aside><!-- end of sidebar -->
+
+{% endblock %}
+
+
+
+
+{% block content %}
+
+{% endblock %}
+
+
+
+
+{% block footer %}
+</body>
+
+</html>
+{% endblock %}
