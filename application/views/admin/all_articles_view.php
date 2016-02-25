@@ -22,7 +22,7 @@
 				<td>
 					<a href=""><img src="<?=base_url();?>assets/img/admin/icn_photo.png" title="Просмотреть"></a>
 					<a href="<?=base_url();?>admin/edit_article/<?=$article['id'];?>"><img src="<?=base_url();?>assets/img/admin/icn_edit.png" title="Редактировать"></a>
-					<a href=""><img src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить"></a>
+					<a href="<?=base_url();?>admin/delete_article/<?=$article['id'];?>/<?='Content';?>"><img src="<?=base_url();?>assets/img/admin/icn_trash.png" title="Удалить"></a>
 				</td> 
 			</tr>
 			<?php endforeach;?>	  
