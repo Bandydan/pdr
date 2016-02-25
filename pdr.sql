@@ -14,7 +14,7 @@
 -- CREATE TABLE "Content" ----------------------------------
 CREATE TABLE `Content` ( 
 	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
-	`category` VarChar( 10 ) NOT NULL,
+	`category` VarChar( 20 ) NOT NULL,
 	`content_text` VarChar( 1000 ) NOT NULL,
 	`content_created` Timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	`title` VarChar( 30 ) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE `authorization` (
 	PRIMARY KEY ( `id` ) )
 COLLATE = utf8_unicode_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 30;
+AUTO_INCREMENT = 31;
 -- ---------------------------------------------------------
 
 
@@ -172,7 +172,7 @@ CREATE TABLE `users` (
 	PRIMARY KEY ( `id` ) )
 COLLATE = utf8_unicode_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 42;
+AUTO_INCREMENT = 43;
 -- ---------------------------------------------------------
 
 
@@ -208,6 +208,7 @@ INSERT INTO `authorization`(`id`,`user_id`,`password`,`user_rights`,`user_enable
 INSERT INTO `authorization`(`id`,`user_id`,`password`,`user_rights`,`user_enabled`) VALUES ( '27', '39', 'e10adc3949ba59abbe56e057f20f883e', '1', '1' );
 INSERT INTO `authorization`(`id`,`user_id`,`password`,`user_rights`,`user_enabled`) VALUES ( '28', '40', 'e10adc3949ba59abbe56e057f20f883e', '1', '1' );
 INSERT INTO `authorization`(`id`,`user_id`,`password`,`user_rights`,`user_enabled`) VALUES ( '29', '41', 'e10adc3949ba59abbe56e057f20f883e', '1', '1' );
+INSERT INTO `authorization`(`id`,`user_id`,`password`,`user_rights`,`user_enabled`) VALUES ( '30', '42', '3b9f7042bffa1a21a4c2cfd40473b3d6', '2', '1' );
 -- ---------------------------------------------------------
 
 
@@ -1423,6 +1424,7 @@ INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`avto_id`,`user_
 INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`avto_id`,`user_created`,`birthsday`,`sex`,`avatar`) VALUES ( '39', 'uihijniouhn', 'kjhbkghvgf', 'fgvkhjnl', 'ygfty@tyufvgu.uhg', '0909889898', '20', '2016-02-11 21:45:28', '0000-00-00 00:00:00', 'женщина', NULL );
 INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`avto_id`,`user_created`,`birthsday`,`sex`,`avatar`) VALUES ( '40', 'asd', 'asdfg', 'daherth', 'tht@gfrhy.ui', '0991234577', NULL, '2016-02-18 19:19:10', '0000-00-00 00:00:00', 'мужчина', NULL );
 INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`avto_id`,`user_created`,`birthsday`,`sex`,`avatar`) VALUES ( '41', 'dfshh', 'rtwhsrh', 'dykudyk', 'wer@sdfs.esrgf', '0876594939', '20', '2016-02-21 13:33:43', '2008-09-20 11:00:00', 'мужчина', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`avto_id`,`user_created`,`birthsday`,`sex`,`avatar`) VALUES ( '42', 'phpoop', 'phpoop', 'phpoop', 'phpoop@phpoop.com', '0959379992', NULL, '2016-02-25 17:37:46', '2001-01-20 01:00:00', 'мужчина', NULL );
 -- ---------------------------------------------------------
 
 
