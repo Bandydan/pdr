@@ -17,6 +17,7 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $data['page_name'] = 'Основная панель';
+            $data['user_name'] = $_SESSION['login'];
             $data['comments'] = $this->admin_model->get_comments('4');
             $data['requests'] = $this->admin_model->get_requests('4');
             //$data['orders'] = $this->admin_model->get_orders('4');
@@ -28,6 +29,7 @@ class Admin extends CI_Controller {
         {
             $this->session->sess_destroy();
             $data['error'] = 'У Вас не достаточно прав для доступа к этой странице';
+            $data['user_name'] = $_SESSION['login'];
 
             // send error to the view
             $this->load->view('header');
@@ -174,6 +176,7 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $data['articles'] = $this->admin_model->get_article($id);
+            $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Управление контентом';
             echo $this->twig->render('admin/all_articles_view', $data);
         }
@@ -189,6 +192,7 @@ class Admin extends CI_Controller {
         {
             $this->load->model('user_model');
             $data['users'] = $this->user_model->get_users();
+            $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Просмотр пользователей';
             echo $this->twig->render('admin/all_users_view', $data); 
         }
@@ -203,6 +207,7 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $data['comments'] = $this->admin_model->get_comments($limit);
+            $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Просмотр комментариев';
             echo $this->twig->render('admin/all_comments_view', $data); 
         }
@@ -217,6 +222,7 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $data['requests'] = $this->admin_model->get_requests($limit);
+            $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Просмотр запросов на оценку работ';
             echo $this->twig->render('admin/pdr_requests_view', $data);
         }
@@ -231,6 +237,7 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $data['cars'] = $this->admin_model->get_cars();
+            $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Каталог автомобилей';
             echo $this->twig->render('admin/all_avto_view', $data); 
         }
@@ -251,6 +258,7 @@ class Admin extends CI_Controller {
             }
             
             $data['cars'] = $this->admin_model->get_cars();
+            $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Каталог автомобилей';
             echo $this->twig->render('admin/all_avto_view', $data); 
         }
@@ -266,7 +274,7 @@ class Admin extends CI_Controller {
         {
             $data = array();
 
-            $this->load->helper('form');
+            //$this->load->helper('form');
             $this->load->library('form_validation');
         
             $this->form_validation->set_rules('title', 'Заголовок', 'required');
@@ -276,6 +284,7 @@ class Admin extends CI_Controller {
         
             if ($this->form_validation->run() === false) 
             {
+                $data['user_name'] = $_SESSION['login'];
                 $data['page_name'] = 'Управление контентом';
                 echo $this->twig->render('admin/add_article_view', $data);  
             }
@@ -312,6 +321,7 @@ class Admin extends CI_Controller {
         
             if ($this->form_validation->run() === false) 
             {
+                $data['user_name'] = $_SESSION['login'];
                 $data['page_name'] = 'Редактирование статьи';
                 echo $this->twig->render('admin/edit_article_view', $data);   
             }
@@ -347,6 +357,7 @@ class Admin extends CI_Controller {
         
             if ($this->form_validation->run() === false) 
             {
+                $data['user_name'] = $_SESSION['login'];
                 $data['page_name'] = 'Управление примерами работ';
                 $data['categories'] = $this->config->item("categories"); 
                 echo $this->twig->render('admin/add_example_view', $data); 
@@ -355,6 +366,7 @@ class Admin extends CI_Controller {
             else
             {
                 $this->admin_model->create_example();
+                $data['user_name'] = $_SESSION['login'];
                 $data['page_name'] = 'Просмотр примеров работ';
                 echo $this->twig->render('admin/all_examples_view', $data); 
             }
@@ -370,6 +382,7 @@ class Admin extends CI_Controller {
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
+            $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Управление пользователями';
             echo $this->twig->render('admin/add_user_view', $data);
         }
@@ -397,6 +410,7 @@ class Admin extends CI_Controller {
                 
                 // send error to the view
                 $data['page_name'] = 'Основная панель';
+                $data['user_name'] = $_SESSION['login'];
                 $data['comments'] = $this->admin_model->get_comments('4');
                 $data['requests'] = $this->admin_model->get_requests('4');
                 //$data['orders'] = $this->admin_model->get_orders('4');

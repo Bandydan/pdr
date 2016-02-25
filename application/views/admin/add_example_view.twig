@@ -19,11 +19,11 @@
 		<article class="module width_full">
 			<header><h3>Добавить пример выполненной работы</h3></header>
 				{{ error }}
-				<?= form_open('admin/add_example') ?>
+				{{ form_open ('admin/add_example')}}
 					<div class="module_content">
 						<fieldset style="width:32%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Категория</label>
-							<select name="category" style="width:92%;" rows="12">
+							<select name="category" style="width:92%;" rows="12" type="choice">
 								<option disabled selected hidden>--</option> 
 								{% for key, cat in categories %}
 								<option value="{{key}}">{{cat}}</option>
@@ -33,17 +33,17 @@
 
 						<fieldset style="width:99%; float:left; margin-right: 3%;">
 							<label>Описание</label>
-							<textarea name="text" value="" style="width:92%;" rows="12"></textarea>
+							<textarea name="text" value="" style="width:92%;" rows="12" type="textarea"></textarea>
 						</fieldset>
 
 						<fieldset style="width:32%; float:left; margin-right: 1%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Фото до...</label>
-							<input name="foto_before" value="" type="text" style="width:92%;">
+							<input name="foto_before" value="" type="file" style="width:92%;">
 						</fieldset>
 
 						<fieldset style="width:32%; float:left; margin-right: 1%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Фото после...</label>
-							<input name="foto_after" value="" type="text" style="width:92%;">
+							<input name="foto_after" value="" type="file" style="width:92%;">
 						</fieldset>
 
 						<fieldset style="width:32%; float:left; margin-right: 1%;"> <!-- to make two field float next to one another, adjust values accordingly -->
@@ -59,7 +59,7 @@
 							<input type="reset" value="Отмена">
 						</div>
 					</footer>
-			</form>
+			{{ form_close() }}
 		</article><!-- end of post new article -->
 </section>
 

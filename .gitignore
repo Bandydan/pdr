@@ -4,9 +4,6 @@
 */cache/*
 */cache/!index.html
 */cache/!.htaccess
-/assets/css/main.css
-/assets/css/main_footer.css
-/assets/css/main_hader.css
 pdr_project.*
 /sessions
 

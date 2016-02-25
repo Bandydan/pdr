@@ -38,15 +38,11 @@
 		</table>
 		
 		<div>
-			<?php echo form_open('/admin/add_car'); ?>
-
-			<input type="text" id="mark" name="mark" placeholder="Производитель авто">
-
-            <input type="text" id="model" name="model" placeholder="Модель">
-
-            <?php echo form_submit('add_car', 'Добавить') ;?>
-       
-        </form>
+			{{ form_open ('/admin/add_car') }}
+				<input type="text" id="mark" name="mark" placeholder="Производитель авто">
+	            <input type="text" id="model" name="model" placeholder="Модель">
+				<input type="submit" value="Добавить" class="alt_btn">
+        	{{ form_close }}
         </div>
 	</div><!-- end of #tab1 -->
 </article><!-- end of content manager article -->
