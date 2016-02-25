@@ -353,10 +353,24 @@ class Admin extends CI_Controller {
             
             else
             {
-                $this->admin_model->edit_content($id);
+                $this->admin_model->edit_content();
                 
                 $this->show_articles();
             }
+        }
+        
+        else
+        {
+            $this->login();
+        }
+    }
+
+     public function delete_article($id = '', $table = '')
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {            
+            $this->admin_model->delete_data($id, $table);                
+            $this->show_articles();           
         }
         
         else

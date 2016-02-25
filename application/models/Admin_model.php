@@ -164,7 +164,7 @@ class Admin_model extends CI_Model {
 
 	}
 
-	public function edit_content($id) 
+	public function edit_content() 
 	{	
 		
 		if ($this->input->post('status') == 'on')
@@ -184,6 +184,8 @@ class Admin_model extends CI_Model {
 			'status'  		=> $status,
 			'address'  		=> $this->input->post('address'),
 			);
+		$id = $this->input->post('id');
+
 		$this->db->where('id',$id);
 		
 		$this->db->update('Content', $data);
