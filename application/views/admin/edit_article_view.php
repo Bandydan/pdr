@@ -44,7 +44,7 @@
 					</div>
 					<footer>
 						<div class="submit_link">
-							<input type="submit" value="Опубликовать" class="alt_btn">
+							<input type="submit" name="add" value="Опубликовать" class="alt_btn">
 							<input type="reset" value="Отмена">
 						</div>
 					</footer>

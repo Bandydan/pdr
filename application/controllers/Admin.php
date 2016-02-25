@@ -325,7 +325,7 @@ class Admin extends CI_Controller {
 
 
 
-        public function edit_article($id = '') 
+    public function edit_article($id = '')
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
 
