@@ -1,0 +1,70 @@
+{% extends 'admin/admin_template.twig' %}
+
+{% block scripts %}
+{{parent()}}
+{% endblock %}
+
+{% block header %}
+{{parent()}}
+{% endblock %}
+
+{% block menu %}
+{{parent()}}
+{% endblock %}
+
+{% block content %}
+
+<!--<div class="clear"></div>-->
+<section id="main" class="column">		
+		<article class="module width_full">
+			<header><h3>Добавить пример выполненной работы</h3></header>
+				{{ error }}
+				{{ form_open ('admin/add_example')}}
+					<div class="module_content">
+						<fieldset style="width:32%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
+							<label>Категория</label>
+							<select name="category" style="width:92%;" rows="12" type="choice">
+								<option disabled selected hidden>--</option> 
+								{% for key, cat in categories %}
+								<option value="{{key}}">{{cat}}</option>
+								{% endfor %}
+							</select>
+						</fieldset>
+
+						<fieldset style="width:99%; float:left; margin-right: 3%;">
+							<label>Описание</label>
+							<textarea name="text" value="" style="width:92%;" rows="12" type="textarea"></textarea>
+						</fieldset>
+
+						<fieldset style="width:32%; float:left; margin-right: 1%;"> <!-- to make two field float next to one another, adjust values accordingly -->
+							<label>Фото до...</label>
+							<input name="foto_before" value="" type="file" style="width:92%;">
+						</fieldset>
+
+						<fieldset style="width:32%; float:left; margin-right: 1%;"> <!-- to make two field float next to one another, adjust values accordingly -->
+							<label>Фото после...</label>
+							<input name="foto_after" value="" type="file" style="width:92%;">
+						</fieldset>
+
+						<fieldset style="width:32%; float:left; margin-right: 1%;"> <!-- to make two field float next to one another, adjust values accordingly -->
+							<label>Дополнительно</label>
+							<input name="additionally" value="" type="text" style="width:92%;">
+						</fieldset>
+
+						<div class="clear"></div>
+					</div>
+					<footer>
+						<div class="submit_link">
+							<input type="submit" value="Добавить" class="alt_btn">
+							<input type="reset" value="Отмена">
+						</div>
+					</footer>
+			{{ form_close() }}
+		</article><!-- end of post new article -->
+</section>
+
+{% endblock %}
+
+{% block footer %}
+{{parent()}}
+{% endblock %}
