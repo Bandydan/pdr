@@ -3,18 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * Admin_model class.
- * 
+ *
  * @extends CI_Model
  */
 class Admin_model extends CI_Model {
 
 	/**
 	 * __construct function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
-	public function __construct() 
+	public function __construct()
 	{
 		parent::__construct();
 		$this->load->database();
@@ -32,7 +32,7 @@ class Admin_model extends CI_Model {
 		$this->db->order_by('c.comment_created', 'DESC');
 		$this->db->limit($limit);
 		$query = $this->db->get();
-		
+
 		return $query->result_array();
 	}
 
@@ -47,7 +47,7 @@ class Admin_model extends CI_Model {
 		$this->db->limit($limit);
 		$query = $this->db->get();
 
-        return $query->result_array();
+		return $query->result_array();
 	}
 
 	public function get_cars()
@@ -55,7 +55,7 @@ class Admin_model extends CI_Model {
 		//get cars
 		$query = $this->db->query('SELECT cars_model.id, cars_model.model, cars_mark.mark as manufacture FROM cars_model JOIN cars_mark ON cars_model.mark_id = cars_mark.id');
 		//$query = $this->db->get();
-		
+
 		return $query->result_array();
 	}
 
@@ -63,12 +63,12 @@ class Admin_model extends CI_Model {
 	// {
 	// 	//add car in DB
 	// 	$this->db->insert('cars_model', $item);
-		
+
 	// 	return $query->result_array();
 	// }
 
-	public function create_content() 
-	{	
+	public function create_content()
+	{
 		//add content
 		if ($this->input->post('status') == 'on')
 		{
@@ -87,12 +87,12 @@ class Admin_model extends CI_Model {
 			'status'  		=> $status,
 			'address'  		=> $this->category_url().$this->input->post('address'),
 			);
-		
+
 		return $this->db->insert('Content', $data);
 	}
 
-	public function create_example() 
-	{	
+	public function create_example()
+	{
 		//add example
 		$data = array(
 			'category'  	=> $this->input->post('category'),
@@ -101,7 +101,7 @@ class Admin_model extends CI_Model {
 			'photo_after'	=> $this->input->post('foto_after'),
 			'additionally'  => $this->input->post('additionally'),
 			);
-		
+
 		return $this->db->insert('example_works', $data);
 	}
 
@@ -111,7 +111,7 @@ class Admin_model extends CI_Model {
 		$this->db->from($table);
 		$this->db->where('id', $id);
 		$query = $this->db->delete();
-		
+
 		return TRUE;
 	}
 
@@ -121,41 +121,41 @@ class Admin_model extends CI_Model {
 
 		switch ($data) {
 			case 'Главная':
-				$url = 'pdr/';
+				$url = base_url();
 				break;
 
 			case 'Примеры работ':
-				$url = 'pdr/examples/';
+				$url = base_url() . 'examples/';
 				break;
 
 			case 'Обучение':
-				$url = 'pdr/education/';
+				$url = base_url() . 'education/';
 				break;
-			
+
 			case 'Инструмент':
-				$url = 'pdr/#/';
+				$url = base_url() . '#/';
 				break;
 
 			case 'Оценить вмятину':
-				$url = 'pdr/#/';
+				$url = base_url() . '#/';
 				break;
 
 			case 'Контакты':
-				$url = 'pdr/contact/';
+				$url = base_url() . 'contact/';
 				break;
 		}
-		
+
 		return $url;
 	}
 
 	public function get_article($id){
-		
-		if ($id != null) 
+
+		if ($id != null)
 		{
 			$this->db->where('id',$id);
 			$query = $this->db->get('Content')->row_array();
 		}
-		
+
 		else {
 			$query = $this->db->get('Content')->result_array();
 			}
@@ -164,9 +164,9 @@ class Admin_model extends CI_Model {
 
 	}
 
-	public function edit_content($id) 
-	{	
-		
+	public function edit_content()
+	{
+
 		if ($this->input->post('status') == 'on')
 		{
 			$status = $this->config->item('STATUS_ON');
@@ -184,9 +184,11 @@ class Admin_model extends CI_Model {
 			'status'  		=> $status,
 			'address'  		=> $this->input->post('address'),
 			);
+		$id = $this->input->post('id');
+
 		$this->db->where('id',$id);
-		
+
 		$this->db->update('Content', $data);
-		
+
 	}
 }

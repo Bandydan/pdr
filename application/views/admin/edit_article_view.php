@@ -32,6 +32,7 @@
 							<label>Тэги</label>
 							<input name="meta" value="<?= $get_article['meta']; ?>" type="text" style="width:92%;">
 						</fieldset><div class="clear"></div>
+						<input type="hidden" name="id" value="<?= $get_article['id']; ?>">
 						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Адрес</label>
 							<input name="address" value="<?= $get_article['address']; ?>" type="text" style="width:92%;">
