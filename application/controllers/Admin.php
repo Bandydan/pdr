@@ -6,36 +6,33 @@ class Admin extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('admin_model');
+        $this->load->library('twig');
         //$this->output->cache(5);
     }
 
     public function index()
     {
         $data['title'] = 'Административная панель';
-
+        
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
+            $data['page_name'] = 'Основная панель';
+            $data['user_name'] = $_SESSION['login'];
             $data['comments'] = $this->admin_model->get_comments('4');
             $data['requests'] = $this->admin_model->get_requests('4');
             //$data['orders'] = $this->admin_model->get_orders('4');
 
-            $this->load->view('admin/blocks/scripts_view', $data);
-            $this->load->view('admin/blocks/header_view', $data);
-            $this->load->view('admin/blocks/menu_view', $data);
-            $this->load->view('admin/main_view', $data);
-            $this->load->view('admin/blocks/footer_view', $data);
+            echo $this->twig->render('admin/main', $data);
         }
-
+        
         elseif ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') !== $this->config->item('admin_rights'))
         {
             $this->session->sess_destroy();
             $data['error'] = 'У Вас не достаточно прав для доступа к этой странице';
+            $data['user_name'] = $_SESSION['login'];
 
             // send error to the view
-            $this->load->view('header');
-            $this->load->view('user/error', $data);
-            $this->load->view('user/login/login_admin');
-            $this->load->view('footer');
+            echo $this->twig->render('user/login/login_admin', $data);  
         }
 
         else
@@ -46,51 +43,48 @@ class Admin extends CI_Controller {
 
     /**
      * login function.
-     *
+     * 
      * @access public
      * @return void
      */
-    public function login()
+    public function login() 
     {
+        $data['title'] = 'Garage - Авторизация';
+
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $this->index();
         }
         else
         {
-            // create the data object
-            $data = new stdClass();
             $this->load->model('user_model');
-
+            
             // load form helper and validation library
             $this->load->helper('form');
             $this->load->library('form_validation');
-
+            
             // set validation rules
             $this->form_validation->set_rules('login', 'Login', 'required|alpha_numeric');
             $this->form_validation->set_rules('password', 'Password', 'required');
-
-            if ($this->form_validation->run() == false)
+            
+            if ($this->form_validation->run() == false) 
             {
                 // validation not ok, send validation errors to the view
-                $this->load->view('header');
-                $this->load->view('user/error', $data);
-                $this->load->view('user/login/login_admin');
-                $this->load->view('footer');
-            }
-
-            else
+                echo $this->twig->render('user/login/login_admin', $data);    
+            } 
+            
+            else 
             {
                 // set variables from the form
                 $login = $this->input->post('login');
                 $password = $this->input->post('password');
-
-                if ($this->user_model->resolve_user_login($login, $password))
+                
+                if ($this->user_model->resolve_user_login($login, $password)) 
                 {
                     $user_id = $this->user_model->get_user_id_from_username($login);
                     $user    = $this->user_model->get_user($user_id);
                     $user_data = $this->user_model->get_user_data($user_id);
-
+                    
                     //set session user data
                     $session_data = array(
                                     'id' => session_id(),
@@ -101,73 +95,63 @@ class Admin extends CI_Controller {
                                     'user_rights' => (int)$user_data->user_rights, );
 
                     $this->session->set_userdata($session_data);
-
+                    
                     if ($this->session->userdata('user_rights') == $this->config->item('admin_rights'))
                     {
                         $this->user_model->set_user_session();
-
+            
                         // user login ok
-                        $this->load->view('header');
-                        $this->load->view('user/login/login_admin_success', $data);
-                        $this->load->view('footer');
+                        $data['user_login'] = $this->session->userdata('login');
+                        echo $this->twig->render('user/login/login_admin_success', $data); 
                     }
 
                     else
                     {
                         // login failed
-                        $data->error = 'У Вас не достаточно прав для доступа к этой странице';
+                        $data['error'] = 'У Вас не достаточно прав для доступа к этой странице';
 
                         // send error to the view
-                        $this->load->view('header');
-                        $this->load->view('user/error', $data);
-                        $this->load->view('user/login/login_admin', $data);
-                        $this->load->view('footer');
+                        echo $this->twig->render('user/login/login_admin', $data); 
                     }
-                }
+                } 
 
-                else
+                else 
                 {
                     // login failed
-                    $data->error = 'Неверный логин или пароль. Повторите ввод.';
-
+                    $data['error'] = 'Неверный логин или пароль. Повторите ввод.';
+                    
                     // send error to the view
-                    $this->load->view('header');
-                    $this->load->view('user/error', $data);
-                    $this->load->view('user/login/login_admin', $data);
-                    $this->load->view('footer');
+                    echo $this->twig->render('user/login/login_admin', $data);   
                 }
             }
-        }
+        }   
     }
 
     /**
      * logout function for admin panel.
-     *
+     * 
      * @access public
      * @return void
      */
-    public function logout()
-    {
-        // create the data object
-        $data = new stdClass();
-
-        if ($this->session->has_userdata('logged_in') != NULL && $this->session->userdata('logged_in') === true)
+    public function logout() 
+    {   
+        $data['title'] = 'Garage - Авторизация';
+             
+        if ($this->session->has_userdata('logged_in') != NULL && $this->session->userdata('logged_in') === true) 
         {
-            $data->login = $this->session->userdata('login');
+            $data['user_login'] = $this->session->userdata('login');
             $this->session->sess_destroy();
 
             // user logout ok
-            $this->load->view('header');
-            $this->load->view('user/logout/logout_admin_success', $data);
-            $this->load->view('footer');
-        }
+            echo $this->twig->render('user/logout/logout_admin_success', $data);    
+        } 
 
-        else
+        else 
         {
             // there user was not logged in, we cannot logged him out,
             // redirect him to site root
             redirect('/');
-        }
+        }   
     }
 
     //metods for work with data in admin panel
@@ -176,12 +160,9 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $data['articles'] = $this->admin_model->get_article($id);
-
-            $this->load->view('admin/blocks/scripts_view', $data);
-            $this->load->view('admin/blocks/header_view', $data);
-            $this->load->view('admin/blocks/menu_view', $data);
-            $this->load->view('admin/all_articles_view', $data);
-            $this->load->view('admin/blocks/footer_view', $data);
+            $data['user_name'] = $_SESSION['login'];
+            $data['page_name'] = 'Управление контентом';
+            echo $this->twig->render('admin/all_articles_view', $data);
         }
         else
         {
@@ -195,12 +176,9 @@ class Admin extends CI_Controller {
         {
             $this->load->model('user_model');
             $data['users'] = $this->user_model->get_users();
-
-            $this->load->view('admin/blocks/scripts_view', $data);
-            $this->load->view('admin/blocks/header_view', $data);
-            $this->load->view('admin/blocks/menu_view', $data);
-            $this->load->view('admin/all_users_view', $data);
-            $this->load->view('admin/blocks/footer_view', $data);
+            $data['user_name'] = $_SESSION['login'];
+            $data['page_name'] = 'Просмотр пользователей';
+            echo $this->twig->render('admin/all_users_view', $data); 
         }
         else
         {
@@ -213,12 +191,9 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $data['comments'] = $this->admin_model->get_comments($limit);
-
-            $this->load->view('admin/blocks/scripts_view', $data);
-            $this->load->view('admin/blocks/header_view', $data);
-            $this->load->view('admin/blocks/menu_view', $data);
-            $this->load->view('admin/all_comments_view', $data);
-            $this->load->view('admin/blocks/footer_view', $data);
+            $data['user_name'] = $_SESSION['login'];
+            $data['page_name'] = 'Просмотр комментариев';
+            echo $this->twig->render('admin/all_comments_view', $data); 
         }
         else
         {
@@ -231,12 +206,9 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $data['requests'] = $this->admin_model->get_requests($limit);
-
-            $this->load->view('admin/blocks/scripts_view', $data);
-            $this->load->view('admin/blocks/header_view', $data);
-            $this->load->view('admin/blocks/menu_view', $data);
-            $this->load->view('admin/pdr_requests_view', $data);
-            $this->load->view('admin/blocks/footer_view', $data);
+            $data['user_name'] = $_SESSION['login'];
+            $data['page_name'] = 'Просмотр запросов на оценку работ';
+            echo $this->twig->render('admin/pdr_requests_view', $data);
         }
         else
         {
@@ -249,12 +221,9 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $data['cars'] = $this->admin_model->get_cars();
-
-            $this->load->view('admin/blocks/scripts_view', $data);
-            $this->load->view('admin/blocks/header_view', $data);
-            $this->load->view('admin/blocks/menu_view', $data);
-            $this->load->view('admin/all_avto_view', $data);
-            $this->load->view('admin/blocks/footer_view', $data);
+            $data['user_name'] = $_SESSION['login'];
+            $data['page_name'] = 'Каталог автомобилей';
+            echo $this->twig->render('admin/all_avto_view', $data); 
         }
         else
         {
@@ -266,19 +235,16 @@ class Admin extends CI_Controller {
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            if ($this->input->post() != null)
+            if ($this->input->post() != null) 
             {
                 $newCar = $this->input->post();
                 $this->admin_model->add_car($newCar);
             }
-
+            
             $data['cars'] = $this->admin_model->get_cars();
-
-            $this->load->view('admin/blocks/scripts_view', $data);
-            $this->load->view('admin/blocks/header_view', $data);
-            $this->load->view('admin/blocks/menu_view', $data);
-            $this->load->view('admin/all_avto_view', $data);
-            $this->load->view('admin/blocks/footer_view', $data);
+            $data['user_name'] = $_SESSION['login'];
+            $data['page_name'] = 'Каталог автомобилей';
+            echo $this->twig->render('admin/all_avto_view', $data); 
         }
         else
         {
@@ -286,29 +252,27 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function add_article()
+    public function add_article() 
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $data = array();
 
-            $this->load->helper('form');
+            //$this->load->helper('form');
             $this->load->library('form_validation');
-
+        
             $this->form_validation->set_rules('title', 'Заголовок', 'required');
             $this->form_validation->set_rules('text', 'Содержимое', 'required');
             $this->form_validation->set_rules('meta', 'Теги', 'required');
             $this->form_validation->set_rules('address', 'Адрес', 'required|is_unique[Content.address]', array('is_unique' => 'Этот адрес уже занят. Пожалуйста введите другой.'));
-
-            if ($this->form_validation->run() === false)
+        
+            if ($this->form_validation->run() === false) 
             {
-                $this->load->view('admin/blocks/scripts_view', $data);
-                $this->load->view('admin/blocks/header_view', $data);
-                $this->load->view('admin/blocks/menu_view', $data);
-                $this->load->view('admin/add_article_view', $data);
-                $this->load->view('admin/blocks/footer_view', $data);
+                $data['user_name'] = $_SESSION['login'];
+                $data['page_name'] = 'Управление контентом';
+                echo $this->twig->render('admin/add_article_view', $data);  
             }
-
+            
             else
             {
                 $this->admin_model->create_content();
@@ -316,54 +280,50 @@ class Admin extends CI_Controller {
                 $this->show_articles();
             }
         }
-
+        
         else
         {
             $this->login();
         }
     }
 
-
-
-    public function edit_article($id = '')
+        public function edit_article($id = '') 
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+
         {
             $data = array();
             $data['get_article'] = $this->admin_model->get_article($id);
-
+            
             $this->load->helper('form');
             $this->load->library('form_validation');
-
+        
             $this->form_validation->set_rules('title', 'Заголовок', 'required');
             $this->form_validation->set_rules('text', 'Содержимое', 'required');
             $this->form_validation->set_rules('meta', 'Теги', 'required');
             $this->form_validation->set_rules('address', 'Адрес', 'required');
-
-            if ($this->form_validation->run() === false)
+        
+            if ($this->form_validation->run() === false) 
             {
-
-                $this->load->view('admin/blocks/scripts_view', $data);
-                $this->load->view('admin/blocks/header_view', $data);
-                $this->load->view('admin/blocks/menu_view', $data);
-                $this->load->view('admin/edit_article_view', $data);
-                $this->load->view('admin/blocks/footer_view', $data);
+                $data['user_name'] = $_SESSION['login'];
+                $data['page_name'] = 'Редактирование статьи';
+                echo $this->twig->render('admin/edit_article_view', $data);   
             }
-
+            
             else
             {
                 $this->admin_model->edit_content();
                 $this->show_articles();
             }
         }
-
+        
         else
         {
             $this->login();
         }
     }
 
-     public function delete_article($id = '', $table = '')
+    public function delete_article($id = '', $table = '')
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
@@ -377,7 +337,7 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function add_example()
+    public function add_example() 
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
@@ -385,34 +345,30 @@ class Admin extends CI_Controller {
 
             $this->load->helper('form');
             $this->load->library('form_validation');
-
+        
             $this->form_validation->set_rules('category', 'category', 'required');
             $this->form_validation->set_rules('text', 'text', 'required');
             $this->form_validation->set_rules('foto_before', 'foto_before', 'required');
             $this->form_validation->set_rules('foto_after', 'foto_after', 'required');
-            $this->form_validation->set_rules('additionally', 'additionally', 'required');
-
-            if ($this->form_validation->run() === false)
+            $this->form_validation->set_rules('additionally', 'additionally', 'required');            
+        
+            if ($this->form_validation->run() === false) 
             {
-                $this->load->view('admin/blocks/scripts_view', $data);
-                $this->load->view('admin/blocks/header_view', $data);
-                $this->load->view('admin/blocks/menu_view', $data);
-                $this->load->view('admin/add_example_view', $data);
-                $this->load->view('admin/blocks/footer_view', $data);
+                $data['user_name'] = $_SESSION['login'];
+                $data['page_name'] = 'Управление примерами работ';
+                $data['categories'] = $this->config->item("categories"); 
+                echo $this->twig->render('admin/add_example_view', $data); 
             }
-
+            
             else
             {
                 $this->admin_model->create_example();
-
-                $this->load->view('admin/blocks/scripts_view', $data);
-                $this->load->view('admin/blocks/header_view', $data);
-                $this->load->view('admin/blocks/menu_view', $data);
-                $this->load->view('admin/all_examples_view', $data);
-                $this->load->view('admin/blocks/footer_view', $data);
+                $data['user_name'] = $_SESSION['login'];
+                $data['page_name'] = 'Просмотр примеров работ';
+                echo $this->twig->render('admin/all_examples_view', $data); 
             }
         }
-
+        
         else
         {
             $this->login();
@@ -423,13 +379,9 @@ class Admin extends CI_Controller {
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            $data = array();
-
-            $this->load->view('admin/blocks/scripts_view', $data);
-            $this->load->view('admin/blocks/header_view', $data);
-            $this->load->view('admin/blocks/menu_view', $data);
-            $this->load->view('admin/add_user_view', $data);
-            $this->load->view('admin/blocks/footer_view', $data);
+            $data['user_name'] = $_SESSION['login'];
+            $data['page_name'] = 'Управление пользователями';
+            echo $this->twig->render('admin/add_user_view', $data);
         }
         else
         {
@@ -442,26 +394,26 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $data = explode('%3D', $data);
-            if ($this->admin_model->delete_data($data[0], $data[1]))
+            if ($this->admin_model->delete_data($data[0], $data[1])) 
             {
-                // request delete ok
-                $this->index();
-            }
-
-            else
+                // item delete ok
+                $this->index();    
+            } 
+            
+            else 
             {
-                // request delete failed, this should never happen
+                // item delete failed, this should never happen
                 $data['error'] = 'Что-то пошло не так. Please try again.';
-
+                
                 // send error to the view
-                $this->load->view('admin/blocks/scripts_view', $data);
-                $this->load->view('admin/blocks/header_view', $data);
-                $this->load->view('admin/blocks/menu_view', $data);
-                $this->load->view('admin/error', $data);
-                $this->load->view('admin/main_view', $data);
-                $this->load->view('admin/blocks/footer_view', $data);
-            }
+                $data['page_name'] = 'Основная панель';
+                $data['user_name'] = $_SESSION['login'];
+                $data['comments'] = $this->admin_model->get_comments('4');
+                $data['requests'] = $this->admin_model->get_requests('4');
+                //$data['orders'] = $this->admin_model->get_orders('4');
 
+                echo $this->twig->render('admin/main', $data);
+            }      
         }
         else
         {
