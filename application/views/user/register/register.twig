@@ -87,21 +87,24 @@
    				<script src="{{ base_url() }}assets/js/moment-with-locales.js"></script>
    				<script src="{{ base_url() }}assets/js/bootstrap-datetimepicker.min.js"></script>
 			</div>
-			
+			{{ error }}
 			{{ form_open ('/register') }}
 				<div class="form-group">
 					<label for="login">Логин</label>
 					<input type="text" class="form-control" id="login" name="login" value="{{ set_value('login') }}" placeholder="Введите логин">
+					{{ form_error('login') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
 					<label for="name">Имя</label>
 					<input type="text" class="form-control" id="name" name="name" value="{{ set_value('name') }}" placeholder="Введите имя">
+					{{ form_error('name') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
 					<label for="surname">Фамилия</label>
 					<input type="text" class="form-control" id="surname" name="surname" value="{{ set_value('surname') }}" placeholder="Введите фамилию">
+					{{ form_error('surname') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
@@ -111,28 +114,30 @@
 						<option>мужчина</option>
 						<option>женщина</option>
 					</select>
+					{{ form_error('sex') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
 					<label for="birthsday">Дата рождения</label>
 					<div class="input-group date" id="birthsday">
-    					<input type="text" class="form-control" />
+    					<input type="datetime" name="birthsday" class="form-control" readonly="true" value="{{ set_value('birthsday') }}" />
     					<span class="input-group-addon">
       						<span class="glyphicon glyphicon-calendar"></span>
     					</span>
   					</div>
+  					{{ form_error('birthsday') }}
 					<p class="help-block"> </p>
 				</div>
-
-				
 				<div class="form-group">
 					<label for="tel">Телефон</label>
 					<input type="number" class="form-control" id="tel" name="tel" value="{{ set_value('tel') }}" placeholder="Введите номер телефона">
+					{{ form_error('tel') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
 					<label for="email">E-mail</label>
 					<input type="email" class="form-control" id="email" name="email" value="{{ set_value('email') }}" placeholder="Введите ваш e-mail">
+					{{ form_error('email') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
@@ -159,11 +164,13 @@
 				<div class="form-group">
 					<label for="password">Пароль</label>
 					<input type="password" class="form-control" id="password" name="password" value="{{ set_value('password') }}" placeholder="Введите ваш пароль">
+					{{ form_error('password') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
 					<label for="password_confirm">Повторите пароль</label>
 					<input type="password" class="form-control" id="password_confirm" name="password_confirm" value="{{ set_value('password_confirm') }}" placeholder="Повторите пароль">
+					{{ form_error('password_confirm') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">

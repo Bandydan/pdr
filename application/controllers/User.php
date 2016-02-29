@@ -55,6 +55,10 @@ class User extends CI_Controller {
 		if ($this->form_validation->run() === false) 
 		{
 			// validation not ok, send validation errors to the view
+			if (validation_errors() == true) 
+			{
+				$data['error'] = 'Проверьте правильность заполнения всех полей.';
+			}
 			echo $this->twig->render('user/register/register', $data);	
 		}
 
