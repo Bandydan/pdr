@@ -10,7 +10,7 @@
 							<input name="title" value="<?= $get_article['title']; ?>" type="text">
 						</fieldset>
 						<fieldset>
-							<label>Содержимое</label>
+							<h3>Содержимое</h3>
 							<textarea name="text" rows="12"><?= $get_article['content_text']; ?></textarea>
 							<script type="text/javascript">
 							CKEDITOR.replace('text');

@@ -10,7 +10,7 @@
 							<input name="title" value="<?= set_value('title'); ?>" type="text">
 						</fieldset>
 						<fieldset>
-							<label>Содержимое</label>
+							<h3>Содержимое</h3>
 							<textarea name="text" rows="12"><?= set_value('text'); ?></textarea>
 							<script type="text/javascript">
 							CKEDITOR.replace('text');

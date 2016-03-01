@@ -164,7 +164,7 @@ class Admin_model extends CI_Model {
 
 	}
 
-	public function edit_content($id) 
+	public function edit_content() 
 	{	
 		
 		if ($this->input->post('status') == 'on')
