@@ -144,17 +144,17 @@
 					<label for="Avto">Какой у Вас автомобиль</label>
 					<p><select id="manufacture_name" name="ManufactureName">
 						<option>--</option>
-		                {% for manufact in cars %}
-		                <option value="{{ manufact.manufacture }}">
+		                {% for manufact in marks %}
+		                <option value="{{ manufact.id }}">
 		                {{ manufact.manufacture }}</option>
 		                {% endfor %}
             		</select>
 
             		<select id="model_name" name="ModelName">
 		            	<option>--</option>
-		                {% for model in cars %}
-		                <option value="{{ model.model}}" class="
-		                {{ model.manufacture }}">{{ model.model}}</option>
+		                {% for model in models %}
+		                <option value="{{ model.id}}" class="
+		                {{ model.mark_id }}">{{ model.model}}</option>
 		                {% endfor %}
             		</select>
 
@@ -184,7 +184,7 @@
 
 			<script type="text/javascript">
   				$(function () {
-    				$('#birthsday').datetimepicker({pickTime: false, language: 'ru', format: "YYYY-MM-DD"});
+    				$('#birthsday').datetimepicker({pickTime: false, language: 'ru', format: "YYYY-MM-DD", maxDate: new Date()});
   				});
 			</script>
 		</div>

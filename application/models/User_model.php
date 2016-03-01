@@ -36,7 +36,7 @@ class User_model extends CI_Model {
 		$car = NULL;
 		if ($data['ManufactureName'] !== '--') 
 		{
-			$car = $this->_get_car_id($data);
+			$car = $data['ModelName'];
 		}
 
 		$pass = $data['password'];
@@ -58,31 +58,6 @@ class User_model extends CI_Model {
 		return TRUE;
 	}	
 	
-	/**
-	 * @access private
-	 * Method gets id of given auto by its data
-	 * TODO:
-	 * @deprecated METHOD SHOULD BE REMOVED, ID SHOULD COME FROM THE FORM!!!
-	 * @param array $data 
-	 * @return integer
-	 * 
-	 */
-	private function _get_car_id($data) 
-	{
-		// $this->db->select('id');
-		// $this->db->from('cars_model');
-		// $this->db->where('manufacture', $data['ManufactureName']);
-		// $this->db->where('model', $data['ModelName']);
-		//$this->db->where('year', $data['year']);
-		// $query = $this->db->get();
-
-		// $car_id = $query->result_array();
-		$car = $car_id['0']['id'];
-
-		return $car;
-	}
-
-
 //I would suggest to make one check_password function from
 // resolve_user_login and _verify_password_hash functions.
 	/**
