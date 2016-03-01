@@ -38,7 +38,8 @@ class User extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->model('admin_model');
-		$data['cars'] = $this->admin_model->get_cars();
+		$data['models'] = $this->admin_model->get_cars();
+		$data['marks'] = $this->admin_model->get_marks();
 		$data['title'] = 'Garage - Регистрация';
 		
 		// set validation rules
@@ -59,6 +60,7 @@ class User extends CI_Controller {
 			{
 				$data['error'] = 'Проверьте правильность заполнения всех полей.';
 			}
+			//print_r($data['cars']);
 			echo $this->twig->render('user/register/register', $data);	
 		}
 
