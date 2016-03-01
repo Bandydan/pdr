@@ -17,7 +17,8 @@ class User extends CI_Controller {
 	public function __construct() 
 	{	
 		parent::__construct();
-		$this->load->model('user_model');	
+		$this->load->model('user_model');
+		$this->load->library('twig');	
 	}
 	
 	
@@ -38,6 +39,7 @@ class User extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->model('admin_model');
 		$data['cars'] = $this->admin_model->get_cars();
+		$data['title'] = 'Garage - Регистрация';
 		
 		// set validation rules
 		$this->form_validation->set_rules('login', 'Логин', 'trim|required|alpha_numeric|min_length[3]|is_unique[users.login]', array('is_unique' => 'Этот логин уже занят. Пожалуйста введите другой.'));
@@ -53,10 +55,11 @@ class User extends CI_Controller {
 		if ($this->form_validation->run() === false) 
 		{
 			// validation not ok, send validation errors to the view
-			$this->load->view('header');
-			$this->load->view('user/error', $data);
-			$this->load->view('user/register/register', $data);
-			$this->load->view('footer');	
+			if (validation_errors() == true) 
+			{
+				$data['error'] = 'Проверьте правильность заполнения всех полей.';
+			}
+			echo $this->twig->render('user/register/register', $data);	
 		}
 
 		else 
@@ -66,9 +69,7 @@ class User extends CI_Controller {
 			if ($this->user_model->create_user($register)) 
 			{
 				// user creation ok
-				$this->load->view('header');
-				$this->load->view('user/register/register_success', $data);
-				$this->load->view('footer');	
+				echo $this->twig->render('user/register/register_success', $data);	
 			} 
 			
 			else 
@@ -77,10 +78,7 @@ class User extends CI_Controller {
 				$data['error'] = 'Что-то пошло не так. Please try again.';
 				
 				// send error to the view
-				$this->load->view('header');
-				$this->load->view('user/error', $data);
-				$this->load->view('user/register/register', $data);
-				$this->load->view('footer');
+				echo $this->twig->render('user/register/register', $data);
 			}	
 		}
 	}
@@ -93,12 +91,10 @@ class User extends CI_Controller {
 	 */
 	public function login() 
 	{
-		// create the data object
-		$data = new stdClass();
-		
 		// load form helper and validation library
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$data['title'] = 'Garage - Авторизация';
 		
 		// set validation rules
 		$this->form_validation->set_rules('login', 'Login', 'required|alpha_numeric');
@@ -107,10 +103,7 @@ class User extends CI_Controller {
 		if ($this->form_validation->run() == false) 
 		{
 			// validation not ok, send validation errors to the view
-			$this->load->view('header');
-			$this->load->view('user/error', $data);
-			$this->load->view('user/login/login');
-			$this->load->view('footer');	
+			echo $this->twig->render('user/login/login', $data);	
 		} 
 		
 		else 
@@ -137,21 +130,17 @@ class User extends CI_Controller {
 				$this->session->set_userdata($session_data);
 		
 				// user login ok
-				$this->load->view('header');
-				$this->load->view('user/login/login_success', $data);
-				$this->load->view('footer');	
+				$data['user_login'] = $this->session->userdata('login');
+				echo $this->twig->render('user/login/login_admin_success', $data);	
 			} 
 
 			else 
 			{
 				// login failed
-				$data->error = 'Неверный логин или пароль. Повторите ввод.';
+				$data['error'] = 'Неверный логин или пароль. Повторите ввод.';
 				
 				// send error to the view
-				$this->load->view('header');
-				$this->load->view('user/error', $data);
-				$this->load->view('user/login/login', $data);
-				$this->load->view('footer');	
+				echo $this->twig->render('user/login/login', $data);	
 			}
 		}	
 	}
@@ -164,18 +153,15 @@ class User extends CI_Controller {
 	 */
 	public function logout() 
 	{
-		// create the data object
-		$data = new stdClass();
-		
+		$data['title'] = 'Garage - Авторизация';
+
 		if ($this->session->has_userdata('logged_in') != NULL && $this->session->has_userdata('logged_in') === true) 
 		{
-            $data->login = $this->session->userdata('login');
+            $data['user_login'] = $this->session->userdata('login');
             $this->session->sess_destroy();
 
             // user logout ok
-            $this->load->view('header');
-            $this->load->view('user/logout/logout_success', $data);
-            $this->load->view('footer');  	
+            echo $this->twig->render('user/logout/logout_success', $data);   	
 		} 
 
 		else 

@@ -1,0 +1,37 @@
+{% extends 'main_template.twig' %}
+
+{% block scripts %}
+{{parent()}}
+{% endblock %}
+
+{% block header %}
+{{parent()}}
+{% endblock %}
+
+{% block nav %}
+{{parent()}}
+{% endblock %}
+
+{% block content %}
+
+        <div class="advertising"></div></div>
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 main">
+
+                {% for item in examples %}
+                    <!-- <img src="img/example/after/1_0.jpg" class="img-responsive">  -->
+                    <!-- для примера, в будующем нужно уточнить какое фото будет выводиться -->
+                    <img src="{{item.photo_after.0}}" class="img-responsive">
+                    <h3>{{ cat.category }}</h3>
+                    <p>{{ item.about }}</p>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block footer %}
+{{parent()}}
+{% endblock %}

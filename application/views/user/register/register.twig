@@ -1,0 +1,198 @@
+{% extends 'main_template.twig' %}
+
+{% block scripts %}
+{{parent()}}
+<link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/css/bootstrap-datetimepicker.css">
+{% endblock %}
+
+{% block header %}
+</head>
+<body>
+    <div class="myMain">
+        <header class="header">
+            <div class="container">
+                <div class="row hedFirstRow">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <img src="{{ base_url() }}assets/img/logo.png" class="img-responsive">
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="wrapImg">
+                            <img src="{{ base_url() }}img/example/after/1_0.jpg" class="img-responsive"> <!-- для примера, в будующем нужно уточнить какое фото будет выводиться -->
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="regist">
+                            <a href="{{ base_url() }}login">Вход</a>
+                            <a href="{{ base_url() }}register">Регистрация</a>
+                        </div>  
+                        <div class="callBack">
+                            <a href="#">Заказать звонок
+                                <img src="{{ base_url() }}assets/img/callback.png" class="img-responsive"></a>
+                            </div>
+                            <div class="info">
+                                <p>тел. (057)000-00-00</p>
+                                <p>моб. (057)000-00-00</p>
+                                <p>моб. (057)000-00-00</p>
+
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="row hedSecRow">
+                        <div class="hidden-xs col-sm-12 col-md-12 col-lg-12">
+                            <nav class="nav">
+                                <ul class="siteNav">
+                                    <li>
+                                        <a href="{{ base_url() }}">Главная</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ base_url() }}examples/paginate">Примеры работ</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ base_url() }}education">Обучение</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Аренда оборудования</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Оценить вмятину</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Отзывы</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ base_url() }}contact">Контакты</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <section class="firstSection">
+    		<div class="container">
+        		<div class="row">
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1>Регистрация</h1>
+				<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    			<script src="{{ base_url() }}assets/js/jquery.chained.min.js"></script>
+    			<script src="{{ base_url() }}assets/js/bootstrap.min.js"></script>
+   				<script src="{{ base_url() }}assets/js/moment-with-locales.js"></script>
+   				<script src="{{ base_url() }}assets/js/bootstrap-datetimepicker.min.js"></script>
+			</div>
+			{{ error }}
+			{{ form_open ('/register') }}
+				<div class="form-group">
+					<label for="login">Логин</label>
+					<input type="text" class="form-control" id="login" name="login" value="{{ set_value('login') }}" placeholder="Введите логин">
+					{{ form_error('login') }}
+					<p class="help-block"> </p>
+				</div>
+				<div class="form-group">
+					<label for="name">Имя</label>
+					<input type="text" class="form-control" id="name" name="name" value="{{ set_value('name') }}" placeholder="Введите имя">
+					{{ form_error('name') }}
+					<p class="help-block"> </p>
+				</div>
+				<div class="form-group">
+					<label for="surname">Фамилия</label>
+					<input type="text" class="form-control" id="surname" name="surname" value="{{ set_value('surname') }}" placeholder="Введите фамилию">
+					{{ form_error('surname') }}
+					<p class="help-block"> </p>
+				</div>
+				<div class="form-group">
+					<label for="sex">Пол</label>
+					<select id="sex" name="sex" class="form-control" type="choice">
+						<option disabled selected hidden>Введите пол</option>
+						<option>мужчина</option>
+						<option>женщина</option>
+					</select>
+					{{ form_error('sex') }}
+					<p class="help-block"> </p>
+				</div>
+				<div class="form-group">
+					<label for="birthsday">Дата рождения</label>
+					<div class="input-group date" id="birthsday">
+    					<input type="datetime" name="birthsday" class="form-control" readonly="true" value="{{ set_value('birthsday') }}" />
+    					<span class="input-group-addon">
+      						<span class="glyphicon glyphicon-calendar"></span>
+    					</span>
+  					</div>
+  					{{ form_error('birthsday') }}
+					<p class="help-block"> </p>
+				</div>
+				<div class="form-group">
+					<label for="tel">Телефон</label>
+					<input type="number" class="form-control" id="tel" name="tel" value="{{ set_value('tel') }}" placeholder="Введите номер телефона">
+					{{ form_error('tel') }}
+					<p class="help-block"> </p>
+				</div>
+				<div class="form-group">
+					<label for="email">E-mail</label>
+					<input type="email" class="form-control" id="email" name="email" value="{{ set_value('email') }}" placeholder="Введите ваш e-mail">
+					{{ form_error('email') }}
+					<p class="help-block"> </p>
+				</div>
+				<div class="form-group">
+					<label for="Avto">Какой у Вас автомобиль</label>
+					<p><select id="manufacture_name" name="ManufactureName">
+						<option>--</option>
+		                {% for manufact in cars %}
+		                <option value="{{ manufact.manufacture }}">
+		                {{ manufact.manufacture }}</option>
+		                {% endfor %}
+            		</select>
+
+            		<select id="model_name" name="ModelName">
+		            	<option>--</option>
+		                {% for model in cars %}
+		                <option value="{{ model.model}}" class="
+		                {{ model.manufacture }}">{{ model.model}}</option>
+		                {% endfor %}
+            		</select>
+
+					<p class="help-block"> </p>
+				</div>
+
+				<div class="form-group">
+					<label for="password">Пароль</label>
+					<input type="password" class="form-control" id="password" name="password" value="{{ set_value('password') }}" placeholder="Введите ваш пароль">
+					{{ form_error('password') }}
+					<p class="help-block"> </p>
+				</div>
+				<div class="form-group">
+					<label for="password_confirm">Повторите пароль</label>
+					<input type="password" class="form-control" id="password_confirm" name="password_confirm" value="{{ set_value('password_confirm') }}" placeholder="Повторите пароль">
+					{{ form_error('password_confirm') }}
+					<p class="help-block"> </p>
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-default" value="Регистрация">
+				</div>
+			{{ form_close() }}
+
+			<script type="text/javascript">
+				$("#model_name").chained("#manufacture_name");
+			</script>
+
+			<script type="text/javascript">
+  				$(function () {
+    				$('#birthsday').datetimepicker({pickTime: false, language: 'ru'});
+  				});
+			</script>
+		</div>
+	</div><!-- .row -->
+</div><!-- .container -->
+
+{% endblock %}
+
+{% block footer %}
+{{parent()}}
+{% endblock %}
