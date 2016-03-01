@@ -83,7 +83,6 @@
 				<h1>Регистрация</h1>
 				<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     			<script src="{{ base_url() }}assets/js/jquery.chained.min.js"></script>
-    			<script src="{{ base_url() }}assets/js/bootstrap.min.js"></script>
    				<script src="{{ base_url() }}assets/js/moment-with-locales.js"></script>
    				<script src="{{ base_url() }}assets/js/bootstrap-datetimepicker.min.js"></script>
 			</div>
@@ -120,7 +119,7 @@
 				<div class="form-group">
 					<label for="birthsday">Дата рождения</label>
 					<div class="input-group date" id="birthsday">
-    					<input type="datetime" name="birthsday" class="form-control" readonly="true" value="{{ set_value('birthsday') }}" />
+    					<input type="datetime" name="birthsday" class="form-control" readonly="true" value="{{ set_value('birthsday') }}" placeholder="Введите дату рождения" />
     					<span class="input-group-addon">
       						<span class="glyphicon glyphicon-calendar"></span>
     					</span>
@@ -142,19 +141,19 @@
 				</div>
 				<div class="form-group">
 					<label for="Avto">Какой у Вас автомобиль</label>
-					<p><select id="manufacture_name" name="ManufactureName">
+					<p><select id="manufacture_name" name="ManufactureName" class="form-control-select">
 						<option>--</option>
-		                {% for manufact in cars %}
-		                <option value="{{ manufact.manufacture }}">
+		                {% for manufact in marks %}
+		                <option value="{{ manufact.id }}">
 		                {{ manufact.manufacture }}</option>
 		                {% endfor %}
             		</select>
 
-            		<select id="model_name" name="ModelName">
+            		<select id="model_name" name="ModelName" class="form-control-select">
 		            	<option>--</option>
-		                {% for model in cars %}
-		                <option value="{{ model.model}}" class="
-		                {{ model.manufacture }}">{{ model.model}}</option>
+		                {% for model in models %}
+		                <option value="{{ model.id}}" class="
+		                {{ model.mark_id }}">{{ model.model}}</option>
 		                {% endfor %}
             		</select>
 
@@ -177,16 +176,17 @@
 					<input type="submit" class="btn btn-default" value="Регистрация">
 				</div>
 			{{ form_close() }}
-
+			
 			<script type="text/javascript">
 				$("#model_name").chained("#manufacture_name");
 			</script>
 
 			<script type="text/javascript">
   				$(function () {
-    				$('#birthsday').datetimepicker({pickTime: false, language: 'ru'});
+    				$('#birthsday').datetimepicker({pickTime: false, language: 'ru', format: "YYYY-MM-DD", maxDate: new Date()});
   				});
 			</script>
+			
 		</div>
 	</div><!-- .row -->
 </div><!-- .container -->

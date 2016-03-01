@@ -53,12 +53,17 @@ class Admin_model extends CI_Model {
 	public function get_cars()
 	{
 		//get cars
-		$query = $this->db->query('SELECT cars_model.id, cars_model.model, cars_mark.mark as manufacture FROM cars_model JOIN cars_mark ON cars_model.mark_id = cars_mark.id');
-		//$query = $this->db->get();
+		$query = $this->db->query('SELECT cars_model.id, cars_model.model, cars_model.mark_id, cars_mark.mark as manufacture FROM cars_model JOIN cars_mark ON cars_model.mark_id = cars_mark.id');
 		
 		return $query->result_array();
 	}
 
+	public function get_marks()
+	{
+		$query = $this->db->query('SELECT id, mark as manufacture FROM cars_mark');
+		return $query->result_array();
+	}
+	
 	// public function add_car($data)
 	// {
 	// 	//add car in DB
