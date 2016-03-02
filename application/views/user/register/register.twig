@@ -3,6 +3,10 @@
 {% block scripts %}
 {{parent()}}
 <link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/css/bootstrap-datetimepicker.css">
+<script src="{{ base_url() }}assets/js/jquery-1.11.3.js"></script>
+<script src="{{ base_url() }}assets/js/jquery.chained.min.js"></script>
+<script src="{{ base_url() }}assets/js/moment-with-locales.js"></script>
+<script src="{{ base_url() }}assets/js/bootstrap-datetimepicker.min.js"></script>
 {% endblock %}
 
 {% block header %}
@@ -81,10 +85,6 @@
 		<div class="col-md-12">
 			<div class="page-header">
 				<h1>Регистрация</h1>
-				<script src="{{ base_url() }}assets/js/jquery-1.11.3.js"></script>
-    			<script src="{{ base_url() }}assets/js/jquery.chained.min.js"></script>
-   				<script src="{{ base_url() }}assets/js/moment-with-locales.js"></script>
-   				<script src="{{ base_url() }}assets/js/bootstrap-datetimepicker.min.js"></script>
 			</div>
 			{{ error }}
 			{{ form_open ('/register') }}

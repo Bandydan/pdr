@@ -63,13 +63,13 @@ class Admin_model extends CI_Model {
 		$query = $this->db->query('SELECT id, mark as manufacture FROM cars_mark');
 		return $query->result_array();
 	}
-	
-	// public function add_car($data)
-	// {
-	// 	//add car in DB
-	// 	$this->db->insert('cars_model', $item);
-	// 	return $query->result_array();
-	// }
+
+	public function add_car($newCar)
+	{
+		var_dump($newCar);
+		$this->db->insert('cars_model', $newCar['model']);
+		return TRUE;
+	}
 
 	public function create_content() 
 	{	

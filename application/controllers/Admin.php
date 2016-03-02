@@ -220,7 +220,8 @@ class Admin extends CI_Controller {
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            $data['cars'] = $this->admin_model->get_cars();
+            $data['models'] = $this->admin_model->get_cars();
+            $data['marks'] = $this->admin_model->get_marks();
             $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Каталог автомобилей';
             echo $this->twig->render('admin/all_avto_view', $data); 
@@ -235,16 +236,54 @@ class Admin extends CI_Controller {
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            if ($this->input->post() != null) 
+            if ($this->input->post('model') == null) 
+            {
+                $data['error'] = 'Заполните все поля формы';
+            }
+            else
             {
                 $newCar = $this->input->post();
-                $this->admin_model->add_car($newCar);
+                if ($this->admin_model->add_car($newCar) == false) 
+                {
+                    $data['error'] = 'Ошибка при добавлении авто в базу';
+                }
             }
             
-            $data['cars'] = $this->admin_model->get_cars();
+            $data['models'] = $this->admin_model->get_cars();
+            $data['marks'] = $this->admin_model->get_marks();
             $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Каталог автомобилей';
             echo $this->twig->render('admin/all_avto_view', $data); 
+        }
+        else
+        {
+            $this->login();
+        }
+    }
+
+    public function delete_car()
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {
+            if ($this->input->post('ModelName') == null) 
+            {
+                $data['error'] = 'Выберите авто для удаления';
+            }
+
+            else
+            {
+                $model_id = $this->input->post('ModelName');
+                if ($this->admin_model->delete_data($model_id, 'cars_model') == false) 
+                {
+                    $data['error'] = 'Ошибка при удалении авто из базы';
+                }
+            }
+
+            $data['models'] = $this->admin_model->get_cars();
+            $data['marks'] = $this->admin_model->get_marks();
+            $data['user_name'] = $_SESSION['login'];
+            $data['page_name'] = 'Каталог автомобилей';
+            echo $this->twig->render('admin/all_avto_view', $data);
         }
         else
         {
