@@ -23,18 +23,18 @@ class Examples_model extends CI_Model {
         return $result;
     }
 
-    // возвращает общее кол-во записей в таблице example_works 
-    function count_all() 
-    { 
-        return $this->db->count_all('example_works');//$this->table); 
-    } 
-    // $limit - кол-во получаемых записей 
-    // $offset - смещение, с какой записи начинать выборку 
+    // возвращает общее кол-во записей в таблице example_works
+    function count_all()
+    {
+        return $this->db->count_all('example_works');//$this->table);
+    }
+    // $limit - кол-во получаемых записей
+    // $offset - смещение, с какой записи начинать выборку
 
     public function get_scrolling($limit,$offset)
     {
-        $this->db->limit($limit,$offset); 
-        $query = $this->db->get('example_works');//$this->table); 
+        $this->db->limit($limit,$offset);
+        $query = $this->db->get('example_works');//$this->table);
         $result = $query->result_array();
         //var_dump($result);
         $result = $this->__add_photo($result);
@@ -44,10 +44,10 @@ class Examples_model extends CI_Model {
 
     /**
      * @access private
-     * 
-     * Method replaces numbers of photo by their filenames, 
+     *
+     * Method replaces numbers of photo by their filenames,
      * constructing them using example ids and number of photos
-     * 
+     *
      */
     private function __add_photo($examples)
     {
@@ -59,14 +59,20 @@ class Examples_model extends CI_Model {
             $id = $item['id'];
             $photo_after = $photo_before = array();
 
-            for ($i=0; $i < $num_before; $i++) { 
-                $photo_before[] = base_url().'/img/example/before/' 
-                . $id . '_' . $i . '.jpg';    
+            for ($i=0; $i < $num_before; $i++) {
+                $link_address = '/img/example/before/'
+                . $id . '_' . $i . '.jpg';
+                if(file_exists(mb_substr($link_address,1))){
+                    $photo_before[] = base_url().$link_address;
+                }
             }
 
-            for ($i=0; $i < $num_after; $i++) { 
-                $photo_after[] = base_url().'/img/example/after/' 
-                . $id . '_' . $i . '.jpg';    
+            for ($i=0; $i < $num_after; $i++) {
+                $link_address = '/img/example/after/'
+                . $id . '_' . $i . '.jpg';
+                if(file_exists(mb_substr($link_address,1))){
+                    $photo_after[] = base_url().$link_address;
+                }
             }
 
             $new_item = $item;
