@@ -258,7 +258,6 @@ class Admin extends CI_Controller {
         {
             $data = array();
 
-            //$this->load->helper('form');
             $this->load->library('form_validation');
         
             $this->form_validation->set_rules('title', 'Заголовок', 'required');
@@ -295,7 +294,6 @@ class Admin extends CI_Controller {
             $data = array();
             $data['get_article'] = $this->admin_model->get_article($id);
             
-            $this->load->helper('form');
             $this->load->library('form_validation');
         
             $this->form_validation->set_rules('title', 'Заголовок', 'required');
@@ -307,7 +305,7 @@ class Admin extends CI_Controller {
             {
                 $data['user_name'] = $_SESSION['login'];
                 $data['page_name'] = 'Редактирование статьи';
-                echo $this->twig->render('admin/edit_article_view', $data);   
+                echo $this->twig->render('admin/add_article_view', $data);   
             }
             
             else

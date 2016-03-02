@@ -68,7 +68,6 @@ class Admin_model extends CI_Model {
 	// {
 	// 	//add car in DB
 	// 	$this->db->insert('cars_model', $item);
-		
 	// 	return $query->result_array();
 	// }
 
@@ -126,27 +125,27 @@ class Admin_model extends CI_Model {
 
 		switch ($data) {
 			case 'Главная':
-				$url = '{{ base_url() }}';
+				$url = base_url();
 				break;
 
 			case 'Примеры работ':
-				$url = '{{ base_url() }}examples/';
+				$url = base_url().'examples/';
 				break;
 
 			case 'Обучение':
-				$url = '{{ base_url() }}education/';
+				$url = base_url().'education/';
 				break;
 			
 			case 'Инструмент':
-				$url = '{{ base_url() }}#/';
+				$url = base_url().'#/';
 				break;
 
 			case 'Оценить вмятину':
-				$url = '{{ base_url() }}#/';
+				$url = base_url().'#/';
 				break;
 
 			case 'Контакты':
-				$url = '{{ base_url() }}contact/';
+				$url = base_url().'contact/';
 				break;
 		}
 		
