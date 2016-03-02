@@ -63,14 +63,13 @@ class Admin_model extends CI_Model {
 		$query = $this->db->query('SELECT id, mark as manufacture FROM cars_mark');
 		return $query->result_array();
 	}
-	
-	// public function add_car($data)
-	// {
-	// 	//add car in DB
-	// 	$this->db->insert('cars_model', $item);
-		
-	// 	return $query->result_array();
-	// }
+
+	public function add_car($newCar)
+	{
+		var_dump($newCar);
+		$this->db->insert('cars_model', $newCar['model']);
+		return TRUE;
+	}
 
 	public function create_content() 
 	{	
@@ -126,27 +125,27 @@ class Admin_model extends CI_Model {
 
 		switch ($data) {
 			case 'Главная':
-				$url = '{{ base_url() }}';
+				$url = base_url();
 				break;
 
 			case 'Примеры работ':
-				$url = '{{ base_url() }}examples/';
+				$url = base_url().'examples/';
 				break;
 
 			case 'Обучение':
-				$url = '{{ base_url() }}education/';
+				$url = base_url().'education/';
 				break;
 			
 			case 'Инструмент':
-				$url = '{{ base_url() }}#/';
+				$url = base_url().'#/';
 				break;
 
 			case 'Оценить вмятину':
-				$url = '{{ base_url() }}#/';
+				$url = base_url().'#/';
 				break;
 
 			case 'Контакты':
-				$url = '{{ base_url() }}contact/';
+				$url = base_url().'contact/';
 				break;
 		}
 		

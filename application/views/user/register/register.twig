@@ -3,6 +3,10 @@
 {% block scripts %}
 {{parent()}}
 <link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/css/bootstrap-datetimepicker.css">
+<script src="{{ base_url() }}assets/js/jquery-1.11.3.js"></script>
+<script src="{{ base_url() }}assets/js/jquery.chained.min.js"></script>
+<script src="{{ base_url() }}assets/js/moment-with-locales.js"></script>
+<script src="{{ base_url() }}assets/js/bootstrap-datetimepicker.min.js"></script>
 {% endblock %}
 
 {% block header %}
@@ -81,10 +85,6 @@
 		<div class="col-md-12">
 			<div class="page-header">
 				<h1>Регистрация</h1>
-				<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    			<script src="{{ base_url() }}assets/js/jquery.chained.min.js"></script>
-   				<script src="{{ base_url() }}assets/js/moment-with-locales.js"></script>
-   				<script src="{{ base_url() }}assets/js/bootstrap-datetimepicker.min.js"></script>
 			</div>
 			{{ error }}
 			{{ form_open ('/register') }}
@@ -129,7 +129,7 @@
 				</div>
 				<div class="form-group">
 					<label for="tel">Телефон</label>
-					<input type="number" class="form-control" id="tel" name="tel" value="{{ set_value('tel') }}" placeholder="Введите номер телефона">
+					<input type="tel" class="form-control" id="tel" name="tel" value="{{ set_value('tel') }}" placeholder="0771234567">
 					{{ form_error('tel') }}
 					<p class="help-block"> </p>
 				</div>
