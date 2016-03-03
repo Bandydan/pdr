@@ -236,7 +236,7 @@ class Admin extends CI_Controller {
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            if ($this->input->post('model') == null) 
+            if ($this->input->post('model') == null OR $this->input->post('mark') == null) 
             {
                 $data['error'] = 'Заполните все поля формы';
             }
@@ -245,7 +245,7 @@ class Admin extends CI_Controller {
                 $newCar = $this->input->post();
                 if ($this->admin_model->add_car($newCar) == false) 
                 {
-                    $data['error'] = 'Ошибка при добавлении авто в базу';
+                    $data['error'] = 'Ошибка при добавлении авто в базу. Вероятнее всего у этого производителя уже есть авто с таким названием в базе данных';
                 }
             }
             

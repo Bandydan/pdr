@@ -66,9 +66,41 @@ class Admin_model extends CI_Model {
 
 	public function add_car($newCar)
 	{
-		var_dump($newCar);
-		$this->db->insert('cars_model', $newCar['model']);
-		return TRUE;
+		$mark = $newCar['mark'];
+		$model = $newCar['model'];
+
+		$this->db->select('count(id), id');
+		$this->db->from('cars_mark');
+		$this->db->where('mark', $mark);
+		$query = $this->db->get();
+		$result = $query->result_array();
+		if ($result['0']['count(id)'] == '0') 
+		{
+			$data = array('mark' => $mark,);
+			$this->db->insert('cars_mark', $data);
+			$insert_id = $this->db->insert_id();
+		}
+		else
+		{
+			$insert_id = $result['0']['id'];
+		}
+
+		$this->db->select('count(id), id, mark_id');
+		$this->db->from('cars_model');
+		$this->db->where('mark_id', $insert_id);
+		$this->db->where('model', $model);
+		$query = $this->db->get();
+		$result = $query->result_array();
+		if ($result['0']['count(id)'] == '0') 
+		{
+			$data = array(
+				'mark_id' => $insert_id,
+				'model' => $model,);
+			$this->db->insert('cars_model', $data);
+
+			return TRUE;	
+		}
+			return FALSE;
 	}
 
 	public function create_content() 
