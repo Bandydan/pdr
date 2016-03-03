@@ -13,7 +13,7 @@ var config,
     $(window).scroll(function() {
 
         /* Если высота окна + высота прокрутки больше или равны высоте всего документа и ajax-запрос в настоящий момент не выполняется, то запускаем ajax-запрос */
-        if($(window).scrollTop() + $(window).height() >= $(document).height() && !inProgress) {         
+        if($(window).scrollTop() + $(window).height() >= $(document).height() && !inProgress) {
 
             $.ajax({
                 /* адрес файла-обработчика запроса */
@@ -37,7 +37,7 @@ var config,
             }).done(function(data){
                     /* Преобразуем результат, пришедший от обработчика - преобразуем json-строку обратно в массив */
                     data = jQuery.parseJSON(data);
-                    /* Если массив не пуст (т.е. статьи там есть) */
+                    /* Если массив не пуст*/
                     if (data.length > 0) {
                         /* Делаем проход по каждому результату, оказвашемуся в массиве,
                         где в index попадает индекс текущего элемента массива, а в data - сам текст */
@@ -50,21 +50,22 @@ var config,
                             for(var i=0; i < data.photo_before.length; i++){
                                 arrAllPhoto.push(data.photo_before[i]);
                                 arrAllPhoto.push(data.photo_after[i]);
+                                console.log(data.photo_before[i]);
                             }
 
                             divSlider.className = "slider";
                             divWrapSlider.className = "wrapSlider";
 
                             $.each(arrAllPhoto, function(index, value){
+
                                 var div = document.createElement('div');
                                 $(div).append($('<img />',{
                                     class:'img-responsive',
-                                    src: value
+                                    src: value,
                                 }));
-                               
                                 $(divSlider).append(div);
-                            });  
-                                         
+                            });
+
                             // синглтон запрос который возвращяет значения заголовков
                             if(!showH3){
                                 if(!config){
@@ -76,20 +77,20 @@ var config,
                                         },
                                         success: function(catData){
                                             catData = jQuery.parseJSON(catData);
-                                            config = catData; 
-                                            $(".main").append($(divWrapSlider).append(divSlider)).append("<h3>" + config[data.category] + "</h3><p>" + data.about + "</p>"); 
-                                            sliderOn(); 
-                                            showH3 = true;      
+                                            config = catData;
+                                            $(".main").append("<div class='LineImg'><img src='../assets/img/line.png' width='100%' height='25' /></div><br>").append($(divWrapSlider).append(divSlider)).append("<h3>" + config[data.category] + "</h3><p>" + data.about + "</p>");
+                                            sliderOn();
+                                            showH3 = true;
                                         }
                                     });
                                 }
                             }else{
-                                $(".main").append($(divWrapSlider).append(divSlider)).append("<h3>" + config[data.category] + "</h3><p>" + data.about + "</p>");
+                                $(".main").append("<div class='LineImg'><img src='../assets/img/line.png' width='100%' height='25' /></div><br>").append($(divWrapSlider).append(divSlider)).append("<h3>" + config[data.category] + "</h3><p>" + data.about + "</p>");
                                 sliderOn();
                             }
-                            
 
                         });
+
                         function sliderOn(){
                             $(".slider").each(function(i,item){
                                 if (!($(item).hasClass("slick-slider"))){
@@ -100,10 +101,11 @@ var config,
                                         autoplay: true,
                                         autoplaySpeed: 9000,
                                         cssEase: 'linear'
-                                    }); 
+                                    });
                                 }
                             });
                         };
+
                         /* По факту окончания запроса снова меняем значение флага на false */
                         inProgress = false;
                         // Увеличиваем на 3 порядковый номер записи, с которой надо начинать выборку из базы
