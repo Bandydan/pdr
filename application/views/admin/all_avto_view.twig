@@ -14,11 +14,13 @@
 {{parent()}}
 {% endblock %}
 
-{% block content %}
-<section id="main" class="column height_half">	
+{% block content %} 
+
+<section id="main" class="column height_half">
+	<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% else %} {{ 'Административная панель.' }} {% endif %}</h4>	
 	<article class="module width_full height_half">
 		<header><h3>Каталог автомобилей</h3></header>
-		{{ error }}
+		
 
 		{{ form_open ('admin/delete_car') }}
 			<div class="module_content">
