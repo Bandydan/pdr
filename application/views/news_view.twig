@@ -1,0 +1,46 @@
+{% extends 'main_template.twig' %}
+
+{% block scripts %}
+{{parent()}}
+{% endblock %}
+
+{% block header %}
+{{parent()}}
+{% endblock %}
+
+{% block content %}
+
+<section class="firstSection">
+    <div class="container">
+        <div class="row">
+             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar">
+                <nav class="Nav">
+                    <h3>Все hовости</h3>
+                    {% for item in newsbar %}
+                    <ul class="SiteNav">
+                        <li>                               
+                            <a href="{{ base_url() }}news/index/{{ item.id }}"><h4>{{ item.title }}</h4></a>
+                        </li>
+                    </ul>
+                    {% endfor %}
+                </nav>
+                <div class="advertising">
+                </div>
+            </div>
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 main">
+
+                {% for item in news %}   
+                    <h3>{{ item.title }}</h3>
+                    {{ item.content_text }} 
+                {% endfor %}   
+            
+            </div> <!--  main  -->
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block footer %}
+{{parent()}}
+{% endblock %}
