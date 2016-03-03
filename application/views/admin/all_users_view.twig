@@ -14,11 +14,13 @@
 
 {% block content %}
 
-<article class="module">
+<section id="main" class="column">
+	<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% else %} {{ 'Информация' }} {% endif %}</h4>		
+	<article class="module width_full">
 	<header><h3 class="tabs_involved" align="center">Все пользователи</h3></header>
 
 	<div class="tab_container">
-		<table class="" cellspacing="0"> 
+		<table class="tablesorter" cellspacing="0"> 
 		<thead> 
 			<tr> 
 				<th></th> 
@@ -62,7 +64,8 @@
 		</table>
 		</div><!-- end of #tab1 -->
 </article><!-- end of content manager article -->
-
+<br>
+<br>
 {% endblock %}
 
 {% block footer %}
