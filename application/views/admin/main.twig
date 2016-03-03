@@ -19,7 +19,7 @@
 {% block content %}
 
 	<section id="main" class="column">  
-	    <h4 class="alert_info">Добро пожаловать в Административную панель. Сюда будем выводить сообщения об ошибках.</h4>
+	    <h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% else %} {{ 'Информация' }} {% endif %}</h4>
 	    
 	    <article class="module width_full">
 	        <header><h3>Статистика посещения</h3></header>

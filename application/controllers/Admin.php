@@ -416,8 +416,15 @@ class Admin extends CI_Controller {
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+
             $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Управление пользователями';
+
+            $data['models'] = $this->admin_model->get_cars();
+            $data['marks'] = $this->admin_model->get_marks();
+            $data['title'] = 'Garage - Регистрация';
             echo $this->twig->render('admin/add_user_view', $data);
         }
         else

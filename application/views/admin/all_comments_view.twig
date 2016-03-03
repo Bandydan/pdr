@@ -13,8 +13,9 @@
 {% endblock %}
 
 {% block content %}
-
-<article class="module width_3_quarter">
+<section id="main" class="column">
+<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% else %} {{ 'Информация' }} {% endif %}</h4>
+<article class="module width_full">
 	<header><h3 class="tabs_involved" align="center">Все комментарии</h3></header>
 
 	<div class="tab_container">
