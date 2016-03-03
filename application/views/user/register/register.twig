@@ -3,6 +3,10 @@
 {% block scripts %}
 {{parent()}}
 <link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/css/bootstrap-datetimepicker.css">
+<script src="{{ base_url() }}assets/js/jquery-1.11.3.js"></script>
+<script src="{{ base_url() }}assets/js/jquery.chained.min.js"></script>
+<script src="{{ base_url() }}assets/js/moment-with-locales.js"></script>
+<script src="{{ base_url() }}assets/js/bootstrap-datetimepicker.min.js"></script>
 {% endblock %}
 
 {% block header %}
@@ -81,34 +85,30 @@
 		<div class="col-md-12">
 			<div class="page-header">
 				<h1>Регистрация</h1>
-				<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    			<script src="{{ base_url() }}assets/js/jquery.chained.min.js"></script>
-   				<script src="{{ base_url() }}assets/js/moment-with-locales.js"></script>
-   				<script src="{{ base_url() }}assets/js/bootstrap-datetimepicker.min.js"></script>
 			</div>
 			{{ error }}
 			{{ form_open ('/register') }}
 				<div class="form-group">
 					<label for="login">Логин</label>
-					<input type="text" class="form-control" id="login" name="login" value="{{ set_value('login') }}" placeholder="Введите логин">
+					<input type="text" class="form-control" id="login" name="login" value="{{ set_value('login') }}" placeholder="Введите логин" autofocus required>
 					{{ form_error('login') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
 					<label for="name">Имя</label>
-					<input type="text" class="form-control" id="name" name="name" value="{{ set_value('name') }}" placeholder="Введите имя">
+					<input type="text" class="form-control" id="name" name="name" value="{{ set_value('name') }}" placeholder="Введите имя" required>
 					{{ form_error('name') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
 					<label for="surname">Фамилия</label>
-					<input type="text" class="form-control" id="surname" name="surname" value="{{ set_value('surname') }}" placeholder="Введите фамилию">
+					<input type="text" class="form-control" id="surname" name="surname" value="{{ set_value('surname') }}" placeholder="Введите фамилию" required>
 					{{ form_error('surname') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
 					<label for="sex">Пол</label>
-					<select id="sex" name="sex" class="form-control" type="choice">
+					<select id="sex" name="sex" class="form-control" type="choice" required>
 						<option disabled selected hidden>Введите пол</option>
 						<option>мужчина</option>
 						<option>женщина</option>
@@ -119,7 +119,7 @@
 				<div class="form-group">
 					<label for="birthsday">Дата рождения</label>
 					<div class="input-group date" id="birthsday">
-    					<input type="datetime" name="birthsday" class="form-control" readonly="true" value="{{ set_value('birthsday') }}" placeholder="Введите дату рождения" />
+    					<input type="datetime" name="birthsday" class="form-control" readonly="true" value="{{ set_value('birthsday') }}" placeholder="Введите дату рождения" required>
     					<span class="input-group-addon">
       						<span class="glyphicon glyphicon-calendar"></span>
     					</span>
@@ -129,13 +129,13 @@
 				</div>
 				<div class="form-group">
 					<label for="tel">Телефон</label>
-					<input type="number" class="form-control" id="tel" name="tel" value="{{ set_value('tel') }}" placeholder="Введите номер телефона">
+					<input type="phone" class="form-control" id="tel" name="tel" value="{{ set_value('tel') }}" placeholder="0771234567" required>
 					{{ form_error('tel') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
 					<label for="email">E-mail</label>
-					<input type="email" class="form-control" id="email" name="email" value="{{ set_value('email') }}" placeholder="Введите ваш e-mail">
+					<input type="email" class="form-control" id="email" name="email" value="{{ set_value('email') }}" placeholder="Введите ваш e-mail" required>
 					{{ form_error('email') }}
 					<p class="help-block"> </p>
 				</div>
@@ -162,13 +162,13 @@
 
 				<div class="form-group">
 					<label for="password">Пароль</label>
-					<input type="password" class="form-control" id="password" name="password" value="{{ set_value('password') }}" placeholder="Введите ваш пароль">
+					<input type="password" class="form-control" id="password" name="password" value="{{ set_value('password') }}" placeholder="Введите ваш пароль" required>
 					{{ form_error('password') }}
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
 					<label for="password_confirm">Повторите пароль</label>
-					<input type="password" class="form-control" id="password_confirm" name="password_confirm" value="{{ set_value('password_confirm') }}" placeholder="Повторите пароль">
+					<input type="password" class="form-control" id="password_confirm" name="password_confirm" value="{{ set_value('password_confirm') }}" placeholder="Повторите пароль" required>
 					{{ form_error('password_confirm') }}
 					<p class="help-block"> </p>
 				</div>

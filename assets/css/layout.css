@@ -428,6 +428,14 @@ color: #666;}
 width: 95%;
 }
 
+.height_full {
+height: 100%;
+}
+
+.height_half {
+height: 48%;
+}
+
 .width_half {
 width: 46%;
 margin-right: 0;
@@ -496,6 +504,11 @@ margin-bottom: 8px}
 
 .tablesorter {
 width: 100%;
+margin: -5px 0 0 0;
+}
+
+.tablesorter_cars {
+width: 40%;
 margin: -5px 0 0 0;
 }
 

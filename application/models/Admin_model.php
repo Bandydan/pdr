@@ -63,14 +63,45 @@ class Admin_model extends CI_Model {
 		$query = $this->db->query('SELECT id, mark as manufacture FROM cars_mark');
 		return $query->result_array();
 	}
-	
-	// public function add_car($data)
-	// {
-	// 	//add car in DB
-	// 	$this->db->insert('cars_model', $item);
-		
-	// 	return $query->result_array();
-	// }
+
+	public function add_car($newCar)
+	{
+		$mark = $newCar['mark'];
+		$model = $newCar['model'];
+
+		$this->db->select('id');
+		$this->db->from('cars_mark');
+		$this->db->where('mark', $mark);
+		$query = $this->db->get();
+		$result = $query->result_array();
+		if (empty($result)) 
+		{
+			$data = array('mark' => $mark,);
+			$this->db->insert('cars_mark', $data);
+			$insert_id = $this->db->insert_id();
+		}
+		else
+		{
+			$insert_id = $result['0']['id'];
+		}
+
+		$this->db->select('id, mark_id');
+		$this->db->from('cars_model');
+		$this->db->where('mark_id', $insert_id);
+		$this->db->where('model', $model);
+		$query = $this->db->get();
+		$result = $query->result_array();
+		if (empty($result)) 
+		{
+			$data = array(
+				'mark_id' => $insert_id,
+				'model' => $model,);
+			$this->db->insert('cars_model', $data);
+
+			return TRUE;	
+		}
+			return FALSE;
+	}
 
 	public function create_content() 
 	{	
@@ -126,27 +157,27 @@ class Admin_model extends CI_Model {
 
 		switch ($data) {
 			case 'Главная':
-				$url = '{{ base_url() }}';
+				$url = base_url();
 				break;
 
 			case 'Примеры работ':
-				$url = '{{ base_url() }}examples/';
+				$url = base_url().'examples/';
 				break;
 
 			case 'Обучение':
-				$url = '{{ base_url() }}education/';
+				$url = base_url().'education/';
 				break;
 			
 			case 'Инструмент':
-				$url = '{{ base_url() }}#/';
+				$url = base_url().'#/';
 				break;
 
 			case 'Оценить вмятину':
-				$url = '{{ base_url() }}#/';
+				$url = base_url().'#/';
 				break;
 
 			case 'Контакты':
-				$url = '{{ base_url() }}contact/';
+				$url = base_url().'contact/';
 				break;
 		}
 		
