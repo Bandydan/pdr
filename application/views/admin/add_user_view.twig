@@ -23,27 +23,27 @@
 					<div class="module_content">
 						<fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Логин</label>
-							<input name="meta" value="" type="text" style="width:92%;">
+							<input name="login" value="" type="text" style="width:92%;" autofocus required>
 						</fieldset>
 						
 						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Пароль</label>
-							<input name="meta" value="" type="password" style="width:92%;">
+							<input name="password" value="" type="password" style="width:92%;" required>
 						</fieldset><div class="clear"></div>
 
 						<fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Имя</label>
-							<input name="meta" value="" type="text" style="width:92%;">
+							<input name="name" value="" type="text" style="width:92%;" required>
 						</fieldset>
 						
 						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Фамилия</label>
-							<input name="meta" value="" type="text" style="width:92%;">
+							<input name="surname" value="" type="text" style="width:92%;" required>
 						</fieldset><div class="clear"></div>
 						
 						<fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Пол</label>
-							<select name="category" style="width:92%;" type="choice">
+							<select name="sex" style="width:92%;" type="choice" required>
 								<option disabled selected hidden>--</option>
 								<option>Мужчина</option>
 								<option>Женщина</option>
@@ -52,22 +52,22 @@
 						
 						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Дата рождения</label>
-							<input name="meta" value="" type="birthday" style="width:92%;">
+							<input name="birthday" value="" type="birthday" style="width:92%;" required>
 						</fieldset><div class="clear"></div>
 
 						<fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Телефон</label>
-							<input name="meta" value="" type="number" style="width:92%;">
+							<input name="tel" value="" type="phone" style="width:92%;" required>
 						</fieldset>
 						
 						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>E-mail</label>
-							<input name="meta" value="" type="email" style="width:92%;">
+							<input name="email" value="" type="email" style="width:92%;" required>
 						</fieldset><div class="clear"></div>
 
 						<fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Права пользователя</label>
-							<select name="category" style="width:92%;" type="choice">
+							<select name="user_rights" style="width:92%;" type="choice">
 								<option disabled selected hidden>--</option>
 								<option>1</option>
 								<option>2</option>
@@ -76,7 +76,7 @@
 						
 						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Включен/Выключен</label>
-							<select name="category" style="width:92%;" type="choice">
+							<select name="status" style="width:92%;" type="choice">
 								<option disabled selected hidden>--</option>
 								<option>1</option>
 								<option>2</option>
@@ -85,7 +85,7 @@
 
 						<fieldset style="width:30%; float:left; margin-right: 3%; margin-left: 1%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Марка авто</label>
-							<select name="category" style="width:92%;" type="choice">
+							<select name="mark" style="width:92%;" type="choice">
 								<option disabled selected hidden>--</option>
 								<option>1</option>
 								<option>2</option>
@@ -94,7 +94,7 @@
 						
 						<fieldset style="width:30%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Модель авто</label>
-							<select name="category" style="width:92%;" type="choice">
+							<select name="model" style="width:92%;" type="choice">
 								<option disabled selected hidden>--</option>
 								<option>1</option>
 								<option>2</option>
@@ -103,7 +103,7 @@
 
 						<fieldset style="width:30%; float:left; margin-left: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Год выпуска авто</label>
-							<select name="category" style="width:92%;" type="choice">
+							<select name="year" style="width:92%;" type="choice">
 								<option disabled selected hidden>--</option>
 								<option>1</option>
 								<option>2</option>
