@@ -69,12 +69,12 @@ class Admin_model extends CI_Model {
 		$mark = $newCar['mark'];
 		$model = $newCar['model'];
 
-		$this->db->select('count(id), id');
+		$this->db->select('id');
 		$this->db->from('cars_mark');
 		$this->db->where('mark', $mark);
 		$query = $this->db->get();
 		$result = $query->result_array();
-		if ($result['0']['count(id)'] == '0') 
+		if (empty($result)) 
 		{
 			$data = array('mark' => $mark,);
 			$this->db->insert('cars_mark', $data);
@@ -85,13 +85,13 @@ class Admin_model extends CI_Model {
 			$insert_id = $result['0']['id'];
 		}
 
-		$this->db->select('count(id), id, mark_id');
+		$this->db->select('id, mark_id');
 		$this->db->from('cars_model');
 		$this->db->where('mark_id', $insert_id);
 		$this->db->where('model', $model);
 		$query = $this->db->get();
 		$result = $query->result_array();
-		if ($result['0']['count(id)'] == '0') 
+		if (empty($result)) 
 		{
 			$data = array(
 				'mark_id' => $insert_id,

@@ -243,7 +243,7 @@ class Admin extends CI_Controller {
             else
             {
                 $newCar = $this->input->post();
-                if ($this->admin_model->add_car($newCar) == false) 
+                if ($this->admin_model->add_car($newCar) === false) 
                 {
                     $data['error'] = 'Ошибка при добавлении авто в базу. Вероятнее всего у этого производителя уже есть авто с таким названием в базе данных';
                 }
@@ -273,7 +273,7 @@ class Admin extends CI_Controller {
             else
             {
                 $model_id = $this->input->post('ModelName');
-                if ($this->admin_model->delete_data($model_id, 'cars_model') == false) 
+                if ($this->admin_model->delete_data($model_id, 'cars_model') === false) 
                 {
                     $data['error'] = 'Ошибка при удалении авто из базы';
                 }
