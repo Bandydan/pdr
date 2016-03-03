@@ -17,7 +17,7 @@
 {% block content %} 
 
 <section id="main" class="column height_half">
-	<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% else %} {{ 'Административная панель.' }} {% endif %}</h4>	
+	<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% else %} {{ 'Информация' }} {% endif %}</h4>	
 	<article class="module width_full height_half">
 		<header><h3>Каталог автомобилей</h3></header>
 		
@@ -25,7 +25,7 @@
 		{{ form_open ('admin/delete_car') }}
 			<div class="module_content">
 				<fieldset style="width:30%; float:left; margin-right: 3%; margin-left: 1%;"> 
-					<label>Производитель авто (марка)</label>
+					<label style="width:175px;">Производитель авто (марка)</label>
 					<select id="manufacture_name" name="ManufactureName" class="form-control-select" style="width:92%">
 						<option>-</option>
 				        {% for manufact in marks %}
@@ -36,7 +36,7 @@
 				</fieldset>
 			
 				<fieldset style="width:30%; float:left;"> 
-					<label>Модель авто</label>
+					<label style="width:175px;">Модель авто</label>
 					<select id="model_name" name="ModelName" class="form-control-select" style="width:92%">
 				        <option></option>
 				        {% for model in models %}
@@ -54,12 +54,12 @@
 
 		{{ form_open ('/admin/add_car') }}
 				<fieldset style="width:30%; float:left; margin-right: 3%; margin-left: 1%;"> 
-					<label>Производитель авто (марка)</label>
+					<label style="width:175px;">Производитель авто (марка)</label>
 					<input type="text" id="mark" name="mark" placeholder="Производитель авто" style="width:87%;">
 				</fieldset>
 			
 				<fieldset style="width:30%; float:left;"> 
-					<label>Модель авто</label>
+					<label style="width:175px;">Модель авто</label>
 					<input type="text" id="model" name="model" placeholder="Модель" style="width:87%;">
 				</fieldset>
 
