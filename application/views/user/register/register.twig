@@ -157,6 +157,14 @@
 		                {% endfor %}
             		</select>
 
+            		<select id="year" name="year" class="form-control-select" disabled>
+            			<option>--</option>
+            			{% set year = 'now'|date('Y') %}
+                		{% for i in year..1970 %}
+                		<option value="{{ i }}">{{ i }}</option>
+                		{% endfor %}
+    				</select>
+
 					<p class="help-block"> </p>
 				</div>
 
@@ -176,9 +184,13 @@
 					<input type="submit" class="btn btn-default" value="Регистрация">
 				</div>
 			{{ form_close() }}
-			
+
 			<script type="text/javascript">
 				$("#model_name").chained("#manufacture_name");
+			</script>
+
+			<script>
+				$('#model_name').change(function{$('#year').prop('disabled', false);});
 			</script>
 
 			<script type="text/javascript">
