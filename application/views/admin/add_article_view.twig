@@ -25,19 +25,19 @@
 					<div class="module_content">
 						<fieldset>
 							<label>Заголовок</label>
-							<input name="title" value="{% if get_article ['title'] is defined %} {{get_article ['title']}} {% else %} {{ set_value ('title') }} {% endif %}" type="text" autofocus required>
+							<input name="title" value="{% if get_article ['title'] is defined %}{{get_article ['title']}}{% else %}{{ set_value ('title') }}{% endif %}" type="text" autofocus required>
 						</fieldset>
 						<fieldset>
 							<h3>Содержимое</h3>
-							<textarea name="text" rows="12">{% if get_article ['content_text'] is defined %} {{get_article ['content_text']}} {% else %} {{ set_value ('text') }} {% endif %}</textarea>
+							<textarea name="text" rows="12">{% if get_article ['content_text'] is defined %}{{get_article ['content_text']}}{% else %}{{ set_value ('text') }}{% endif %}</textarea>
 							<script type="text/javascript">
 							CKEDITOR.replace('text');
 							</script>
 						</fieldset>
 						<fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Категория</label>
-							<select name="category" style="width:92%;" type="choice" required> 
-								{% if get_article ['category'] is defined %} <option>{{get_article ['category']}}</option> {% endif %}
+							<select name="category" style="width:92%;" type="choice" required>
+								{% if get_article ['category'] is defined %}<option>{{get_article ['category']}}</option>{% endif %}
 								<option>Главная</option>
 								<option>Примеры работ</option>
 								<option>Обучение</option>
@@ -48,11 +48,11 @@
 						</fieldset>
 						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Тэги</label>
-							<input name="meta" value="{% if get_article ['meta'] is defined %} {{get_article ['meta']}} {% else %} {{ set_value ('meta') }} {% endif %}" type="text" style="width:92%;" required>
+							<input name="meta" value="{% if get_article ['meta'] is defined %}{{get_article ['meta']}}{% else %}{{ set_value ('meta') }}{% endif %}" type="text" style="width:92%;" required>
 						</fieldset><div class="clear"></div>
 						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Адрес</label>
-							<input name="address" value="{% if get_article ['address'] is defined %} {{get_article ['address']}} {% else %} {{ set_value ('address') }} {% endif %}" type="url" style="width:92%;" required>
+							<input name="address" value="{% if get_article ['address'] is defined %}{{get_article ['address']}}{% else %}{{ set_value ('address') }}{% endif %}" type="text" style="width:92%;" required>
 						</fieldset><div class="clear"></div>
 						<h3>Включить страницу</h3>
 						<div class="switch">

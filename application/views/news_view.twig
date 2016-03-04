@@ -8,33 +8,32 @@
 {{parent()}}
 {% endblock %}
 
+{% block nav %}
+    <nav class="secNav">
+        <ul class="secSiteNav">
+            {% for item in newsbar %}
+                <li>                               
+                    <a href="{{ base_url() }}news/index/{{ item.id }}">Новость{{ item.title }}</a>
+                </li>  
+            {% endfor %}
+        </ul>
+    </nav>
+
+{% endblock %}
+
 {% block content %}
 
-<section class="firstSection">
-    <div class="container">
-        <div class="row">
-             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar">
-                <nav class="Nav">
-                    <h3>Все hовости</h3>
-                    {% for item in newsbar %}
-                    <ul class="SiteNav">
-                        <li>                               
-                            <a href="{{ base_url() }}news/index/{{ item.id }}"><h4>{{ item.title }}</h4></a>
-                        </li>
-                    </ul>
-                    {% endfor %}
-                </nav>
-                <div class="advertising">
-                </div>
-            </div>
+        <div class="advertising"></div></div>
             <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 main">
+                
+                <h3>Все новости</h3>
 
                 {% for item in news %}   
                     <h3>{{ item.title }}</h3>
-                    {{ item.content_text }} 
-                {% endfor %}   
-            
-            </div> <!--  main  -->
+                    <p>{{ item.content_text }}</p>
+                {% endfor %}
+
+            </div>
         </div>
     </div>
 </section>
