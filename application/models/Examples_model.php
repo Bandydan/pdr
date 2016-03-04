@@ -3,20 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Examples_model extends CI_Model {
 
-    public function get_examples_all()
+    public function get_examples($id = 0)
     {
         $this->db->select('*');
         $this->db->from('example_works');
-        $query = $this->db->get();
-        $result = $query->result_array();
-        $result = $this->__add_photo($result);
-        return $result;
-    }
-    public function get_examples($id)
-    {
-        $this->db->select('*');
-        $this->db->from('example_works');
-        $this->db->where("example_works.id = $id");
+
+        if ($id != 0) {
+        $this->db->where('id', $id);
+        }
+
         $query = $this->db->get();
         $result = $query->result_array();
         $result = $this->__add_photo($result);

@@ -13,7 +13,7 @@
         <ul class="secSiteNav">
             {% for item in newsbar %}
                 <li>                               
-                    <a href="{{ base_url() }}news/index/{{ item.id }}">Новость{{ item.title }}</a>
+                    <a href="{{ base_url() }}news/index/{{ item.id }}">Новость {{ item.title }}</a>
                 </li>  
             {% endfor %}
         </ul>

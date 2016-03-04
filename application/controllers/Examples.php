@@ -12,7 +12,7 @@ class Examples extends CI_Controller {
             $data['examples'] = $this->examples_model->get_examples($id);
         }
         else {
-            $data['examples'] = $this->examples_model->get_examples_all();
+            $data['examples'] = $this->examples_model->get_examples();
         }
 
         $data['nav'] = $this->load->view('navigation', '',TRUE);
