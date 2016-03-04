@@ -141,9 +141,9 @@
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
-					<label for="Avto">У Вас есть автомобиль?</label><input type="checkbox" style="width:5%" id="car" name="checkbox">
+					<label for="Avto">У Вас есть автомобиль?</label><input type="checkbox" style="width:5%" id="car">
 					<p><select id="manufacture_name" name="ManufactureName" class="form-control-select" hidden="true">
-						<option>--</option>
+						<option></option>
 		                {% for manufact in marks %}
 		                <option value="{{ manufact.id }}">
 		                {{ manufact.manufacture }}</option>
@@ -151,14 +151,14 @@
             		</select>
 
             		<select id="model_name" name="ModelName" class="form-control-select" hidden="true">
-		            	<option>--</option>
+		            	<option></option>
 		                {% for model in models %}
 		                <option value="{{ model.id}}" class="
 		                {{ model.mark_id }}">{{ model.model}}</option>
 		                {% endfor %}
             		</select>
 
-            		<select id="year" name="year" class="form-control-select" hidden="true">
+            		<select id="year" name="car_year" class="form-control-select" hidden="true">
             			<option>--</option>
             			{% set year = 'now'|date('Y') %}
                 		{% for i in year..1970 %}
