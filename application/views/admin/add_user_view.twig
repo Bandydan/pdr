@@ -79,8 +79,6 @@
 		                		{{ manufact.manufacture }}</option>
 		                		{% endfor %}
             				</select>
-
-							
 						</fieldset>
 						
 						<fieldset style="width:23%; float:left;">
@@ -92,13 +90,17 @@
 		                		{{ model.mark_id }}">{{ model.model}}</option>
 		                		{% endfor %}
             				</select>
-
-							
 						</fieldset>
 
 						<fieldset style="width:23%; float:left; margin-left: 2%;">
-							<label>Телефон</label>
-							<input name="tel" value="" type="phone" style="width:89%;" required>
+							<label style="width: 175px;">Год выпуска авто</label>
+							<select name="year" style="width:89%;" type="choice">
+		            			<option>--</option>
+		            			{% set year = 'now'|date('Y') %}
+		                		{% for i in year..1970 %}
+		                		<option value="{{ i }}">{{ i }}</option>
+		                		{% endfor %}
+            				</select>
 						</fieldset>
 
 						<fieldset style="width:23%; float:left; margin-left: 2%;">
@@ -112,8 +114,8 @@
 
 
 						<fieldset style="width:23%; float:left; margin-right: 2%; margin-left: 1%;">
-							<label>Дополнительно</label>
-							<input name="" value="" type="text" style="width:89%;">
+							<label>Телефон</label>
+							<input name="tel" value="" type="phone" style="width:89%;" required>
 						</fieldset>
 						
 						<fieldset style="width:23%; float:left;">

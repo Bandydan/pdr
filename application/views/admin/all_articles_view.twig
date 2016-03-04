@@ -15,7 +15,7 @@
 {% block content %}
 <section id="main" class="column">
 <h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% else %} {{ 'Информация' }} {% endif %}</h4>
-<article class="module width_full height_full">
+<article class="module width_full">
 	<header><h3 class="tabs_involved" align="center">Все страницы</h3>	</header>
 
 	<div class="tab_container height_full">
@@ -25,9 +25,10 @@
 				<th></th> 
 				<th>Категория</th> 
 				<th>Заголовок</th> 
-				<th>Дата создания</th> 
+				<th>Дата создания</th>
+				<th>Статус</th>
 				<th>Действия</th> 
-			</tr> 
+			</tr>
 		</thead> 
 		<tbody>
 			{% for article in articles %} 
@@ -35,7 +36,8 @@
 				<td><input type="checkbox"></td> 
 				<td>{{article.category}}</td>
 				<td>{{article.title}}</td> 
-				<td>{{article.content_created}}</td> 
+				<td>{{article.content_created}}</td>
+				<td>{{article.status}}</td> 
 				<td>
 					<a href=""><img src="{{ base_url() }}assets/img/admin/icn_photo.png" title="Просмотреть"></a>
 					<a href="{{ base_url() }}admin/edit_article/{{article.id}}"><img src="{{ base_url() }}assets/img/admin/icn_edit.png" title="Редактировать"></a>

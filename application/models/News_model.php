@@ -7,19 +7,20 @@ class News_model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('Content');
-        $this->db->where("status = 1");
+        $this->db->where('status', '1');
         $query = $this->db->get();
-        $result = $query->result_array();
-        return $result;
+
+        return $query->result_array();
     }
 
-        public function get_news($id)
+    public function get_news($id)
     {
         $this->db->select('*');
         $this->db->from('Content');
-        $this->db->where("id = $id AND status = 1");
+        $this->db->where('id', $id);
+        $this->db->where('status', '1');
         $query = $this->db->get();
-        $result = $query->result_array();
-        return $result;
+        
+        return $query->result_array();
     }
 }

@@ -18,6 +18,7 @@
                 <div class="row hedFirstRow">
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                         <img src="{{ base_url() }}assets/img/logo.png" class="img-responsive">
+                        <a href="{{ base_url() }}news"><img src="{{ base_url() }}assets/img/NEWS.gif" style="height:70px; width:70px"></a>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         <div class="wrapImg">
@@ -140,8 +141,8 @@
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
-					<label for="Avto">Какой у Вас автомобиль</label>
-					<p><select id="manufacture_name" name="ManufactureName" class="form-control-select">
+					<label for="Avto">У Вас есть автомобиль?</label><input type="checkbox" style="width:5%" id="car" name="checkbox">
+					<p><select id="manufacture_name" name="ManufactureName" class="form-control-select" hidden="true">
 						<option>--</option>
 		                {% for manufact in marks %}
 		                <option value="{{ manufact.id }}">
@@ -149,13 +150,21 @@
 		                {% endfor %}
             		</select>
 
-            		<select id="model_name" name="ModelName" class="form-control-select">
+            		<select id="model_name" name="ModelName" class="form-control-select" hidden="true">
 		            	<option>--</option>
 		                {% for model in models %}
 		                <option value="{{ model.id}}" class="
 		                {{ model.mark_id }}">{{ model.model}}</option>
 		                {% endfor %}
             		</select>
+
+            		<select id="year" name="year" class="form-control-select" hidden="true">
+            			<option>--</option>
+            			{% set year = 'now'|date('Y') %}
+                		{% for i in year..1970 %}
+                		<option value="{{ i }}">{{ i }}</option>
+                		{% endfor %}
+    				</select>
 
 					<p class="help-block"> </p>
 				</div>
@@ -176,7 +185,29 @@
 					<input type="submit" class="btn btn-default" value="Регистрация">
 				</div>
 			{{ form_close() }}
-			
+
+			<script>
+  				var car_enabled = function () 
+  				{
+    				if ($("#car").is(":checked")) 
+    				{
+        				$('#manufacture_name').prop('hidden', false);
+        				$('#model_name').prop('hidden', false);
+        				$('#year').prop('hidden', false);
+    				}
+    				
+    				else 
+    				{
+        				$('#manufacture_name').prop('hidden', 'hidden');
+        				$('#model_name').prop('hidden', 'hidden');
+        				$('#year').prop('hidden', 'hidden');
+    				}
+  				};
+  
+  				$(car_enabled);
+  				$("#car").change(car_enabled);
+			</script>			
+
 			<script type="text/javascript">
 				$("#model_name").chained("#manufacture_name");
 			</script>
