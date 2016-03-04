@@ -9,7 +9,7 @@ class News extends CI_Controller {
         $this->load->model('news_model');
         $this->load->library('twig');
 
-        $data['newsbar'] = $this->news_model->get_news_all();
+        $data['newsbar'] = $this->news_model->get_news();
 
         if($id != 0) 
         {
@@ -17,7 +17,7 @@ class News extends CI_Controller {
         }
         else 
         {
-            $data['news'] = $this->news_model->get_news_all();
+            $data['news'] = $this->news_model->get_news();
         }
 
         echo $this->twig->render('news_view', $data);

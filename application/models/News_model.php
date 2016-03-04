@@ -3,24 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class News_model extends CI_Model {
 
-    public function get_news_all()
+    public function get_news($id = 0)
     {
         $this->db->select('*');
         $this->db->from('Content');
         $this->db->where('status', '1');
-        $query = $this->db->get();
 
-        return $query->result_array();
-    }
-
-    public function get_news($id)
-    {
-        $this->db->select('*');
-        $this->db->from('Content');
-        $this->db->where('id', $id);
-        $this->db->where('status', '1');
-        $query = $this->db->get();
+        if ($id !== 0) {
+            $this->db->where('id', $id);
+        }
         
-        return $query->result_array();
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
     }
 }
