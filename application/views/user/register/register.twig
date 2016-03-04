@@ -141,8 +141,8 @@
 					<p class="help-block"> </p>
 				</div>
 				<div class="form-group">
-					<label for="Avto">Какой у Вас автомобиль</label>
-					<p><select id="manufacture_name" name="ManufactureName" class="form-control-select">
+					<label for="Avto">У Вас есть автомобиль?</label><input type="checkbox" style="width:5%" id="car" name="checkbox">
+					<p><select id="manufacture_name" name="ManufactureName" class="form-control-select" hidden="true">
 						<option>--</option>
 		                {% for manufact in marks %}
 		                <option value="{{ manufact.id }}">
@@ -150,7 +150,7 @@
 		                {% endfor %}
             		</select>
 
-            		<select id="model_name" name="ModelName" class="form-control-select">
+            		<select id="model_name" name="ModelName" class="form-control-select" hidden="true">
 		            	<option>--</option>
 		                {% for model in models %}
 		                <option value="{{ model.id}}" class="
@@ -158,7 +158,7 @@
 		                {% endfor %}
             		</select>
 
-            		<select id="year" name="year" class="form-control-select" disabled>
+            		<select id="year" name="year" class="form-control-select" hidden="true">
             			<option>--</option>
             			{% set year = 'now'|date('Y') %}
                 		{% for i in year..1970 %}
@@ -186,12 +186,30 @@
 				</div>
 			{{ form_close() }}
 
+			<script>
+  				var car_enabled = function () 
+  				{
+    				if ($("#car").is(":checked")) 
+    				{
+        				$('#manufacture_name').prop('hidden', false);
+        				$('#model_name').prop('hidden', false);
+        				$('#year').prop('hidden', false);
+    				}
+    				
+    				else 
+    				{
+        				$('#manufacture_name').prop('hidden', 'hidden');
+        				$('#model_name').prop('hidden', 'hidden');
+        				$('#year').prop('hidden', 'hidden');
+    				}
+  				};
+  
+  				$(car_enabled);
+  				$("#car").change(car_enabled);
+			</script>			
+
 			<script type="text/javascript">
 				$("#model_name").chained("#manufacture_name");
-			</script>
-
-			<script>
-				$('#model_name').change(function{$('#year').prop('disabled', false);});
 			</script>
 
 			<script type="text/javascript">
