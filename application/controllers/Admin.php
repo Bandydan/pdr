@@ -247,6 +247,8 @@ class Admin extends CI_Controller {
                 {
                     $data['error'] = 'Ошибка при добавлении авто в базу. Вероятнее всего у этого производителя уже есть авто с таким названием в базе данных';
                 }
+
+                $data['info'] = 'Автомобиль успешно добавлен в базу';
             }
             
             $data['models'] = $this->admin_model->get_cars();
@@ -277,6 +279,8 @@ class Admin extends CI_Controller {
                 {
                     $data['error'] = 'Ошибка при удалении авто из базы';
                 }
+
+                $data['info'] = 'Автомобиль успешно удален из базы';
             }
 
             $data['models'] = $this->admin_model->get_cars();
