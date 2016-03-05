@@ -170,7 +170,7 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function show_users()
+    public function show_users($data = '')
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
@@ -382,6 +382,7 @@ class Admin extends CI_Controller {
 
             $this->load->helper('form');
             $this->load->library('form_validation');
+            $data['user_name'] = $_SESSION['login'];
         
             $this->form_validation->set_rules('category', 'category', 'required');
             $this->form_validation->set_rules('text', 'text', 'required');
@@ -391,7 +392,7 @@ class Admin extends CI_Controller {
         
             if ($this->form_validation->run() === false) 
             {
-                $data['user_name'] = $_SESSION['login'];
+                
                 $data['page_name'] = 'Управление примерами работ';
                 $data['categories'] = $this->config->item("categories"); 
                 echo $this->twig->render('admin/add_example_view', $data); 
@@ -400,7 +401,6 @@ class Admin extends CI_Controller {
             else
             {
                 $this->admin_model->create_example();
-                $data['user_name'] = $_SESSION['login'];
                 $data['page_name'] = 'Просмотр примеров работ';
                 echo $this->twig->render('admin/all_examples_view', $data); 
             }
@@ -424,8 +424,69 @@ class Admin extends CI_Controller {
 
             $data['models'] = $this->admin_model->get_cars();
             $data['marks'] = $this->admin_model->get_marks();
-            $data['title'] = 'Garage - Регистрация';
-            echo $this->twig->render('admin/add_user_view', $data);
+            $data['user_right'] = array(
+                                    'Админ' => $this->config->item('admin_rights'),
+                                    'Пользователь' => $this->config->item('user_rights'),);
+
+            // set validation rules
+            $this->form_validation->set_rules('login', 'Логин', 'trim|required|alpha_numeric|min_length[3]|is_unique[users.login]', array('is_unique' => 'Этот логин уже занят. Пожалуйста введите другой.'));
+            $this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_numeric|min_length[2]');
+            $this->form_validation->set_rules('surname', 'Фамилия', 'trim|required|alpha_numeric|min_length[2]');
+            $this->form_validation->set_rules('sex', 'Пол', 'required');
+            $this->form_validation->set_rules('birthsday', 'Дата рождения', 'trim|required');
+            $this->form_validation->set_rules('email', 'e-mail', 'trim|required|valid_email|is_unique[users.email]', array('is_unique' => 'Данный e-mail уже используется. Пожалуйста введите другой.'));
+            $this->form_validation->set_rules('tel', 'Телефон', 'trim|required|alpha_numeric|min_length[10]');
+            $this->form_validation->set_rules('password', 'Пароль', 'trim|required|min_length[6]');
+            $this->form_validation->set_rules('password_confirm', 'Подтверждение пароля', 'trim|required|min_length[6]|matches[password]');
+
+            if ($this->form_validation->run() === false) 
+            {
+                // validation not ok, send validation errors to the view
+                if (validation_errors() == true) 
+                {
+                    $data['error'] = 'Проверьте правильность заполнения всех полей.';
+                }
+                
+                echo $this->twig->render('admin/add_user_view', $data);  
+            }
+
+            elseif (($this->input->post('ManufactureName') !== null AND $this->input->post('ModelName') == null) OR ($this->input->post('ManufactureName') == null AND $this->input->post('car_year') !== null)) 
+            {
+                $data['error'] = 'Проверьте правильность заполнения полей выбора авто.'; 
+                echo $this->twig->render('admin/add_user_view', $data);
+            }
+
+            else 
+            {   
+                $this->load->model('user_model');
+                $register = $this->input->post();
+
+                if ($this->input->post('status') == 'on')
+                {
+                    $register['status'] = $this->config->item('STATUS_ON');
+                }
+                else
+                {
+                    $register['status'] = $this->config->item('STATUS_OFF');
+                }
+
+                if ($this->user_model->create_user($register)) 
+                {
+                    // user creation ok
+                    $data['info'] = 'Пользователь успешно добавлен.';
+                
+                    $this->show_users($data);
+                } 
+                
+                else 
+                {
+                    // user creation failed, this should never happen
+                    $data['error'] = 'Что-то пошло не так. Please try again.';
+                    
+                    // send error to the view
+                    echo $this->twig->render('admin/add_user_view', $data);
+                }  
+            }
         }
         else
         {

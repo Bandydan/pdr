@@ -41,15 +41,26 @@ class User_model extends CI_Model {
 
 		$pass = $data['password'];
 		$data['avto_id'] = $car;
-		unset($data['password'], $data['ManufactureName'], $data['ModelName'], $data['password_confirm']);
+		if (isset($data['user_rights']) AND isset($data['status'])) 
+		{
+			$status = $data['status'];
+			$user_rights = $data['user_rights'];
+		}
+		else
+		{
+			$status = $this->config->item('STATUS_ON');
+			$user_rights = $this->config->item('user_rights');
+		}
+		
+		unset($data['password'], $data['ManufactureName'], $data['ModelName'], $data['password_confirm'], $data['status'], $data['user_rights']);
 
 		$this->db->insert('users', $data);
 		$insert_id = $this->db->insert_id();
 
 		$data1 = array(
 			'user_id' 		=> $insert_id,
-			'user_enabled'  => $this->config->item('STATUS_ON'),
-			'user_rights'   => $this->config->item('user_rights'),
+			'user_enabled'  => $status,
+			'user_rights'   => $user_rights,
 			'password'   	=> $this->_hash_password($pass),
 		);
 		
