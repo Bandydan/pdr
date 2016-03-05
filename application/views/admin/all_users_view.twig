@@ -15,7 +15,7 @@
 {% block content %}
 
 <section id="main" class="column">
-	<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% else %} {{ 'Информация' }} {% endif %}</h4>		
+	<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% elseif info is defined %} {{ info }} {% else %} {{ 'Информация' }} {% endif %}</h4>		
 	<article class="module width_full">
 	<header><h3 class="tabs_involved" align="center">Все пользователи</h3></header>
 
@@ -56,7 +56,7 @@
 				<td>
 					<a href="#"><img type="image" src="{{ base_url() }}assets/img/admin/icn_jump_back.png" alt="Отключить" /></a>
 					<a href="#"><img type="image" src="{{ base_url() }}assets/img/admin/icn_edit.png" alt="Редактировать" /></a>
-					<a href="#"><img type="image" src="{{ base_url() }}assets/img/admin/icn_trash.png" alt="Удалить" /></a>
+					<a href="{{ base_url() }}admin/delete_item/{{method}}/{{table}}/{{user.id}}"><img type="image" src="{{ base_url() }}assets/img/admin/icn_trash.png" alt="Удалить" /></a>
 				</td> 
 			</tr> 
 			{% endfor %}	

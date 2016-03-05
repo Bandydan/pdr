@@ -18,7 +18,7 @@
 
 <!--<div class="clear"></div>-->
 <section id="main" class="column">
-<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% else %} {{ 'Информация' }} {% endif %}</h4>	
+<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% elseif info is defined %} {{ info }} {% else %} {{ 'Информация' }} {% endif %}</h4>	
 		<article class="module width_full">
 			<header align="center"><h3>Добавить пользователя</h3></header>
 				{{ form_open ('admin/add_user') }}
@@ -26,38 +26,45 @@
 						
 						<fieldset style="width:23%; float:left; margin-right: 2%; margin-left: 1%;">
 							<label>Логин</label>
-							<input name="login" value="" type="text" style="width:89%;" autofocus required>
+							<input name="login" value="{% if get_article ['login'] is defined %}{{get_article ['login']}}{% else %}{{ set_value ('login') }}{% endif %}" type="text" style="width:89%;" autofocus required>
+							{{ form_error('login') }}
 						</fieldset>
 						
 						<fieldset style="width:23%; float:left;">
 							<label>Пароль</label>
-							<input name="password" value="" type="password" style="width:89%;" required>
+							<input name="password" value="{{ set_value ('password') }}" type="password" style="width:89%;" required>
+							{{ form_error('password') }}
 						</fieldset>
 
 						<fieldset style="width:23%; float:left; margin-left: 2%;">
 							<label style="width: 175px;">Ещё пароль</label>
-							<input name="password_confirm" value="" type="password" style="width:89%;" required>
+							<input name="password_confirm" value="{{ set_value ('password_confirm') }}" type="password" style="width:89%;" required>
+							{{ form_error('password_confirm') }}
 						</fieldset>
 
 						<fieldset style="width:23%; float:left; margin-left: 2%;">
 							<label>E-mail</label>
-							<input name="email" value="" type="email" style="width:89%;" required>
+							<input name="email" value="{% if get_article ['email'] is defined %}{{get_article ['email']}}{% else %}{{ set_value ('email') }}{% endif %}" type="email" style="width:89%;" required>
+							{{ form_error('email') }}
 						</fieldset><div class="clear"></div>
 
 
 						<fieldset style="width:23%; float:left; margin-right: 2%; margin-left: 1%;">
 							<label>Имя</label>
-							<input name="name" value="" type="text" style="width:89%;" required>
+							<input name="name" value="{% if get_article ['name'] is defined %}{{get_article ['name']}}{% else %}{{ set_value ('name') }}{% endif %}" type="text" style="width:89%;" required>
+							{{ form_error('name') }}
 						</fieldset>
 						
 						<fieldset style="width:23%; float:left;">
 							<label>Фамилия</label>
-							<input name="surname" value="" type="text" style="width:89%;" required>
+							<input name="surname" value="{% if get_article ['surname'] is defined %}{{get_article ['surname']}}{% else %}{{ set_value ('surname') }}{% endif %}" type="text" style="width:89%;" required>
+							{{ form_error('surname') }}
 						</fieldset>
 
 						<fieldset style="width:23%; float:left; margin-left: 2%;">
 							<label style="width: 175px;">Дата рождения</label>
-							<input name="birthsday" value="" type="date" style="width:89%;" required>
+							<input name="birthsday" value="{% if get_article ['birthsday'] is defined %}{{get_article ['birthsday']}}{% else %}{{ set_value ('birthsday') }}{% endif %}" type="date" style="width:89%;" required>
+							{{ form_error('birthsday') }}
 						</fieldset>
 
 						<fieldset style="width:23%; float:left; margin-left: 2%;">
@@ -67,13 +74,14 @@
 								<option>Мужчина</option>
 								<option>Женщина</option>
 							</select>
+							{{ form_error('sex') }}
 						</fieldset><div class="clear"></div>
 
 
 						<fieldset style="width:23%; float:left; margin-right: 2%; margin-left: 1%;">
 							<label style="width: 175px;">Марка авто</label>
 							<select id="manufacture_name" name="ManufactureName" style="width:89%;" type="choice">
-								<option>--</option>
+								<option></option>
 		                		{% for manufact in marks %}
 		                		<option value="{{ manufact.id }}">
 		                		{{ manufact.manufacture }}</option>
@@ -84,7 +92,7 @@
 						<fieldset style="width:23%; float:left;">
 							<label style="width: 175px;">Модель авто</label>
 							<select id="model_name" name="ModelName" style="width:89%;" type="choice">
-		            			<option>--</option>
+		            			<option></option>
 		                		{% for model in models %}
 		                		<option value="{{ model.id}}" class="
 		                		{{ model.mark_id }}">{{ model.model}}</option>
@@ -94,7 +102,7 @@
 
 						<fieldset style="width:23%; float:left; margin-left: 2%;">
 							<label style="width: 175px;">Год выпуска авто</label>
-							<select name="year" style="width:89%;" type="choice">
+							<select name="car_year" style="width:89%;" type="choice">
 		            			<option>--</option>
 		            			{% set year = 'now'|date('Y') %}
 		                		{% for i in year..1970 %}
@@ -106,16 +114,19 @@
 						<fieldset style="width:23%; float:left; margin-left: 2%;">
 							<label style="width: 175px;">Права пользователя</label>
 							<select name="user_rights" style="width:89%;" type="choice">
-								<option disabled selected hidden>--</option>
-								<option value="1">Админ</option>
-								<option value="2">Пользователь</option>
+								<option disabled selected hidden></option>
+								{% for name, rights in user_right %}
+								<option value="{{ rights }}">{{ name }}</option>
+								{% endfor %}
 							</select>
+							{{ form_error('user_rights') }}
 						</fieldset><div class="clear"></div>
 
 
 						<fieldset style="width:23%; float:left; margin-right: 2%; margin-left: 1%;">
 							<label>Телефон</label>
-							<input name="tel" value="" type="phone" style="width:89%;" required>
+							<input name="tel" value="{% if get_article ['tel'] is defined %}{{get_article ['tel']}}{% else %}{{ set_value ('tel') }}{% endif %}" type="phone" style="width:89%;" required>
+							{{ form_error('tel') }}
 						</fieldset>
 						
 						<fieldset style="width:23%; float:left;">
@@ -125,7 +136,7 @@
 
 						<fieldset style="width:5%; float:left; margin-left: 2%;">
 							<label>Вкл/Выкл</label>
-							<input name='status' value='' type='checkbox' style="width:25%;" checked>
+							<input name='status' type='checkbox' style="width:25%;" checked>
 						</fieldset>
 
 						<fieldset style="width:23%; float:left; margin-left: 2%; margin-right: 4%;">
