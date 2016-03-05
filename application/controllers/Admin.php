@@ -10,7 +10,7 @@ class Admin extends CI_Controller {
         //$this->output->cache(5);
     }
 
-    public function index()
+    public function index($data = '')
     {
         $data['title'] = 'Административная панель';
         
@@ -21,6 +21,10 @@ class Admin extends CI_Controller {
             $data['comments'] = $this->admin_model->get_comments('4');
             $data['requests'] = $this->admin_model->get_requests('4');
             //$data['orders'] = $this->admin_model->get_orders('4');
+
+            $data['method'] = 'index';
+            $data['table1'] = 'order_for_assessment';
+            $data['table2'] = 'comments';
 
             echo $this->twig->render('admin/main', $data);
         }
@@ -155,13 +159,17 @@ class Admin extends CI_Controller {
     }
 
     //metods for work with data in admin panel
-    public function show_articles($id = '')
+    public function show_articles($data = '', $id = '')
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $data['articles'] = $this->admin_model->get_article($id);
             $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Управление контентом';
+
+            $data['method'] = 'show_articles';
+            $data['table'] = 'Content';
+
             echo $this->twig->render('admin/all_articles_view', $data);
         }
         else
@@ -178,6 +186,10 @@ class Admin extends CI_Controller {
             $data['users'] = $this->user_model->get_users();
             $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Просмотр пользователей';
+
+            $data['method'] = 'show_users';
+            $data['table'] = 'users';
+
             echo $this->twig->render('admin/all_users_view', $data); 
         }
         else
@@ -318,8 +330,8 @@ class Admin extends CI_Controller {
             else
             {
                 $this->admin_model->create_content();
-
-                $this->show_articles();
+                $data['info'] = 'Статья успешно добавлена';
+                $this->show_articles($data);
             }
         }
         
@@ -358,20 +370,6 @@ class Admin extends CI_Controller {
             }
         }
         
-        else
-        {
-            $this->login();
-        }
-    }
-
-    public function delete_article($id = '', $table = '')
-    {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
-        {
-            $this->admin_model->delete_data($id, $table);
-            $this->show_articles();
-        }
-
         else
         {
             $this->login();
@@ -498,30 +496,22 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function delete_item($data)
+    public function delete_item($method, $table, $id)
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
-            $data = explode('%3D', $data);
-            if ($this->admin_model->delete_data($data[0], $data[1])) 
+            if ($this->admin_model->delete_data($id, $table)) 
             {
                 // item delete ok
-                $this->index();    
+                $data['info'] = 'Запись успешно удалена';
+                $this->{$method}($data);    
             } 
             
             else 
             {
                 // item delete failed, this should never happen
                 $data['error'] = 'Что-то пошло не так. Please try again.';
-                
-                // send error to the view
-                $data['page_name'] = 'Основная панель';
-                $data['user_name'] = $_SESSION['login'];
-                $data['comments'] = $this->admin_model->get_comments('4');
-                $data['requests'] = $this->admin_model->get_requests('4');
-                //$data['orders'] = $this->admin_model->get_orders('4');
-
-                echo $this->twig->render('admin/main', $data);
+                $this->{$method}($data); 
             }      
         }
         else

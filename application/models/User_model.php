@@ -195,7 +195,7 @@ class User_model extends CI_Model {
 	 */
 	public function get_users()
 	{
-		$this->db->select('u.login, u.name, u.surname, u.sex, 
+		$this->db->select('u.login, u.id, u.name, u.surname, u.sex, 
 			u.birthsday, u.tel, u.email, u.car_year, c.mark_id, c.model, 
 			u.user_created, u.avatar, a.user_rights, a.user_enabled');
 		$this->db->from('users as u');
