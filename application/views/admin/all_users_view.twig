@@ -48,14 +48,14 @@
 				<td>{{user.birthsday}}</td>
 				<td>{{user.tel}}</td>
 				<td>{{user.email}}</td>
-				<td>{{user.manufacture}} {{user.model}} {{user.car_year}}</td>
-				<td>{{user.user_rights}}</td>
+				<td>{{user.mark}} {{user.model}} {{user.car_year}}</td>
+				<td>{% if user.user_rights == 2 %}{{'Админ'}}{% elseif user.user_rights == 1 %}{{'Пользователь'}}{% else %}{{'-'}}{% endif %}</td>
 				<td>{{user.user_created}}</td> 
 				<td>{{user.avatar}}</td> 
-				<td>{{user.user_enabled}}</td>
+				<td>{% if user.user_enabled == 1 %}{{'Вкл'}}{% elseif user.user_enabled == 0 %}{{'Выкл'}}{% else %}{{'-'}}{% endif %}</td>
 				<td>
 					<a href="#"><img type="image" src="{{ base_url() }}assets/img/admin/icn_jump_back.png" alt="Отключить" /></a>
-					<a href="#"><img type="image" src="{{ base_url() }}assets/img/admin/icn_edit.png" alt="Редактировать" /></a>
+					<a href="{{ base_url() }}admin/show_user/{{user.id}}"><img type="image" src="{{ base_url() }}assets/img/admin/icn_edit.png" alt="Просмотр профиля" /></a>
 					<a href="{{ base_url() }}admin/delete_item/{{method}}/{{table}}/{{user.id}}"><img type="image" src="{{ base_url() }}assets/img/admin/icn_trash.png" alt="Удалить" /></a>
 				</td> 
 			</tr> 
