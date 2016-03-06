@@ -102,7 +102,6 @@ class User_model extends CI_Model {
 		$this->db->select('id');
 		$this->db->from('users');
 		$this->db->where('login', $login);
-
 		return $this->db->get()->row('id');
 	}
 	
@@ -130,8 +129,6 @@ class User_model extends CI_Model {
 		$this->db->where('user_id', $user_id);
 		return $this->db->get()->row();
 	}
-
-
 
 //I suggest changing md5 to http://php.net/manual/ru/function.hash.php with sha256 and use its part (substr) to compare
 	/**
@@ -193,13 +190,18 @@ class User_model extends CI_Model {
 	 * 
 	 * @return query result array
 	 */
-	public function get_users()
-	{
+	public function get_user_info($id = '') 
+	{	
 		$this->db->select('u.login, u.id, u.name, u.surname, u.sex, 
-			u.birthsday, u.tel, u.email, u.car_year, c.mark_id, c.model, 
+			u.birthsday, u.tel, u.email, u.car_year, m.mark, c.model, 
 			u.user_created, u.avatar, a.user_rights, a.user_enabled');
 		$this->db->from('users as u');
+		if ($id != null) 
+		{
+			$this->db->where('u.id', $id);
+		}
 		$this->db->join('cars_model as c', 'u.avto_id = c.id', 'left');
+		$this->db->join('cars_mark as m', 'c.mark_id = m.id', 'left');
 		$this->db->join('authorization as a', 'u.id = a.user_id');
 		$query = $this->db->get();
 

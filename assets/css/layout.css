@@ -463,6 +463,11 @@ width: 64%;
 float: left;
 }
 
+.user_avatar {
+width: 15%;
+float: left;
+}
+
 .stats_overview {
 background: #F6F6F6;
 border: 1px solid #ccc;
@@ -473,9 +478,29 @@ width: 26%;
 border-radius: 5px;
 }
 
+.user_info {
+background: #F6F6F6;
+border: 1px solid #ccc;
+float: right;
+width: 84%;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+}
+
 .overview_today, .overview_previous {
 width: 50%;
 float: left;}
+
+.user_data {
+width: 32%;
+float: left;
+margin-left: 8px;}
+
+.user_data_column {
+width: 48%;
+float: left;
+margin-left: 6px;}
 
 .stats_overview p {
 margin: 0; padding: 0;
@@ -497,6 +522,26 @@ color: #333333;}
 
 .stats_overview p.overview_type {
 font-size: 10px;
+color: #999999;
+margin-bottom: 8px}
+
+.user_info p {
+margin: 7px; padding: 0;
+text-shadow: 0 1px 0 #fff;
+}
+
+.user_info p.user_name {
+font-size: 12px;
+font-weight: bold;
+margin: 6px 0;
+}
+
+.user_info p.user_value {
+font-size: 13px;
+color: #333333;}
+
+.user_info p.user_title {
+font-size: 12px;
 color: #999999;
 margin-bottom: 8px}
 

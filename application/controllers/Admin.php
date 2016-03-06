@@ -88,7 +88,7 @@ class Admin extends CI_Controller {
                     $user_id = $this->user_model->get_user_id_from_username($login);
                     $user    = $this->user_model->get_user($user_id);
                     $user_data = $this->user_model->get_user_data($user_id);
-                    
+                
                     //set session user data
                     $session_data = array(
                                     'id' => session_id(),
@@ -183,7 +183,7 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $this->load->model('user_model');
-            $data['users'] = $this->user_model->get_users();
+            $data['users'] = $this->user_model->get_user_info();
             $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Просмотр пользователей';
 
@@ -489,6 +489,32 @@ class Admin extends CI_Controller {
                     echo $this->twig->render('admin/add_user_view', $data);
                 }  
             }
+        }
+        else
+        {
+            $this->login();
+        }
+    }
+
+    public function show_user($id)
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {
+            $this->load->model('user_model');
+
+            $data['page_name'] = 'Профиль пользователя';
+            $data['user_name'] = $_SESSION['login'];
+            // $data['comments'] = $this->admin_model->get_comments('4');
+            // $data['requests'] = $this->admin_model->get_requests('4');
+            //$data['orders'] = $this->admin_model->get_orders('4');
+
+            $data['user'] = $this->user_model->get_user_info($id);
+
+            $data['method'] = 'index';
+            $data['table1'] = 'order_for_assessment';
+            $data['table2'] = 'comments';
+
+            echo $this->twig->render('admin/user_view', $data);
         }
         else
         {
