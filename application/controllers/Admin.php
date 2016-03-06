@@ -318,7 +318,7 @@ class Admin extends CI_Controller {
             $this->form_validation->set_rules('title', 'Заголовок', 'required');
             $this->form_validation->set_rules('text', 'Содержимое', 'required');
             $this->form_validation->set_rules('meta', 'Теги', 'required');
-            $this->form_validation->set_rules('address', 'Адрес', 'required|is_unique[Content.address]', array('is_unique' => 'Этот адрес уже занят. Пожалуйста введите другой.'));
+            $this->form_validation->set_rules('address', 'Адрес', 'required');
         
             if ($this->form_validation->run() === false) 
             {

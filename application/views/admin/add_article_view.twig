@@ -50,6 +50,9 @@
 							<label>Тэги</label>
 							<input name="meta" value="{% if get_article ['meta'] is defined %}{{get_article ['meta']}}{% else %}{{ set_value ('meta') }}{% endif %}" type="text" style="width:92%;" required>
 						</fieldset><div class="clear"></div>
+						
+						<input type="hidden" name="id" value="{{ get_article['id'] }}">
+						
 						<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
 							<label>Адрес</label>
 							<input name="address" value="{% if get_article ['address'] is defined %}{{get_article ['address']}}{% else %}{{ set_value ('address') }}{% endif %}" type="text" style="width:92%;" required>

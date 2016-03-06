@@ -30,7 +30,7 @@
 
                 {% for item in news %}   
                     <h3>{{ item.title }}</h3>
-                    <p>{{ item.content_text }}</p>
+                    <p>{{ item.content_text| raw }}</p>
                 {% endfor %}
 
             </div>
