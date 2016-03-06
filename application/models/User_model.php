@@ -207,4 +207,12 @@ class User_model extends CI_Model {
 
 		return $query->result_array();
 	}
+
+	public function change_user_status($id, $data)
+	{
+		$this->db->where('user_id',$id);
+		$this->db->update('authorization', $data);
+
+		return TRUE;
+	}
 }
