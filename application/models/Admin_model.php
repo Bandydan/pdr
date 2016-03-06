@@ -121,10 +121,18 @@ class Admin_model extends CI_Model {
 			'meta'   		=> $this->input->post('meta'),
 			'category'  	=> $this->input->post('category'),
 			'status'  		=> $status,
-			'address'  		=> $this->category_url().$this->input->post('address'),
 			);
-		
-		return $this->db->insert('Content', $data);
+			$id = $this->input->post('id');
+
+		if ($id != 0) {
+			$address = array( 'address'  => $this->input->post('address'));
+			$this->db->where('id',$id);
+			$this->db->update('Content', $data, $address);
+		}
+		else {
+			$address = array( 'address'  => $this->category_url().$this->input->post('address'));
+			return $this->db->insert('Content', $data,  $address);
+		}
 	}
 
 	public function create_example() 
@@ -200,28 +208,4 @@ class Admin_model extends CI_Model {
 
 	}
 
-	public function edit_content() 
-	{	
-		
-		if ($this->input->post('status') == 'on')
-		{
-			$status = $this->config->item('STATUS_ON');
-		}
-		else
-		{
-			$status = $this->config->item('STATUS_OFF');
-		}
-
-		$data = array(
-			'title'   		=> $this->input->post('title'),
-			'content_text'  => $this->input->post('text'),
-			'meta'   		=> $this->input->post('meta'),
-			'category'  	=> $this->input->post('category'),
-			'status'  		=> $status,
-			'address'  		=> $this->input->post('address'),
-			);
-		$id = $this->input->post('id');
-		$this->db->where('id',$id);
-		$this->db->update('Content', $data);
-	}
 }
