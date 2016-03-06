@@ -527,14 +527,8 @@ class Admin extends CI_Controller {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
         {
             $this->load->model('user_model');
-            if ($status === '0') 
-            {
-                $data['user_enabled'] = '1';
-            }
-            else 
-            {
-                $data['user_enabled'] = '0';
-            }
+
+            $data['user_enabled'] = (int)!$status;
 
             if ($this->user_model->change_user_status($id, $data)) 
             {

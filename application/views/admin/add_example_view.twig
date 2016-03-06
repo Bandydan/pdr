@@ -2,6 +2,7 @@
 
 {% block scripts %}
 {{parent()}}
+<script type="text/javascript" src="{{ base_url() }}assets/js/ckeditor/ckeditor.js"></script>
 {% endblock %}
 
 {% block header %}
@@ -33,8 +34,11 @@
 						</fieldset>
 
 						<fieldset style="width:99%; float:left; margin-right: 3%;">
-							<label>Описание</label>
-							<textarea name="text" value="" style="width:92%;" rows="12" type="textarea"></textarea>
+							<h3 style="margin-left: 1%;">Описание</h3>
+							<textarea name="text" value="" rows="12" type="textarea"></textarea>
+							<script type="text/javascript">
+							CKEDITOR.replace('text');
+							</script>
 						</fieldset>
 
 						<fieldset style="width:32%; float:left; margin-right: 1%;"> <!-- to make two field float next to one another, adjust values accordingly -->
