@@ -17,7 +17,7 @@
 {% block content %}
 <!--<div class="clear"></div>-->
 <section id="main" class="column">
-<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% else %} {{ 'Информация' }} {% endif %}</h4>		
+<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% elseif info is defined %} {{ info }} {% else %} {{ 'Информация' }} {% endif %}</h4>		
 		<article class="module width_full">
 			<header><h3>Добавить страницу</h3></header>
 			{{ error }}

@@ -52,7 +52,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('tel', 'Телефон', 'trim|required|alpha_numeric|min_length[10]');
 		$this->form_validation->set_rules('password', 'Пароль', 'trim|required|min_length[6]');
 		$this->form_validation->set_rules('password_confirm', 'Подтверждение пароля', 'trim|required|min_length[6]|matches[password]');
-		
+
 		if ($this->form_validation->run() === false) 
 		{
 			// validation not ok, send validation errors to the view
@@ -60,8 +60,14 @@ class User extends CI_Controller {
 			{
 				$data['error'] = 'Проверьте правильность заполнения всех полей.';
 			}
-			//print_r($data['cars']);
+			
 			echo $this->twig->render('user/register/register', $data);	
+		}
+		elseif (($this->input->post('ManufactureName') !== null AND $this->input->post('ModelName') == null) OR ($this->input->post('ManufactureName') == null AND $this->input->post('car_year') !== null)) 
+		{
+			$data['error'] = 'Проверьте правильность заполнения полей выбора авто.';
+			
+			echo $this->twig->render('user/register/register', $data);
 		}
 
 		else 

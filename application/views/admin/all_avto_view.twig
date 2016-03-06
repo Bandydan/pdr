@@ -17,11 +17,10 @@
 {% block content %} 
 
 <section id="main" class="column height_half">
-	<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% else %} {{ 'Информация' }} {% endif %}</h4>	
+	<h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% elseif info is defined %} {{ info }} {% else %} {{ 'Информация' }} {% endif %}</h4>	
 	<article class="module width_full height_half">
 		<header><h3>Каталог автомобилей</h3></header>
 		
-
 		{{ form_open ('admin/delete_car') }}
 			<div class="module_content">
 				<fieldset style="width:30%; float:left; margin-right: 3%; margin-left: 1%;"> 
