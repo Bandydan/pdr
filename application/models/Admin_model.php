@@ -121,7 +121,6 @@ class Admin_model extends CI_Model {
 			'meta'   		=> $this->input->post('meta'),
 			'category'  	=> $this->input->post('category'),
 			'status'  		=> $status,
-			//'address'  		=> $this->category_url().$this->input->post('address'),
 			);
 			$id = $this->input->post('id');
 
