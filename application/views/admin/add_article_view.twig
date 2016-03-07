@@ -28,7 +28,7 @@
 							<input name="title" value="{% if get_article ['title'] is defined %}{{get_article ['title']}}{% else %}{{ set_value ('title') }}{% endif %}" type="text" autofocus required>
 						</fieldset>
 						<fieldset>
-							<h3>Содержимое</h3>
+							<h3 style="margin-left: 1%;">Содержимое</h3>
 							<textarea name="text" rows="12">{% if get_article ['content_text'] is defined %}{{get_article ['content_text']}}{% else %}{{ set_value ('text') }}{% endif %}</textarea>
 							<script type="text/javascript">
 							CKEDITOR.replace('text');

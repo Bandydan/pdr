@@ -522,6 +522,36 @@ class Admin extends CI_Controller {
         }
     }
 
+    public function change_user_status($id, $status, $data = '')
+    {
+        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        {
+            $this->load->model('user_model');
+
+            $data['user_enabled'] = (int)!$status;
+
+            if ($this->user_model->change_user_status($id, $data)) 
+            {
+                // user creation ok
+                $data['info'] = 'Пользователю успешно изменен статус.';
+                $this->show_users($data);
+            } 
+            
+            else 
+            {
+                // user creation failed, this should never happen
+                $data['error'] = 'Что-то пошло не так. Please try again.';
+                
+                // send error to the view
+                echo $this->twig->render('admin/all_user_view', $data);
+            }  
+        }
+        else
+        {
+            $this->login();
+        }
+    }
+
     public function delete_item($method, $table, $id)
     {
         if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
