@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<?=base_url();?>/assets/libs/slick/slick.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
           integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
@@ -34,10 +34,16 @@
                         </div>
                     </div>
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="language">
+                            <a href="ru">Русский</a>
+                            <a href="uk">Українська</a>
+                            <a href="en">English</a>
+                        </div>
+
                         <div class="regist">
                             <a href="<?=base_url();?>login">Вход</a>
                             <a href="<?=base_url();?>register">Регистрация</a>
-                        </div>  
+                        </div>
                         <div class="callBack">
                             <a href="#">Заказать звонок
                                 <img src="<?=base_url();?>/assets/img/callback.png" class="img-responsive"></a>
@@ -47,7 +53,7 @@
                                 <p>моб. (057)000-00-00</p>
                                 <p>моб. (057)000-00-00</p>
 
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="row hedSecRow">
