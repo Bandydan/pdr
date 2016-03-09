@@ -10,11 +10,23 @@ class Admin extends CI_Controller {
         //$this->output->cache(5);
     }
 
+    private function _admin_access()
+    {
+        if ($this->session->has_userdata('login') != NULL && 
+            $this->session->userdata('user_rights') == $this->config->item('admin_rights') &&
+            $this->session->userdata('user_enabled') == $this->config->item('STATUS_ON')) 
+        {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
     public function index($data = '')
     {
         $data['title'] = 'Административная панель';
         
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             $data['page_name'] = 'Основная панель';
             $data['user_name'] = $_SESSION['login'];
@@ -29,10 +41,10 @@ class Admin extends CI_Controller {
             echo $this->twig->render('admin/main', $data);
         }
         
-        elseif ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') !== $this->config->item('admin_rights'))
+        elseif ($this->session->has_userdata('login') != NULL && ($this->session->userdata('user_rights') !== $this->config->item('admin_rights') OR  $this->session->userdata('user_enabled') == $this->config->item('STATUS_OFF')))
         {
             $this->session->sess_destroy();
-            $data['error'] = 'У Вас не достаточно прав для доступа к этой странице';
+            $data['error'] = 'У Вас не достаточно прав для доступа к этой странице или пользователь с таким логином выключен';
             $data['user_name'] = $_SESSION['login'];
 
             // send error to the view
@@ -55,7 +67,7 @@ class Admin extends CI_Controller {
     {
         $data['title'] = 'Garage - Авторизация';
 
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             $this->index();
         }
@@ -161,7 +173,7 @@ class Admin extends CI_Controller {
     //metods for work with data in admin panel
     public function show_articles($data = '', $id = '')
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             $data['articles'] = $this->admin_model->get_article($id);
             $data['user_name'] = $_SESSION['login'];
@@ -180,7 +192,7 @@ class Admin extends CI_Controller {
 
     public function show_users($data = '')
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             $this->load->model('user_model');
             $data['users'] = $this->user_model->get_user_info();
@@ -200,7 +212,7 @@ class Admin extends CI_Controller {
 
     public function show_comments($limit = '0')
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             $data['comments'] = $this->admin_model->get_comments($limit);
             $data['user_name'] = $_SESSION['login'];
@@ -215,7 +227,7 @@ class Admin extends CI_Controller {
 
     public function show_requests($limit = '0')
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             $data['requests'] = $this->admin_model->get_requests($limit);
             $data['user_name'] = $_SESSION['login'];
@@ -230,7 +242,7 @@ class Admin extends CI_Controller {
 
     public function show_cars()
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             $data['models'] = $this->admin_model->get_cars();
             $data['marks'] = $this->admin_model->get_marks();
@@ -246,7 +258,7 @@ class Admin extends CI_Controller {
 
     public function add_car()
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             if ($this->input->post('model') == null OR $this->input->post('mark') == null) 
             {
@@ -277,7 +289,7 @@ class Admin extends CI_Controller {
 
     public function delete_car()
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             if ($this->input->post('ModelName') == null) 
             {
@@ -309,7 +321,7 @@ class Admin extends CI_Controller {
 
     public function add_article() 
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             $data = array();
 
@@ -343,7 +355,7 @@ class Admin extends CI_Controller {
 
         public function edit_article($id = '') 
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
 
         {
             $data = array();
@@ -378,7 +390,7 @@ class Admin extends CI_Controller {
 
     public function add_example() 
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             $data = array();
 
@@ -416,7 +428,7 @@ class Admin extends CI_Controller {
 
     public function add_user()
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             $this->load->helper('form');
             $this->load->library('form_validation');
@@ -498,7 +510,7 @@ class Admin extends CI_Controller {
 
     public function show_user($id)
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             $this->load->model('user_model');
 
@@ -524,7 +536,7 @@ class Admin extends CI_Controller {
 
     public function change_user_status($id, $status, $data = '')
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             $this->load->model('user_model');
 
@@ -554,7 +566,7 @@ class Admin extends CI_Controller {
 
     public function delete_item($method, $table, $id)
     {
-        if ($this->session->has_userdata('login') != NULL && $this->session->userdata('user_rights') == $this->config->item('admin_rights'))
+        if ($this->_admin_access() === true)
         {
             if ($this->admin_model->delete_data($id, $table)) 
             {
