@@ -17,11 +17,8 @@ var config,
 
             $.ajax({
                 /* адрес файла-обработчика запроса */
-                //url: "http://pdr/index.php/Scrolling/works",
-                url: "works",
+                url: "examples/works",
                 /* метод отправки данных */
-                // type: "POST",
-                //dataType: 'json',
                 method: 'POST',
                 /* данные, которые мы передаем в файл-обработчик */
                 data: {"startFrom" : startFrom},
@@ -50,7 +47,6 @@ var config,
                             for(var i=0; i < data.photo_before.length; i++){
                                 arrAllPhoto.push(data.photo_before[i]);
                                 arrAllPhoto.push(data.photo_after[i]);
-                                console.log(data.photo_before[i]);
                             }
 
                             divSlider.className = "slider";
@@ -70,7 +66,7 @@ var config,
                             if(!showH3){
                                 if(!config){
                                   $.ajax({
-                                        url: "config_arr",
+                                        url: "examples/config_arr",
                                         method: 'POST',
                                         error: function(){
                                             console.log("ajaxError");
