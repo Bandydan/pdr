@@ -64,7 +64,7 @@
     opacity: .25;
 }
 
-/* .slick-prev:before,
+.slick-prev:before,
 .slick-next:before
 {
     font-family: 'slick';
@@ -72,11 +72,11 @@
     line-height: 1;
 
     opacity: .75;
-    color: black;
+    color: white;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-} */
+}
 
 .slick-prev
 {
@@ -175,7 +175,7 @@
 {
     opacity: 1;
 }
-/*.slick-dots li button:before
+.slick-dots li button:before
 {
     font-family: 'slick';
     font-size: 6px;
@@ -201,4 +201,4 @@
 {
     opacity: .75;
     color: black;
-}*/
+}
