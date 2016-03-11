@@ -75,7 +75,7 @@ class Main extends CI_Controller {
     //Education page
     public function education()
     {
-        $data = $this->language();
+        $data = $this->language(); var_dump($data);
         $data['title'] = 'Обучение';
         $data['cat'] = $this->config->item('categories');
 
@@ -100,7 +100,8 @@ class Main extends CI_Controller {
         }
 
         // load language file
-        $lang = $this->uri->segment(1);
+        //$lang = $this->uri->segment(1);
+        $lang = $this->input->get('lang');
         switch ($lang) {
             case 'en':
                 $userLang = 'english';
@@ -115,8 +116,8 @@ class Main extends CI_Controller {
         }
 
         $this->session->set_userdata('language', $userLang);
-        $dataTime = time() + 30*24*60*60;
-        set_cookie('lang', $userLang, $dataTime);
+        // $dataTime = time() + 30*24*60*60;
+        // set_cookie('lang', $userLang, $dataTime);
 
         //echo $userLang;
         $this->lang->load('interface', $userLang);
