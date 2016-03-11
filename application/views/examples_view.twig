@@ -21,12 +21,12 @@
 <script src="{{ base_url() }}assets/js/common.js"></script>
     <div class="advertising"></div></div>
         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 main">
-            
+
             {% for item in examples %}
                 <div class="wrapSlider">
                     <div class="slider">
                         <div>
-                            <img src="{{ item.photo_before.0 }}" class="img-responsive">           
+                            <img src="{{ item.photo_before.0 }}" class="img-responsive">
                         </div>
 
                         <div>
@@ -41,16 +41,16 @@
                         </div>
                     </div>
                 </div>
-                <h3>{{ cat.category }}</h3>
+                <h3>{{ cat[item.category] }}</h3>
                 <p>{{ item.about }}</p>
-            {% endfor %} 
+            {% endfor %}
 
-            
+
             </div> <!--  main  -->
         </div>
     </div>
 </section>
-           
+
 <script type="text/javascript" src="{{ base_url() }}assets/js/script.js"></script>
 
 {% endblock %}
