@@ -75,7 +75,7 @@ class Main extends CI_Controller {
     //Education page
     public function education()
     {
-        $data = $this->language(); var_dump($data);
+        $data = $this->language();
         $data['title'] = 'Обучение';
         $data['cat'] = $this->config->item('categories');
 
