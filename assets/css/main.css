@@ -13,6 +13,13 @@ body {
     border-bottom-right-radius:10px;
 }
 
+.header .news a img{
+    height: 70px;
+    width: 70px;
+    display: inline-block;
+    margin: 25px 40px;
+}
+
 .header .wrapImg{
     height: 250px;
     width: 550px;
@@ -46,6 +53,12 @@ body {
 .header .regist a:last-child{
     margin-left:0;
 }
+
+.header .language{
+    text-align: center;
+    padding-top: 20px;
+}
+
 .header .callBack{
     text-align: center;
 }
