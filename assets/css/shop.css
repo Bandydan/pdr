@@ -24,7 +24,7 @@
 }
 
 #product_div{
-    width: 31%;
+    width: 30%;
     background: #fff;
     float: left;
     padding: 5px;
@@ -69,16 +69,16 @@ div#text {
 div#name {
 font-weight: 700;
 font-size: 17px;
-margin-bottom: 10px;
+margin-bottom: 2px;
 }
 div#desc {
 font-size: 15px;
-margin-bottom: 11px;
-min-height: 105px;
+margin-bottom: 2px;
+min-height: 20px;
 line-height: 1.4;
 }
 div#add_button {
-margin-top: 23px;
+margin-top: 3%;
 }
 span#go_back {
 margin-left: 245px;
