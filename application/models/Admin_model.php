@@ -115,6 +115,7 @@ class Admin_model extends CI_Model {
 			$status = $this->config->item('STATUS_OFF');
 		}
 
+
 		$data = array(
 			'title'   		=> $this->input->post('title'),
 			'content_text'  => $this->input->post('text'),
@@ -125,13 +126,13 @@ class Admin_model extends CI_Model {
 			$id = $this->input->post('id');
 
 		if ($id != 0) {
-			$address = array( 'address'  => $this->input->post('address'));
+			$data['address'] = $this->input->post('address');
 			$this->db->where('id',$id);
-			$this->db->update('Content', $data, $address);
+			$this->db->update('Content', $data);
 		}
 		else {
-			$address = array( 'address'  => $this->category_url().$this->input->post('address'));
-			return $this->db->insert('Content', $data,  $address);
+			$data['address'] = base_url().'news/'.$this->input->post('address');
+			return $this->db->insert('Content', $data);
 		}
 	}
 
@@ -159,39 +160,7 @@ class Admin_model extends CI_Model {
 		return TRUE;
 	}
 
-	public function category_url(){
-
-		$data = $this->input->post('category');
-
-		switch ($data) {
-			case 'Главная':
-				$url = base_url();
-				break;
-
-			case 'Примеры работ':
-				$url = base_url().'examples/';
-				break;
-
-			case 'Обучение':
-				$url = base_url().'education/';
-				break;
-			
-			case 'Инструмент':
-				$url = base_url().'#/';
-				break;
-
-			case 'Оценить вмятину':
-				$url = base_url().'#/';
-				break;
-
-			case 'Контакты':
-				$url = base_url().'contact/';
-				break;
-		}
-		
-		return $url;
-	}
-
+	
 	public function get_article($id){
 		
 		if ($id != null) 
