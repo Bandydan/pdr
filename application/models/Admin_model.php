@@ -177,4 +177,20 @@ class Admin_model extends CI_Model {
 
 	}
 
+	public function get_example($id){
+		
+		if ($id != null) 
+		{
+			$this->db->where('id',$id);
+			$query = $this->db->get('example_works')->row_array();
+		}
+		
+		else {
+			$query = $this->db->get('example_works')->result_array();
+			}
+
+		return $query;
+
+	}
+
 }

@@ -266,7 +266,7 @@ class Admin extends CI_Controller {
     {
         if ($this->_admin_access() === true)
         {
-            if ($this->input->post('model') == null OR $this->input->post('mark') == null) 
+            if ($this->input->post('model') == (null OR ' ') OR $this->input->post('mark') == (null OR ' ')) 
             {
                 $data['error'] = 'Заполните все поля формы';
             }
@@ -387,6 +387,25 @@ class Admin extends CI_Controller {
         }
     }
 
+    public function show_example($data = '', $id = '')
+    {
+        if ($this->_admin_access() === true)
+        {
+            $data['examples'] = $this->admin_model->get_example($id);
+            $data['user_name'] = $_SESSION['login'];
+            $data['page_name'] = 'Управление примерами работ';
+            $data['categories'] = $this->config->item("categories");
+            $data['method'] = 'show_example';
+            $data['table'] = 'example_works';
+
+            echo $this->twig->render('admin/all_examples_view', $data);
+        }
+        else
+        {
+            $this->login();
+        }
+    }
+
     public function add_example() 
     {
         if ($this->_admin_access() === true)
@@ -415,7 +434,7 @@ class Admin extends CI_Controller {
             {
                 $this->admin_model->create_example();
                 $data['page_name'] = 'Просмотр примеров работ';
-                echo $this->twig->render('admin/all_examples_view', $data); 
+                $this->show_example(); 
             }
         }
         
@@ -520,7 +539,6 @@ class Admin extends CI_Controller {
             //$data['orders'] = $this->admin_model->get_orders('4');
 
             $data['user'] = $this->user_model->get_user_info($id);
-
             $data['method'] = 'index';
             $data['table1'] = 'order_for_assessment';
             $data['table2'] = 'comments';
