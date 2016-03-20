@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <h3>{{ cat[item.category] }}</h3>
-                <p>{{ item.about }}</p>
+                <p>{{ item.about| raw }}</p>
             {% endfor %}
 
 
