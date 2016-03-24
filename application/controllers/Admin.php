@@ -217,6 +217,10 @@ class Admin extends CI_Controller {
             $data['comments'] = $this->admin_model->get_comments($limit);
             $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Просмотр комментариев';
+
+            $data['method'] = 'show_comments';
+            $data['table'] = 'comments';
+
             echo $this->twig->render('admin/all_comments_view', $data); 
         }
         else
@@ -232,6 +236,8 @@ class Admin extends CI_Controller {
             $data['requests'] = $this->admin_model->get_requests($limit);
             $data['user_name'] = $_SESSION['login'];
             $data['page_name'] = 'Просмотр запросов на оценку работ';
+            $data['method'] = 'show_requests';
+            $data['table'] = 'order_for_assessment';
             echo $this->twig->render('admin/pdr_requests_view', $data);
         }
         else
@@ -260,7 +266,7 @@ class Admin extends CI_Controller {
     {
         if ($this->_admin_access() === true)
         {
-            if ($this->input->post('model') == null OR $this->input->post('mark') == null) 
+            if ($this->input->post('model') == (null OR ' ') OR $this->input->post('mark') == (null OR ' ')) 
             {
                 $data['error'] = 'Заполните все поля формы';
             }
@@ -327,10 +333,10 @@ class Admin extends CI_Controller {
 
             $this->load->library('form_validation');
         
-            $this->form_validation->set_rules('title', 'Заголовок', 'required');
-            $this->form_validation->set_rules('text', 'Содержимое', 'required');
-            $this->form_validation->set_rules('meta', 'Теги', 'required');
-            $this->form_validation->set_rules('address', 'Адрес', 'required');
+            $this->form_validation->set_rules('title', 'Заголовок', 'trim|required');
+            $this->form_validation->set_rules('text', 'Содержимое', 'trim|required');
+            $this->form_validation->set_rules('meta', 'Теги', 'trim|required');
+            $this->form_validation->set_rules('address', 'Адрес', 'trim|required');
         
             if ($this->form_validation->run() === false) 
             {
@@ -360,14 +366,7 @@ class Admin extends CI_Controller {
         {
             $data = array();
             $data['get_article'] = $this->admin_model->get_article($id);
-            
-            $this->load->library('form_validation');
-        
-            $this->form_validation->set_rules('title', 'Заголовок', 'required');
-            $this->form_validation->set_rules('text', 'Содержимое', 'required');
-            $this->form_validation->set_rules('meta', 'Теги', 'required');
-            $this->form_validation->set_rules('address', 'Адрес', 'required');
-        
+                    
             if ($this->form_validation->run() === false) 
             {
                 $data['user_name'] = $_SESSION['login'];
@@ -388,6 +387,25 @@ class Admin extends CI_Controller {
         }
     }
 
+    public function show_example($data = '', $id = '')
+    {
+        if ($this->_admin_access() === true)
+        {
+            $data['examples'] = $this->admin_model->get_example($id);
+            $data['user_name'] = $_SESSION['login'];
+            $data['page_name'] = 'Управление примерами работ';
+            $data['categories'] = $this->config->item("categories");
+            $data['method'] = 'show_example';
+            $data['table'] = 'example_works';
+
+            echo $this->twig->render('admin/all_examples_view', $data);
+        }
+        else
+        {
+            $this->login();
+        }
+    }
+
     public function add_example() 
     {
         if ($this->_admin_access() === true)
@@ -399,10 +417,10 @@ class Admin extends CI_Controller {
             $data['user_name'] = $_SESSION['login'];
         
             $this->form_validation->set_rules('category', 'category', 'required');
-            $this->form_validation->set_rules('text', 'text', 'required');
+            $this->form_validation->set_rules('text', 'text', 'trim|required');
             $this->form_validation->set_rules('foto_before', 'foto_before', 'required');
             $this->form_validation->set_rules('foto_after', 'foto_after', 'required');
-            $this->form_validation->set_rules('additionally', 'additionally', 'required');            
+            $this->form_validation->set_rules('additionally', 'additionally', 'trim|required');            
         
             if ($this->form_validation->run() === false) 
             {
@@ -416,7 +434,7 @@ class Admin extends CI_Controller {
             {
                 $this->admin_model->create_example();
                 $data['page_name'] = 'Просмотр примеров работ';
-                echo $this->twig->render('admin/all_examples_view', $data); 
+                $this->show_example(); 
             }
         }
         
@@ -521,7 +539,6 @@ class Admin extends CI_Controller {
             //$data['orders'] = $this->admin_model->get_orders('4');
 
             $data['user'] = $this->user_model->get_user_info($id);
-
             $data['method'] = 'index';
             $data['table1'] = 'order_for_assessment';
             $data['table2'] = 'comments';

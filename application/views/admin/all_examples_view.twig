@@ -16,7 +16,7 @@
 <section id="main" class="column">
 <h4 class="alert_info">{% if error is defined %} {{ 'Ошибка: ' }} {{ error }} {% elseif info is defined %} {{ info }} {% else %} {{ 'Информация' }} {% endif %}</h4>
 <article class="module width_full">
-	<header><h3 class="tabs_involved" align="center">Все страницы</h3>	</header>
+	<header><h3 class="tabs_involved" align="center">Все примеры</h3>	</header>
 
 	<div class="tab_container height_full">
 		<table class="tablesorter height_full" cellspacing="0"> 
@@ -24,24 +24,20 @@
 			<tr> 
 				<th></th> 
 				<th>Категория</th> 
-				<th>Заголовок</th> 
-				<th>Дата создания</th>
-				<th>Статус</th>
+				<th>Дополнительно</th>
 				<th>Действия</th> 
 			</tr>
 		</thead> 
 		<tbody>
-			{% for article in articles %} 
+			{% for example in examples %} 
 			<tr> 
 				<td><input type="checkbox"></td> 
-				<td>{{article.category}}</td>
-				<td>{{article.title}}</td> 
-				<td>{{article.content_created}}</td>
-				<td>{{article.status}}</td> 
+				<td>{{categories[example.category]}}</td>
+				<td>{{example.additionally}}</td> 
 				<td>
-					<a href="{{ base_url() }}news/index/{{article.id}}"><img src="{{ base_url() }}assets/img/admin/icn_photo.png" title="Просмотреть"></a>
-					<a href="{{ base_url() }}admin/edit_article/{{article.id}}"><img src="{{ base_url() }}assets/img/admin/icn_edit.png" title="Редактировать"></a>
-					<a href="{{ base_url() }}admin/delete_item/{{method}}/{{table}}/{{article.id}}"><img src="{{ base_url() }}assets/img/admin/icn_trash.png" title="Удалить"></a>
+					<a href="{{ base_url() }}main/examples/{{example.id}}"><img src="{{ base_url() }}assets/img/admin/icn_photo.png" title="Просмотреть"></a>
+					<a href="{{ base_url() }}admin/edit_example/{{example.id}}"><img src="{{ base_url() }}assets/img/admin/icn_edit.png" title="Редактировать"></a>
+					<a href="{{ base_url() }}admin/delete_item/{{method}}/{{table}}/{{example.id}}"><img src="{{ base_url() }}assets/img/admin/icn_trash.png" title="Удалить"></a>
 				</td> 
 			</tr>
 			{% endfor %}  
