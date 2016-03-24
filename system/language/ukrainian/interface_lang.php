@@ -13,6 +13,7 @@ $lang['Menu_example'] = "Приклади робіт";
 $lang['Menu_education'] = "Навчання";
 $lang['Menu_rent'] = "Оренда обладнання";
 $lang['Menu_evaluation'] = "Оцінити вм'ятину";
+$lang['Menu_shop'] = "Магазин";
 $lang['Menu_reviews'] = "Відгуки";
 $lang['Menu_contacts'] = "Контакти";
 

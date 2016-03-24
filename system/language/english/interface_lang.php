@@ -13,6 +13,7 @@ $lang['Menu_example'] = "Examples of works";
 $lang['Menu_education'] = "Education";
 $lang['Menu_rent'] = "Rental equipment";
 $lang['Menu_evaluation'] = "Rate dent";
+$lang['Menu_shop'] = "Shop";
 $lang['Menu_reviews'] = "Reviews";
 $lang['Menu_contacts'] = "Contact";
 

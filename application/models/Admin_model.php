@@ -200,12 +200,12 @@ class Admin_model extends CI_Model {
 			$query = $this->db->get('Content')->row_array();
 		}
 		
-		else {
+		else 
+		{
 			$query = $this->db->get('Content')->result_array();
-			}
+		}
 
 		return $query;
-
 	}
 
 }

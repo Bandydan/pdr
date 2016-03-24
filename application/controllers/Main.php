@@ -133,6 +133,7 @@ class Main extends CI_Controller {
         $data['Menu_education'] = $this->lang->line('Menu_education');
         $data['Menu_rent'] = $this->lang->line('Menu_rent');
         $data['Menu_evaluation'] = $this->lang->line('Menu_evaluation');
+        $data['Menu_shop'] = $this->lang->line('Menu_shop');
         $data['Menu_reviews'] = $this->lang->line('Menu_reviews');
         $data['Menu_contacts'] = $this->lang->line('Menu_contacts');
 
