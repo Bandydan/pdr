@@ -108,9 +108,9 @@ body {
 }
 .siteNav li a{
     display: block;
-    padding: 0.8vw;
+    padding: 0.6vw;
     text-decoration: none;
-    color:#fff;
+    color:#000000;
 }
 .siteNav li a:hover{
     /*background-color: rgba(255,255,255,.3);
@@ -161,8 +161,8 @@ body {
 .firstSection .secSiteNav li a{
     display: block;
     height: 55px;
-    line-height: 2vw;
-    padding-top: 0.9vw;
+    line-height: 1.9vw;
+    padding-top: 0.5vw;
     text-decoration: none;
     color:#1F1F20;
     background-color: #DEDEE1;

@@ -10,8 +10,8 @@ $lang['Header_coll'] = "Замовіти дзвіночок";
 // menu
 $lang['Menu_main'] = "Головна";
 $lang['Menu_example'] = "Приклади робіт";
-$lang['Menu_education'] = "Навчання";
-$lang['Menu_rent'] = "Оренда обладнання";
+$lang['Menu_education'] = "Навчання видаленню вм'ятин";
+$lang['Menu_rent'] = "Інструменти";
 $lang['Menu_evaluation'] = "Оцінити вм'ятину";
 $lang['Menu_shop'] = "Магазин";
 $lang['Menu_reviews'] = "Відгуки";

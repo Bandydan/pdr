@@ -49,9 +49,9 @@
                     </div>
                     <div class="col-xs-3">
                     <div class="language">
-                            <a href="?lang=ru">Русский</a>
-                            <a href="?lang=uk">Українська</a>
-                            <a href="?lang=en">English</a> <!-- ?lang=en -->
+                            <a href="?lang=ru">Рус </a>|
+                            <a href="?lang=uk"> Укр </a>|
+                            <a href="?lang=en">Eng</a> <!-- ?lang=en -->
                         </div>
                         <div class="regist">
                             <a href="{{ base_url() }}login">{{Header_entrance}}</a>
@@ -74,28 +74,38 @@
                             <nav class="nav">
                                 <ul class="siteNav">
                                     <li>
-                                        <a href="{{ base_url() }}">{{ Menu_main }}</a>
+                                        <a href="{{ base_url() }}">{{main_menu.Menu_main}}</a>
+                                    </li>
+                                    
+                                    <li class="dropdown">
+                                        <a id="drop1" href="{{ base_url() }}main/examples" class="dropdown-toggle" data-toggle="dropdown">
+                                            {{main_menu.Menu_example}}
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            {% for cat in examp_cat %}
+                                                <li style="font-size: 12px;">
+                                                    <a href="{{ base_url() }}main/examples/{{ loop.index }}">{{ cat }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
                                     </li>
                                     <li>
-                                        <a href="{{ base_url() }}main/examples">{{Menu_example}}</a>
+                                        <a href="{{ base_url() }}main/education">{{main_menu.Menu_education}}</a>
                                     </li>
                                     <li>
-                                        <a href="{{ base_url() }}main/education">{{Menu_education}}</a>
+                                        <a href="#">{{main_menu.Menu_rent}}</a>
                                     </li>
                                     <li>
-                                        <a href="#">{{Menu_rent}}</a>
+                                        <a href="#">{{main_menu.Menu_evaluation}}</a>
                                     </li>
                                     <li>
-                                        <a href="#">{{Menu_evaluation}}</a>
+                                        <a href="#">{{main_menu.Menu_reviews}}</a>
                                     </li>
                                     <li>
-                                        <a href="#">{{Menu_reviews}}</a>
+                                        <a href="{{ base_url() }}main/contact">{{main_menu.Menu_contacts}}</a>
                                     </li>
                                     <li>
-                                        <a href="#">{{Menu_shop}}</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ base_url() }}main/contact">{{Menu_contacts}}</a>
+                                        <a href="#">{{main_menu.Menu_shop}}</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -108,12 +118,15 @@
 
 {% endblock %}
 
-{% block nav %}
-    <section class="firstSection">
-    <div class="container">
-        <div class="row">
-            <div class="hidden-xs-down hidden-sm-down col-md-4 col-lg-3 col-xl-3 sidebar">
+{% block section  %}
+        <section class="firstSection">
+            <div class="container">
+                <div class="row">
+                    
+{% endblock %}
 
+{% block nav %}
+<div class="hidden-xs-down hidden-sm-down col-md-4 col-lg-3 col-xl-3 sidebar">
     <nav class="secNav">
         <ul class="secSiteNav">
             {% for cat in examp_cat %}

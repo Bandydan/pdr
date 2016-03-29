@@ -10,8 +10,8 @@ $lang['Header_coll'] = "Call me";
 // menu
 $lang['Menu_main'] = "Home";
 $lang['Menu_example'] = "Examples of works";
-$lang['Menu_education'] = "Education";
-$lang['Menu_rent'] = "Rental equipment";
+$lang['Menu_education'] = "Education removing dents";
+$lang['Menu_rent'] = "Tools";
 $lang['Menu_evaluation'] = "Rate dent";
 $lang['Menu_shop'] = "Shop";
 $lang['Menu_reviews'] = "Reviews";

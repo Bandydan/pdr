@@ -8,23 +8,27 @@
 {{parent()}}
 {% endblock %}
 
-{% block nav %}
+{% block section %}
 {{parent()}}
+{% endblock %}
+
+{% block nav %}
+
 {% endblock %}
 
 {% block content %}
 
         <div class="advertising"></div></div>
-            <div class="col-md-8 col-lg-9 col-xl-9 main">
-
-                {% for item in examples %}
-                    <!-- <img src="img/example/after/1_0.jpg" class="img-responsive">  -->
-                    <!-- для примера, в будующем нужно уточнить какое фото будет выводиться -->
-                    <img src="{{item.photo_after.0}}" class="img-fluid">
-                    <h3>{{ cat[item.category] }}</h3>
-                    <p>{{ item.about }}</p>
-                {% endfor %}
-
+            <div class="col-md-12 col-lg-12 col-xl-12 main">
+                <img src="{{examples.0.photo_after.0}}" class="img-fluid">
+                <h3>{{cat[examples.0.category]}}</h3>
+                <p>{{examples.0.about}}</p>
+                
+                <h3>Видео для сайта</h3>
+                <div class="embed-responsive embed-responsive-16by9 col-md-12 col-lg-12 col-xl-12">
+                    <iframe class="embed-responsive-item" width="854" height="480" 
+                    src="https://www.youtube.com/embed/bvTD2skPnN4"></iframe>
+                </div>
             </div>
         </div>
     </div>

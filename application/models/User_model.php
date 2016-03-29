@@ -34,7 +34,7 @@ class User_model extends CI_Model {
 	public function create_user($data) 
 	{
 		$car = NULL;
-		if ($data['ManufactureName'] !== '--') 
+		if ($data['ManufactureName'] !== '') 
 		{
 			$car = $data['ModelName'];
 		}

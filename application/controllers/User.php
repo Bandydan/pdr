@@ -22,8 +22,6 @@ class User extends CI_Controller {
 		$this->load->helper('security');
 
 		$this->load->helper('language');
-        $this->load->helper('url');
-        $this->load->helper('cookie');	
 	}
 	
 	
@@ -47,7 +45,7 @@ class User extends CI_Controller {
 		$data['marks'] = $this->admin_model->get_marks();
 		$data['title'] = 'Garage - Регистрация';
 
-		//$data = $main->language();
+		$data = $this->_language();
 		
 		// set validation rules
 		$this->form_validation->set_rules('login', 'Логин', 'trim|required|alpha_numeric|min_length[3]|is_unique[users.login]|xss_clean', array('is_unique' => 'Этот логин уже занят. Пожалуйста введите другой.'));
@@ -113,6 +111,7 @@ class User extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$data['title'] = 'Garage - Авторизация';
+		$data = $this->_language();
 		
 		// set validation rules
 		$this->form_validation->set_rules('login', 'Login', 'required|alpha_numeric|xss_clean');
@@ -189,4 +188,46 @@ class User extends CI_Controller {
 			redirect('/');
 		}	
 	}
+
+	public function _language()
+    {
+        if (!($userLang = $this->session->userdata('language'))) 
+        {
+            $this->session->set_userdata('language', 'russian');
+        }
+
+        $lang = $this->input->get('lang');
+        switch ($lang) {
+            case 'en':
+                $userLang = 'english';
+                break;
+            case 'uk':
+                $userLang = 'ukrainian';
+                break;
+
+            case 'ru':
+                $userLang = 'russian';
+                break;
+        }
+
+        $this->session->set_userdata('language', $userLang);
+        $this->lang->load('interface', $userLang);
+
+        $data['Header_entrance'] = $this->lang->line('Header_entrance');
+        $data['Header_exit'] = $this->lang->line('Header_exit');
+        $data['Header_registration'] = $this->lang->line('Header_registration');
+        $data['Header_coll'] = $this->lang->line('Header_coll');
+
+        $data['main_menu'] = array(
+    						'Menu_main' => $this->lang->line('Menu_main'),
+    						'Menu_example' => $this->lang->line('Menu_example'),
+    						'Menu_education' => $this->lang->line('Menu_education'),
+    						'Menu_rent' => $this->lang->line('Menu_rent'),
+    						'Menu_evaluation' => $this->lang->line('Menu_evaluation'),
+    						'Menu_shop' => $this->lang->line('Menu_shop'),
+    						'Menu_reviews' => $this->lang->line('Menu_reviews'),
+    						'Menu_contacts' => $this->lang->line('Menu_contacts'),
+    						);
+        return $data;
+    }
 }

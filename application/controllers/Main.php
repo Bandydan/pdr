@@ -20,9 +20,9 @@ class Main extends CI_Controller {
     //Start page
     public function index()
     {
-        $data = $this->language();
+        $data = $this->_language();
 
-        $id = rand(1, 9);
+        $id = '1';
 
         $data['title'] = 'Garage - Удаление вмятин без покраски';
         $data['examples'] = $this->examples_model->get_examples($id);
@@ -34,7 +34,7 @@ class Main extends CI_Controller {
     //Example page
     public function examples($id = 0, $offset='')
     {
-        $data = $this->language();
+        $data = $this->_language();
         $data['title'] = 'Garage - Примеры работ';
 
         if($id != 0)
@@ -75,7 +75,7 @@ class Main extends CI_Controller {
     //Education page
     public function education()
     {
-        $data = $this->language();
+        $data = $this->_language();
         $data['title'] = 'Обучение';
         $data['cat'] = $this->config->item('categories');
 
@@ -85,17 +85,18 @@ class Main extends CI_Controller {
     //Contact page
     public function contact()
     {
-        $data = $this->language();
+        $data = $this->_language();
         $data['title'] = 'Garage - Контакты';
         $data['cat'] = $this->config->item('categories');
 
         echo $this->twig->render('contact_view', $data);
     }
 
-    public function language()
+    public function _language()
     {
         // read language from session
-        if (!($userLang = $this->session->userdata('language'))) {
+        if (!($userLang = $this->session->userdata('language'))) 
+        {
             $this->session->set_userdata('language', 'russian');
         }
 
@@ -128,14 +129,25 @@ class Main extends CI_Controller {
         $data['Header_registration'] = $this->lang->line('Header_registration');
         $data['Header_coll'] = $this->lang->line('Header_coll');
 
-        $data['Menu_main'] = $this->lang->line('Menu_main');
-        $data['Menu_example'] = $this->lang->line('Menu_example');
-        $data['Menu_education'] = $this->lang->line('Menu_education');
-        $data['Menu_rent'] = $this->lang->line('Menu_rent');
-        $data['Menu_evaluation'] = $this->lang->line('Menu_evaluation');
-        $data['Menu_shop'] = $this->lang->line('Menu_shop');
-        $data['Menu_reviews'] = $this->lang->line('Menu_reviews');
-        $data['Menu_contacts'] = $this->lang->line('Menu_contacts');
+        // $data['Menu_main'] = $this->lang->line('Menu_main');
+        // $data['Menu_example'] = $this->lang->line('Menu_example');
+        // $data['Menu_education'] = $this->lang->line('Menu_education');
+        // $data['Menu_rent'] = $this->lang->line('Menu_rent');
+        // $data['Menu_evaluation'] = $this->lang->line('Menu_evaluation');
+        // $data['Menu_shop'] = $this->lang->line('Menu_shop');
+        // $data['Menu_reviews'] = $this->lang->line('Menu_reviews');
+        // $data['Menu_contacts'] = $this->lang->line('Menu_contacts');
+        
+        $data['main_menu'] = array(
+                    'Menu_main' => $this->lang->line('Menu_main'),
+                    'Menu_example' => $this->lang->line('Menu_example'),
+                    'Menu_education' => $this->lang->line('Menu_education'),
+                    'Menu_rent' => $this->lang->line('Menu_rent'),
+                    'Menu_evaluation' => $this->lang->line('Menu_evaluation'),
+                    'Menu_shop' => $this->lang->line('Menu_shop'),
+                    'Menu_reviews' => $this->lang->line('Menu_reviews'),
+                    'Menu_contacts' => $this->lang->line('Menu_contacts'),
+                    );
 
         // $data['LM_pdr'] = $this->lang->line('LM_pdr');
         // $data['LM_pol'] = $this->lang->line('LM_pol');
