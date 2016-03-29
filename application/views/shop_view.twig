@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/css/shop.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/css/main.css">
+    <link rel="stylesheet" href="{{ base_url() }}assets/css/bootstrap.min.css">
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ base_url() }}assets/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="row hedFirstRow">
+                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                    <a href="{{ base_url() }}"><img src="{{ base_url() }}assets/img/logo.png" class="img-fluid"></a>
+                    <a href="{{ base_url() }}news"><img src="{{ base_url() }}assets/img/NEWS.gif" style="height:70px; width:70px"></a>
+                </div>
+                <div class="hidden-xs col-sm-6 col-md-6 col-lg-6">
+                    <div class="wrapImg">
+                        <img src="{{ base_url() }}img/example/after/1_0.jpg" class="img-fluid"> <!-- для примера, в будующем нужно уточнить какое фото будет выводиться -->
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                    <div class="regist">
+                        <a href="{{ base_url() }}login">Вход</a>
+                        <a href="{{ base_url() }}register">Регистрация</a>
+                    </div>  
+                    <div class="callBack">
+                        <a href="#">Заказать звонок<img src="{{ base_url() }}assets/img/callback.png" class="img-fluid"></a>
+                    </div>
+                    <div class="info">
+                        <p>тел. (057)000-00-00</p>
+                        <p>моб. (057)000-00-00</p>
+                        <p>моб. (057)000-00-00</p>
+                    </div>
+                    <div class="callBack">
+                        <a href="{{ base_url() }}shop"><img src="{{base_url() }}assets/img/shopping-cart.png" style="height:70px; width:100px"/></a>
+                    </div>  
+                </div>
+            </div>
+            <div class="row hedSecRow">
+                <div class="navbar">
+                    <div class="navbar-header">
+                        <button type="button" data-target="#navCollapse" data-toggle="collapse" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <div id="navCollapse" class="collapse navbar-collapse nav-pills">
+                        <ul class="siteNav nav-pills">
+                            <li>
+                                <a href="{{ base_url() }}">{{Menu_main}}</a>
+                            </li>
+                            <li>
+                                <a href="{{ base_url() }}main/examples">{{Menu_example}}</a>
+                            </li>
+                            <li>
+                                <a href="{{ base_url() }}main/education">{{Menu_education}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{Menu_rent}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{Menu_evaluation}}</a>
+                            </li>
+                            <li>
+                                <a href="{{ base_url() }}shop">{{Menu_shop}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{Menu_reviews}}</a>
+                            </li>
+                            <li>
+                                <a href="{{ base_url() }}main/contact">{{Menu_contacts}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </header>
+
+    <section class="firstSection">
+        <div class="container">
+            <div class="row">
+                <div class="hidden-xs col-sm-3 col-md-3 col-lg-3 sidebar">
+                    {{ error }}
+                        <nav class="secNav">
+                            <ul class="secSiteNav">
+                                <li>
+                                    <a href="{{ base_url() }}main/examples/">Коврики</a>
+                                </li>
+                                <li>
+                                    <a href="{{ base_url() }}main/examples/">Дворники</a>
+                                </li>
+                                <li>
+                                    <a href="{{ base_url() }}main/examples/">Освежители</a>
+                                </li>
+                                <li>
+                                    <a href="{{ base_url() }}main/examples/">Коврики</a>
+                                </li>
+                                <li>
+                                    <a href="{{ base_url() }}main/examples/">Омывайки</a>
+                                </li>
+                                <li>
+                                    <a href="{{ base_url() }}main/examples/">Резина</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                    <div class="advertising"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 main">
+                    <div id="products_e" align="center">
+                        <h3 >Популярные товары</h3>
+                        <div id='product_div' class="col-xs-9 col-sm-9 col-md-9 col-lg-9 main"> 
+                        {{ form_open ('') }} 
+                            <div id='image_div'>
+                                <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
+                            </div>
+                            <div id='info_product'>
+                                <div id='name'>name</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'><b>Price</b>:<big style="color:green">$</big></div>
+                                <div id='add_button'>
+                                    <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
+                                    <input type="submit" value="Купить в один клик" class="alt_btn">
+                                </div>
+                            </div>
+                        </div>
+                        <div id='product_div'>  
+                            <div id='image_div'>
+                                <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
+                            </div>
+                            <div id='info_product'>
+                                <div id='name'>name</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'><b>Price</b>:<big style="color:green">$</big></div>
+                                <div id='add_button'>
+                                    <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
+                                    <input type="submit" value="Купить в один клик" class="alt_btn">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id='product_div'>  
+                            <div id='image_div'>
+                                <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
+                            </div>
+                            <div id='info_product'>
+                                <div id='name'>name</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'><b>Price</b>:<big style="color:green">$</big></div>
+                                <div id='add_button'>
+                                    <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
+                                    <input type="submit" value="Купить в один клик" class="alt_btn">
+                                </div>
+                            </div>
+                        </div>
+                        <div id='product_div'>  
+                            <div id='image_div'>
+                                <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
+                            </div>
+                            <div id='info_product'>
+                                <div id='name'>name</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'><b>Price</b>:<big style="color:green">$</big></div>
+                                <div id='add_button'>
+                                    <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
+                                    <input type="submit" value="Купить в один клик" class="alt_btn">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id='product_div'>  
+                            <div id='image_div'>
+                                <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
+                            </div>
+                            <div id='info_product'>
+                                <div id='name'>name</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'><b>Price</b>:<big style="color:green">$</big></div>
+                                <div id='add_button'>
+                                    <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
+                                    <input type="submit" value="Купить в один клик" class="alt_btn">
+                                </div>
+                            </div>
+                        </div>
+                        <div id='product_div'>  
+                            <div id='image_div'>
+                                <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
+                            </div>
+                            <div id='info_product'>
+                                <div id='name'>name</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'>description</div>
+                                <div id='desc'><b>Price</b>:<big style="color:green">$</big></div>
+                                <div id='add_button'>
+                                    <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
+                                    <input type="submit" value="Купить в один клик" class="alt_btn">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <p>Командос!</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

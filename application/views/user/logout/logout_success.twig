@@ -5,78 +5,12 @@
 {% endblock %}
 
 {% block header %}
-</head>
-<body>
-    <div class="myMain">
-        <header class="header">
-            <div class="container">
-                <div class="row hedFirstRow">
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <a href="{{ base_url() }}"><img src="{{ base_url() }}assets/img/logo.png" class="img-responsive"></a>
-                        <a href="{{ base_url() }}news"><img src="{{ base_url() }}assets/img/NEWS.gif" style="height:70px; width:70px"></a>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <div class="wrapImg">
-                            <img src="{{ base_url() }}img/example/after/1_0.jpg" class="img-responsive"> <!-- для примера, в будующем нужно уточнить какое фото будет выводиться -->
-                        </div>
-                    </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <div class="regist">
-                            <a href="{{ base_url() }}login">Вход</a>
-                            <a href="{{ base_url() }}register">Регистрация</a>
-                        </div>  
-                        <div class="callBack">
-                            <a href="#">Заказать звонок
-                                <img src="{{ base_url() }}assets/img/callback.png" class="img-responsive"></a>
-                            </div>
-                            <div class="info">
-                                <p>тел. (057)000-00-00</p>
-                                <p>моб. (057)000-00-00</p>
-                                <p>моб. (057)000-00-00</p>
-
-                            </div>  
-                        </div>
-                    </div>
-                    <div class="row hedSecRow">
-                        <div class="hidden-xs col-sm-12 col-md-12 col-lg-12">
-                            <nav class="nav">
-                                <ul class="siteNav">
-                                    <li>
-                                        <a href="{{ base_url() }}">Главная</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ base_url() }}examples/paginate">Примеры работ</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ base_url() }}education">Обучение</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Аренда оборудования</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Оценить вмятину</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Отзывы</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ base_url() }}contact">Контакты</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            <section class="firstSection">
-    		<div class="container">
-        		<div class="row">
-{% endblock %}
-
-{% block nav %}
+{{parent()}}
 {% endblock %}
 
 {% block content %}
+</div>
+    </div>
 
 <div class="container">
 	<div class="row">

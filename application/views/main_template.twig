@@ -9,17 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
     <link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/css/main.css">
-    <link rel="stylesheet" type="text/css" href="{{ base_url() }}/assets/libs/slick/slick-theme.css"/>
-    <link rel="stylesheet" href="{{ base_url() }}/assets/libs/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/libs/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="{{ base_url() }}assets/libs/slick/slick.css">
     <link rel="stylesheet" href="{{ base_url() }}assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ base_url() }}assets/css/bootstrap.min.css.map">
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 
-    <script src="{{ base_url() }}/assets/js/jquery-1.11.3.js"></script>
+    <script src="{{ base_url() }}assets/js/jquery-1.11.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
+    
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-    <script src="{{ base_url() }}/assets/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{ base_url() }}/assets/libs/slick/slick.min.js"></script>
-
-    <script src="{{ base_url() }}/assets/js/common.js"></script>
+    <script src="{{ base_url() }}assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ base_url() }}assets/libs/slick/slick.min.js"></script>
+    <script src="{{ base_url() }}assets/js/common.js"></script>
 
 {% endblock %}
 
@@ -30,9 +32,9 @@
         <header class="header">
             <div class="container">
                 <div class="row hedFirstRow">
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="col-xs-3">
                         <a href="{{ base_url() }}">
-                            <img src="{{ base_url() }}assets/img/logo.png" class="img-responsive">
+                            <img src="{{ base_url() }}assets/img/logo.png" class="img-fluid">
                         </a>
                         <div class="news">
                             <a href="{{ base_url() }}news">
@@ -40,16 +42,16 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-xs-6">
                         <div class="wrapImg">
-                            <img src="{{ base_url() }}img/example/after/1_0.jpg" class="img-responsive"> <!-- для примера, в будующем нужно уточнить какое фото будет выводиться -->
+                            <img src="{{ base_url() }}img/example/after/1_0.jpg" class="img-fluid"> <!-- для примера, в будующем нужно уточнить какое фото будет выводиться -->
                         </div>
                     </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="col-xs-3">
                     <div class="language">
-                            <a href="?lang=ru">Русский</a>
-                            <a href="?lang=uk">Українська</a>
-                            <a href="?lang=en">English</a> <!-- ?lang=en -->
+                            <a href="?lang=ru">Рус </a>|
+                            <a href="?lang=uk"> Укр </a>|
+                            <a href="?lang=en">Eng</a> <!-- ?lang=en -->
                         </div>
                         <div class="regist">
                             <a href="{{ base_url() }}login">{{Header_entrance}}</a>
@@ -57,7 +59,7 @@
                         </div>
                         <div class="callBack">
                             <a href="#">{{Header_coll}}
-                                <img src="{{ base_url() }}assets/img/callback.png" class="img-responsive"></a>
+                                <img src="{{ base_url() }}assets/img/callback.png" class="img-fluid"></a>
                             </div>
                             <div class="info">
                                 <p>тел. (057)000-00-00</p>
@@ -68,29 +70,42 @@
                         </div>
                     </div>
                     <div class="row hedSecRow">
-                        <div class="hidden-xs col-sm-12 col-md-12 col-lg-12">
+                        <div class="hidden-xs-down">
                             <nav class="nav">
                                 <ul class="siteNav">
                                     <li>
-                                        <a href="{{ base_url() }}">{{ Menu_main }}</a>
+                                        <a href="{{ base_url() }}">{{main_menu.Menu_main}}</a>
+                                    </li>
+                                    
+                                    <li class="dropdown">
+                                        <a id="drop1" href="{{ base_url() }}main/examples" class="dropdown-toggle" data-toggle="dropdown">
+                                            {{main_menu.Menu_example}}
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            {% for cat in examp_cat %}
+                                                <li style="font-size: 12px;">
+                                                    <a href="{{ base_url() }}main/examples/{{ loop.index }}">{{ cat }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
                                     </li>
                                     <li>
-                                        <a href="{{ base_url() }}main/examples">{{Menu_example}}</a>
+                                        <a href="{{ base_url() }}main/education">{{main_menu.Menu_education}}</a>
                                     </li>
                                     <li>
-                                        <a href="{{ base_url() }}main/education">{{Menu_education}}</a>
+                                        <a href="#">{{main_menu.Menu_rent}}</a>
                                     </li>
                                     <li>
-                                        <a href="#">{{Menu_rent}}</a>
+                                        <a href="#">{{main_menu.Menu_evaluation}}</a>
                                     </li>
                                     <li>
-                                        <a href="#">{{Menu_evaluation}}</a>
+                                        <a href="#">{{main_menu.Menu_reviews}}</a>
                                     </li>
                                     <li>
-                                        <a href="#">{{Menu_reviews}}</a>
+                                        <a href="{{ base_url() }}main/contact">{{main_menu.Menu_contacts}}</a>
                                     </li>
                                     <li>
-                                        <a href="{{ base_url() }}main/contact">{{Menu_contacts}}</a>
+                                        <a href="#">{{main_menu.Menu_shop}}</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -99,39 +114,26 @@
                 </div>
             </header>
 
-<section class="firstSection">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar">
                 {{ error }}
 
 {% endblock %}
 
-{% block nav %}
+{% block section  %}
+        <section class="firstSection">
+            <div class="container">
+                <div class="row">
+                    
+{% endblock %}
 
+{% block nav %}
+<div class="hidden-xs-down hidden-sm-down col-md-4 col-lg-3 col-xl-3 sidebar">
     <nav class="secNav">
         <ul class="secSiteNav">
-            <li>
-                <a href="{{ base_url() }}main/examples/1">{{ LM_pdr }}</a>
-            </li>
-            <li>
-                <a href="{{ base_url() }}main/examples/2">{{ LM_pol }}</a>
-            </li>
-            <li>
-                <a href="{{ base_url() }}main/examples/3">{{ LM_brn }}</a>
-            </li>
-            <li>
-                <a href="{{ base_url() }}main/examples/4">{{ LM_chm }}</a>
-            </li>
-            <li>
-                <a href="{{ base_url() }}main/examples/5">{{ LM_gls }}</a>
-            </li>
-            <li>
-                <a href="{{ base_url() }}main/examples/6">{{ LM_atk }}</a>
-            </li>
-            <li>
-                <a href="{{ base_url() }}main/examples/7">{{ LM_pnt }}</a>
-            </li>
+            {% for cat in examp_cat %}
+                <li>
+                    <a href="{{ base_url() }}main/examples/{{ loop.index }}">{{ cat }}</a>
+                </li>
+            {% endfor %}
         </ul>
     </nav>
 
@@ -143,10 +145,10 @@
 
 {% block footer %}
 
-        <footer class="footer">
+        <footer class="footer container">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-xs-12">
                         <p>Командос!</p>
                     </div>
                 </div>

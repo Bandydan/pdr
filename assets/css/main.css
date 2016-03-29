@@ -92,9 +92,6 @@ body {
     padding-right: 0;
     margin-bottom: 10px;
 }
-.header .nav{
-
-}
 
 .siteNav{
     margin: 0;
@@ -111,9 +108,9 @@ body {
 }
 .siteNav li a{
     display: block;
-    padding: 15px 1.5vw;
+    padding: 0.6vw;
     text-decoration: none;
-    color:#fff;
+    color:#000000;
 }
 .siteNav li a:hover{
     /*background-color: rgba(255,255,255,.3);
@@ -164,7 +161,8 @@ body {
 .firstSection .secSiteNav li a{
     display: block;
     height: 55px;
-    line-height: 55px;
+    line-height: 1.9vw;
+    padding-top: 0.5vw;
     text-decoration: none;
     color:#1F1F20;
     background-color: #DEDEE1;
@@ -245,7 +243,7 @@ body {
     background-color: #DEDEE1;
     /*box-shadow: 0px 10px 0px 0px rgba(0,0,0,0.9);
     border-bottom: 10px solid #18D0F7;*/
-    color: #18D0F7;
+    color: #373a3c;
     font-size: 12px;
     text-align: center;
 }
@@ -266,7 +264,7 @@ body {
 }
 
 .form-control-select{
-    width: 20%;
+    width: 32%;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;

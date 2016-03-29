@@ -1,0 +1,123 @@
+
+#result_div {
+    background-color: #FFF;
+    width: 640px;
+    height: 175px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-left: 445px;
+    margin-top: 300px;
+}
+#products_e{
+    background-color: #FFFFFF;
+    width: 100%;
+    margin-top: 1%;
+    margin-left: 3%;
+
+}
+#cart{
+    width:979px;
+    height:auto;
+    margin-top: -20px;
+    position:relative;
+    background-color:#FFFFFF;
+}
+
+#product_div{
+    width: 30%;
+    background: #fff;
+    float: left;
+    padding: 5px;
+    margin: 1%;
+    border: 1px solid #E0E0E0;
+
+}
+div#image_div {
+    width: 46%;
+    height: 30%;
+
+}
+div#info_product {
+    height: 40%;
+}
+tr {
+    background: white;
+}
+#bill_info{
+    background-color:#FFF;
+    width:640px;
+    margin:0 auto;
+    margin-bottom:10px;
+}
+
+div#text {
+    color: #08BBB7;
+    margin-left: 255px;
+    margin-top: -19px;
+    margin-bottom: 10;
+    font-family: 'Raleway', sans-serif;
+}
+
+#heading{
+    padding-bottom:10px
+}
+
+#main_heading{
+    font-weight:bold;
+    bgcolor:#FFFFFF;
+}
+div#name {
+font-weight: 700;
+font-size: 17px;
+margin-bottom: 2px;
+}
+div#desc {
+font-size: 15px;
+margin-bottom: 2px;
+min-height: 20px;
+line-height: 1.4;
+}
+div#add_button {
+margin-top: 3%;
+}
+span#go_back {
+margin-left: 245px;
+}
+
+.fg-button{
+position: relative;
+top: 0;
+border-radius: 4;
+font-size: 18px;
+padding: 8px 28px;
+text-decoration: none;
+border: 0px solid;
+cursor: pointer;
+border-bottom-width: 3px;
+outline: none;
+-webkit-transition: 0.3s background;
+-moz-transition: 0.3s background;
+transition: 0.3s background;
+}
+
+.fg-button:active{
+top: 2px;
+}
+
+
+.fg-button.teal{
+color: #fff;
+border-color: #04A5A1;
+background-color:#08BBB7;
+}
+
+.fg-button.teal:hover{
+background: #0ACFCB;
+}
+
+
+.fg-button.teal:active{
+background: #09cbc7;
+top: 2px;
+border-bottom-width: 1px;
+}

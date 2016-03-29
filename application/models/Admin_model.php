@@ -185,12 +185,12 @@ class Admin_model extends CI_Model {
 			$query = $this->db->get('example_works')->row_array();
 		}
 		
-		else {
+		else 
+		{
 			$query = $this->db->get('example_works')->result_array();
-			}
-
+		}
+		
 		return $query;
-
 	}
 
 }

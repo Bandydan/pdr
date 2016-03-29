@@ -18,7 +18,10 @@ class User extends CI_Controller {
 	{	
 		parent::__construct();
 		$this->load->model('user_model');
-		$this->load->library('twig');	
+		$this->load->library('twig');
+		$this->load->helper('security');
+
+		$this->load->helper('language');
 	}
 	
 	
@@ -41,17 +44,20 @@ class User extends CI_Controller {
 		$data['models'] = $this->admin_model->get_cars();
 		$data['marks'] = $this->admin_model->get_marks();
 		$data['title'] = 'Garage - Регистрация';
+
+		$data = $this->_language();
 		
 		// set validation rules
-		$this->form_validation->set_rules('login', 'Логин', 'trim|required|alpha_numeric|min_length[3]|is_unique[users.login]', array('is_unique' => 'Этот логин уже занят. Пожалуйста введите другой.'));
-		$this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_numeric|min_length[2]');
-		$this->form_validation->set_rules('surname', 'Фамилия', 'trim|required|alpha_numeric|min_length[2]');
+		$this->form_validation->set_rules('login', 'Логин', 'trim|required|alpha_numeric|min_length[3]|is_unique[users.login]|xss_clean', array('is_unique' => 'Этот логин уже занят. Пожалуйста введите другой.'));
+		$this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_numeric|min_length[2]|xss_clean');
+		$this->form_validation->set_rules('surname', 'Фамилия', 'trim|required|alpha_numeric|min_length[2]|xss_clean');
 		$this->form_validation->set_rules('sex', 'Пол', 'required');
 		$this->form_validation->set_rules('birthsday', 'Дата рождения', 'trim|required');
-		$this->form_validation->set_rules('email', 'e-mail', 'trim|required|valid_email|is_unique[users.email]', array('is_unique' => 'Данный e-mail уже используется. Пожалуйста введите другой.'));
-		$this->form_validation->set_rules('tel', 'Телефон', 'trim|required|alpha_numeric|min_length[10]');
-		$this->form_validation->set_rules('password', 'Пароль', 'trim|required|min_length[6]');
-		$this->form_validation->set_rules('password_confirm', 'Подтверждение пароля', 'trim|required|min_length[6]|matches[password]');
+		$this->form_validation->set_rules('email', 'e-mail', 'trim|required|valid_email|is_unique[users.email]|xss_clean', array('is_unique' => 'Данный e-mail уже используется. Пожалуйста введите другой.'));
+		$this->form_validation->set_rules('tel', 'Телефон', 'trim|required|alpha_numeric|min_length[7]|max_length[7]|xss_clean');
+		$this->form_validation->set_rules('tel_prefix', 'Код', 'trim|required|alpha_numeric|min_length[5]|max_length[5]');
+		$this->form_validation->set_rules('password', 'Пароль', 'trim|required|min_length[6]|xss_clean');
+		$this->form_validation->set_rules('password_confirm', 'Подтверждение пароля', 'trim|required|min_length[6]|matches[password]|xss_clean');
 
 		if ($this->form_validation->run() === false) 
 		{
@@ -63,7 +69,7 @@ class User extends CI_Controller {
 			
 			echo $this->twig->render('user/register/register', $data);	
 		}
-		elseif (($this->input->post('ManufactureName') !== null AND $this->input->post('ModelName') == null) OR ($this->input->post('ManufactureName') == null AND $this->input->post('car_year') !== null)) 
+		elseif (($this->input->post('ManufactureName') != null AND $this->input->post('ModelName') == null) OR ($this->input->post('ManufactureName') == null AND $this->input->post('car_year') != null)) 
 		{
 			$data['error'] = 'Проверьте правильность заполнения полей выбора авто.';
 			
@@ -77,6 +83,8 @@ class User extends CI_Controller {
 			if ($this->user_model->create_user($register)) 
 			{
 				// user creation ok
+				unset($_POST);
+
 				echo $this->twig->render('user/register/register_success', $data);	
 			} 
 			
@@ -103,10 +111,11 @@ class User extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$data['title'] = 'Garage - Авторизация';
+		$data = $this->_language();
 		
 		// set validation rules
-		$this->form_validation->set_rules('login', 'Login', 'required|alpha_numeric');
-		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('login', 'Login', 'required|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('password', 'Password', 'required|xss_clean');
 		
 		if ($this->form_validation->run() == false) 
 		{
@@ -179,4 +188,46 @@ class User extends CI_Controller {
 			redirect('/');
 		}	
 	}
+
+	public function _language()
+    {
+        if (!($userLang = $this->session->userdata('language'))) 
+        {
+            $this->session->set_userdata('language', 'russian');
+        }
+
+        $lang = $this->input->get('lang');
+        switch ($lang) {
+            case 'en':
+                $userLang = 'english';
+                break;
+            case 'uk':
+                $userLang = 'ukrainian';
+                break;
+
+            case 'ru':
+                $userLang = 'russian';
+                break;
+        }
+
+        $this->session->set_userdata('language', $userLang);
+        $this->lang->load('interface', $userLang);
+
+        $data['Header_entrance'] = $this->lang->line('Header_entrance');
+        $data['Header_exit'] = $this->lang->line('Header_exit');
+        $data['Header_registration'] = $this->lang->line('Header_registration');
+        $data['Header_coll'] = $this->lang->line('Header_coll');
+
+        $data['main_menu'] = array(
+    						'Menu_main' => $this->lang->line('Menu_main'),
+    						'Menu_example' => $this->lang->line('Menu_example'),
+    						'Menu_education' => $this->lang->line('Menu_education'),
+    						'Menu_rent' => $this->lang->line('Menu_rent'),
+    						'Menu_evaluation' => $this->lang->line('Menu_evaluation'),
+    						'Menu_shop' => $this->lang->line('Menu_shop'),
+    						'Menu_reviews' => $this->lang->line('Menu_reviews'),
+    						'Menu_contacts' => $this->lang->line('Menu_contacts'),
+    						);
+        return $data;
+    }
 }
