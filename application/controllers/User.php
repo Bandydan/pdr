@@ -18,7 +18,12 @@ class User extends CI_Controller {
 	{	
 		parent::__construct();
 		$this->load->model('user_model');
-		$this->load->library('twig');	
+		$this->load->library('twig');
+		$this->load->helper('security');
+
+		$this->load->helper('language');
+        $this->load->helper('url');
+        $this->load->helper('cookie');	
 	}
 	
 	
@@ -41,18 +46,20 @@ class User extends CI_Controller {
 		$data['models'] = $this->admin_model->get_cars();
 		$data['marks'] = $this->admin_model->get_marks();
 		$data['title'] = 'Garage - Регистрация';
+
+		//$data = $main->language();
 		
 		// set validation rules
-		$this->form_validation->set_rules('login', 'Логин', 'trim|required|alpha_numeric|min_length[3]|is_unique[users.login]', array('is_unique' => 'Этот логин уже занят. Пожалуйста введите другой.'));
-		$this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_numeric|min_length[2]');
-		$this->form_validation->set_rules('surname', 'Фамилия', 'trim|required|alpha_numeric|min_length[2]');
+		$this->form_validation->set_rules('login', 'Логин', 'trim|required|alpha_numeric|min_length[3]|is_unique[users.login]|xss_clean', array('is_unique' => 'Этот логин уже занят. Пожалуйста введите другой.'));
+		$this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_numeric|min_length[2]|xss_clean');
+		$this->form_validation->set_rules('surname', 'Фамилия', 'trim|required|alpha_numeric|min_length[2]|xss_clean');
 		$this->form_validation->set_rules('sex', 'Пол', 'required');
 		$this->form_validation->set_rules('birthsday', 'Дата рождения', 'trim|required');
-		$this->form_validation->set_rules('email', 'e-mail', 'trim|required|valid_email|is_unique[users.email]', array('is_unique' => 'Данный e-mail уже используется. Пожалуйста введите другой.'));
-		$this->form_validation->set_rules('tel', 'Телефон', 'trim|required|alpha_numeric|min_length[7]|max_length[7]');
+		$this->form_validation->set_rules('email', 'e-mail', 'trim|required|valid_email|is_unique[users.email]|xss_clean', array('is_unique' => 'Данный e-mail уже используется. Пожалуйста введите другой.'));
+		$this->form_validation->set_rules('tel', 'Телефон', 'trim|required|alpha_numeric|min_length[7]|max_length[7]|xss_clean');
 		$this->form_validation->set_rules('tel_prefix', 'Код', 'trim|required|alpha_numeric|min_length[5]|max_length[5]');
-		$this->form_validation->set_rules('password', 'Пароль', 'trim|required|min_length[6]');
-		$this->form_validation->set_rules('password_confirm', 'Подтверждение пароля', 'trim|required|min_length[6]|matches[password]');
+		$this->form_validation->set_rules('password', 'Пароль', 'trim|required|min_length[6]|xss_clean');
+		$this->form_validation->set_rules('password_confirm', 'Подтверждение пароля', 'trim|required|min_length[6]|matches[password]|xss_clean');
 
 		if ($this->form_validation->run() === false) 
 		{
@@ -108,8 +115,8 @@ class User extends CI_Controller {
 		$data['title'] = 'Garage - Авторизация';
 		
 		// set validation rules
-		$this->form_validation->set_rules('login', 'Login', 'required|alpha_numeric');
-		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('login', 'Login', 'required|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('password', 'Password', 'required|xss_clean');
 		
 		if ($this->form_validation->run() == false) 
 		{
