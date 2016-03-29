@@ -56,7 +56,7 @@ var config,
 
                                 var div = document.createElement('div');
                                 $(div).append($('<img />',{
-                                    class:'img-responsive',
+                                    class:'img-fluid',
                                     src: value,
                                 }));
                                 $(divSlider).append(div);

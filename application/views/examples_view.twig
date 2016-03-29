@@ -2,7 +2,7 @@
 
 {% block scripts %}
 {{parent()}}
-    <script type="text/javascript" src="{{ base_url() }}/assets/js/script.js"></script>
+    <script type="text/javascript" src="{{ base_url() }}assets/js/script.js"></script>
 {% endblock %}
 
 {% block header %}
@@ -23,18 +23,18 @@
                 <div class="wrapSlider">
                     <div class="slider">
                         <div>
-                            <img src="{{ item.photo_before.0 }}" class="img-responsive">
+                            <img src="{{ item.photo_before.0 }}" class="img-fluid">
                         </div>
 
                         <div>
-                            <img src="{{ item.photo_after.0 }}" class="img-responsive">
+                            <img src="{{ item.photo_after.0 }}" class="img-fluid">
                         </div>
 
                         <div>
-                            <img src="{{ item.photo_before.1 }}" class="img-responsive">
+                            <img src="{{ item.photo_before.1 }}" class="img-fluid">
                         </div>
                         <div>
-                            <img src="{{ item.photo_after.1 }}" class="img-responsive">
+                            <img src="{{ item.photo_after.1 }}" class="img-fluid">
                         </div>
                     </div>
                 </div>

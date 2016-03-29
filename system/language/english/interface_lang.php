@@ -25,5 +25,6 @@ $lang['LM_chm'] = "Dry cleaning";
 $lang['LM_gls'] = "Windshield repair";
 $lang['LM_atk'] = "Anticorrosion treatment";
 $lang['LM_pnt'] = "Auto Painting";
+$lang['LM_nvi'] = "Шумо- и виброизоляция авто";
 
 ?>

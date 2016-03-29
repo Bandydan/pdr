@@ -41,6 +41,7 @@ class User_model extends CI_Model {
 
 		$pass = $data['password'];
 		$data['avto_id'] = $car;
+		$data['tel'] = $data['tel_prefix'] . $data['tel'];
 		if (isset($data['user_rights']) AND isset($data['status'])) 
 		{
 			$status = $data['status'];
@@ -52,7 +53,7 @@ class User_model extends CI_Model {
 			$user_rights = $this->config->item('user_rights');
 		}
 		
-		unset($data['password'], $data['ManufactureName'], $data['ModelName'], $data['password_confirm'], $data['status'], $data['user_rights']);
+		unset($data['tel_prefix'], $data['password'], $data['ManufactureName'], $data['ModelName'], $data['password_confirm'], $data['status'], $data['user_rights']);
 
 		$this->db->insert('users', $data);
 		$insert_id = $this->db->insert_id();

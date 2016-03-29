@@ -49,7 +49,8 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('sex', 'Пол', 'required');
 		$this->form_validation->set_rules('birthsday', 'Дата рождения', 'trim|required');
 		$this->form_validation->set_rules('email', 'e-mail', 'trim|required|valid_email|is_unique[users.email]', array('is_unique' => 'Данный e-mail уже используется. Пожалуйста введите другой.'));
-		$this->form_validation->set_rules('tel', 'Телефон', 'trim|required|alpha_numeric|min_length[10]');
+		$this->form_validation->set_rules('tel', 'Телефон', 'trim|required|alpha_numeric|min_length[7]|max_length[7]');
+		$this->form_validation->set_rules('tel_prefix', 'Код', 'trim|required|alpha_numeric|min_length[5]|max_length[5]');
 		$this->form_validation->set_rules('password', 'Пароль', 'trim|required|min_length[6]');
 		$this->form_validation->set_rules('password_confirm', 'Подтверждение пароля', 'trim|required|min_length[6]|matches[password]');
 
@@ -63,7 +64,7 @@ class User extends CI_Controller {
 			
 			echo $this->twig->render('user/register/register', $data);	
 		}
-		elseif (($this->input->post('ManufactureName') !== null AND $this->input->post('ModelName') == null) OR ($this->input->post('ManufactureName') == null AND $this->input->post('car_year') !== null)) 
+		elseif (($this->input->post('ManufactureName') != null AND $this->input->post('ModelName') == null) OR ($this->input->post('ManufactureName') == null AND $this->input->post('car_year') != null)) 
 		{
 			$data['error'] = 'Проверьте правильность заполнения полей выбора авто.';
 			
@@ -77,6 +78,8 @@ class User extends CI_Controller {
 			if ($this->user_model->create_user($register)) 
 			{
 				// user creation ok
+				unset($_POST);
+
 				echo $this->twig->render('user/register/register_success', $data);	
 			} 
 			

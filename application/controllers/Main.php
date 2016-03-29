@@ -137,13 +137,28 @@ class Main extends CI_Controller {
         $data['Menu_reviews'] = $this->lang->line('Menu_reviews');
         $data['Menu_contacts'] = $this->lang->line('Menu_contacts');
 
-        $data['LM_pdr'] = $this->lang->line('LM_pdr');
-        $data['LM_pol'] = $this->lang->line('LM_pol');
-        $data['LM_brn'] = $this->lang->line('LM_brn');
-        $data['LM_chm'] = $this->lang->line('LM_chm');
-        $data['LM_gls'] = $this->lang->line('LM_gls');
-        $data['LM_atk'] = $this->lang->line('LM_atk');
-        $data['LM_pnt'] = $this->lang->line('LM_pnt');
+        // $data['LM_pdr'] = $this->lang->line('LM_pdr');
+        // $data['LM_pol'] = $this->lang->line('LM_pol');
+        // $data['LM_brn'] = $this->lang->line('LM_brn');
+        // $data['LM_chm'] = $this->lang->line('LM_chm');
+        // $data['LM_gls'] = $this->lang->line('LM_gls');
+        // $data['LM_atk'] = $this->lang->line('LM_atk');
+        // $data['LM_pnt'] = $this->lang->line('LM_pnt');
+
+        $data['examp_cat'] = array(
+                            'LM_pdr' => $this->lang->line('LM_pdr'),
+                            'LM_pol' => $this->lang->line('LM_pol'),
+                            'LM_brn' => $this->lang->line('LM_brn'),
+                            'LM_chm' => $this->lang->line('LM_chm'),
+                            'LM_gls' => $this->lang->line('LM_gls'),
+                            'LM_atk' => $this->lang->line('LM_atk'),
+                            'LM_pnt' => $this->lang->line('LM_pnt'),
+                            'LM_nvi' => $this->lang->line('LM_nvi'),
+                            );
+        //$data['lang'] = (array)$this->lang;
+        //var_dump($data['examp_cat']);
+
+
 
         return $data;
     }
