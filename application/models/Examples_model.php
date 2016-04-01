@@ -33,7 +33,6 @@ class Examples_model extends CI_Model {
         $this->db->limit($limit, $offset);
         $query = $this->db->get($this->table.$lang);
         $result = $query->result_array();
-        //var_dump($result);
         $result = $this->__add_photo($result);
         return $result;
     }
