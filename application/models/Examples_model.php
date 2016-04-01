@@ -3,10 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Examples_model extends CI_Model {
 
-    public function get_examples($id = 0)
+    public $table = 'example_works_';
+
+    public function get_examples($id = 0, $lang)
     {
         $this->db->select('*');
-        $this->db->from('example_works');
+        $this->db->from($this->table.$lang);
 
         if ($id != 0) {
         $this->db->where('id', $id);
@@ -21,17 +23,16 @@ class Examples_model extends CI_Model {
     // возвращает общее кол-во записей в таблице example_works
     function count_all()
     {
-        return $this->db->count_all('example_works');//$this->table);
+        return $this->db->count_all($this->table.$lang);//$this->table);
     }
     // $limit - кол-во получаемых записей
     // $offset - смещение, с какой записи начинать выборку
 
-    public function get_scrolling($limit,$offset)
+    public function get_scrolling($limit, $offset, $lang)
     {
-        $this->db->limit($limit,$offset);
-        $query = $this->db->get('example_works');//$this->table);
+        $this->db->limit($limit, $offset);
+        $query = $this->db->get($this->table.$lang);
         $result = $query->result_array();
-        //var_dump($result);
         $result = $this->__add_photo($result);
         return $result;
     }

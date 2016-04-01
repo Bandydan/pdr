@@ -17,7 +17,7 @@
 
     <script src="{{ base_url() }}assets/js/jquery-1.11.3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
-    
+
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <script src="{{ base_url() }}assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ base_url() }}assets/libs/slick/slick.min.js"></script>
@@ -49,9 +49,9 @@
                     </div>
                     <div class="col-xs-3">
                     <div class="language">
-                            <a href="?lang=ru">Рус </a>|
-                            <a href="?lang=uk"> Укр </a>|
-                            <a href="?lang=en">Eng</a> <!-- ?lang=en -->
+                            <a href="/ru">Рус </a>|
+                            <a href="/uk"> Укр </a>|
+                            <a href="/en">Eng</a> <!-- ?lang=en -->
                         </div>
                         <div class="regist">
                             <a href="{{ base_url() }}login">{{Header_entrance}}</a>
@@ -62,9 +62,9 @@
                                 <img src="{{ base_url() }}assets/img/callback.png" class="img-fluid"></a>
                             </div>
                             <div class="info">
-                                <p>тел. (057)000-00-00</p>
-                                <p>моб. (057)000-00-00</p>
-                                <p>моб. (057)000-00-00</p>
+                                <p>(057)000-00-00</p>
+                                <p>(057)000-00-00</p>
+                                <p>(057)000-00-00</p>
 
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                                     <li>
                                         <a href="{{ base_url() }}">{{main_menu.Menu_main}}</a>
                                     </li>
-                                    
+
                                     <li class="dropdown">
                                         <a id="drop1" href="{{ base_url() }}main/examples" class="dropdown-toggle" data-toggle="dropdown">
                                             {{main_menu.Menu_example}}
@@ -122,7 +122,7 @@
         <section class="firstSection">
             <div class="container">
                 <div class="row">
-                    
+
 {% endblock %}
 
 {% block nav %}

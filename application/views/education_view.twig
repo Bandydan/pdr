@@ -17,13 +17,33 @@
     <div class="advertising"></div></div>
         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 main">
             <div class="EducImg"><img src="{{ base_url() }}img/education/2.jpg" align="bottom"></div>
+
+            {% if lang == 'ukrainian' %}
+                <p>
+                    <h4>В ЗАГАЛЬНОМУ ВИГЛЯДІ ТЕХНОЛОГІЯ PDR - ЦЕ:</h4>
+                    - видалення вм'ятин авто шляхом їх видавлювання спеціальним інструментом зсередини, без пошкодження покриття, а значить, і без фарбування; <br>
+                    - витяжка вм'ятин зовні за допомогою спеціальної кліпси також без фарбування; <br>
+                    Після видалення вм'ятин без фарбування немає необхідності створювати особливі умови експлуатації автомобіля, тоді як після класичного ремонту потрібно забезпечити авто щадний режим: мінімізувати вплив агресивних чинників середовища, не їздити по пересіченій місцевості, акуратно мити автомобіль. Після PDR-вирівнювання ви зможете використовувати машину без будь-яких обмежень. <br>
+                    PDR-інструменти дозволяють підібратися до самих важкодоступних ділянках, а значить, проводити видалення нерівностей корпусу без повного розбирання автомобіля. Зняття внутрішньої обшивки необхідно лише в найскладніших випадках. Звичайно, обладнання та матеріали для роботи по PDR-технології коштують недешево (близько 70-80 тисяч рублів за комплект), так як вони замовляються за кордоном (переважно з США і Німеччини), а виробляються зі спеціальних сортів сталі. Але якість і оперативність ремонту з лишком окуплять ці витрати.
+                </p>
+            {% elseif lang == 'english' %}
+                <p>
+                    <h4>IN GENERAL TECHNOLOGY PDR - IT IS:</h4>
+                    - removing dents cars by extruding them inside a special tool, without damage to the coating and thus no dyeing; <br>
+                    - hood dents from the outside using a special clip and without paint; <br>
+                    After removing dents without painting there is no need to create special conditions for use of the vehicle, whereas after the classic car repairs need to ensure gentle treatment: minimize the impact of aggressive environmental factors, not ride on rough terrain, gently wash the car. After the PDR-aligning, you can use the machine without any restrictions. <br>
+                    PDR-tools allow you to get to the most inaccessible areas, and hence to carry out the removal of the dy of irregularities without complete disassembly of the vehicle. Roving the inner casing is necessary only in the most difficult cases. Of course, equipment and materials for use by PDR-technology are expensive (about 70-80 thousand rubles per set), as they are ordered from abroad (mostly from the US and Germany), and are made from special steel grades. But the quality and efficiency of repair is more than recoup these costs.
+                </p>
+            {% else %}
                 <p>
                     <h4>В ОБЩЕМ ВИДЕ ТЕХНОЛОГИЯ PDR – ЭТО:</h4>
                     удаление вмятин авто путем их выдавливания специальным инструментом изнутри, без повреждения покрытия, а значит, и без покраски;<br>
                     вытяжка вмятин снаружи с помощью специальной клипсы также без покраски;<br>
-                    После удаления вмятин без покраски нет необходимости создавать особые условия эксплуатации автомобиля, тогда как после классического ремонта нужно обеспечить авто щадящий режим: минимизировать влияние агрессивных факторов среды, не ездить по пересеченной местности, аккуратно мыть автомобиль. После PDR-выравнивания вы сможете использовать машину без каких-либо ограничений.
+                    После удаления вмятин без покраски нет необходимости создавать особые условия эксплуатации автомобиля, тогда как после классического ремонта нужно обеспечить авто щадящий режим: минимизировать влияние агрессивных факторов среды, не ездить по пересеченной местности, аккуратно мыть автомобиль. После PDR-выравнивания вы сможете использовать машину без каких-либо ограничений. <br>
                     PDR-инструменты позволяют подобраться к самым труднодоступным участкам, а значит, проводить удаление неровностей корпуса без полной разборки автомобиля. Снятие внутренней обшивки необходимо лишь в самых сложных случаях. Конечно, оборудование и материалы для работы по PDR-технологии стоят недешево (около 70-80 тысяч рублей за комплект), так как они заказываются за границей (преимущественно из США и Германии), а производятся из специальных сортов стали. Но качество и оперативность ремонта с лихвой окупят эти затраты.
                 </p>
+            {% endif %}
+
             </div>
         </div>
     </div>
