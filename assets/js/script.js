@@ -61,7 +61,7 @@ var config,
                                 }));
                                 $(divSlider).append(div);
                             });
-
+//console.log("FIX");
                             // синглтон запрос который возвращяет значения заголовков
                             if(!showH3){
                                 if(!config){

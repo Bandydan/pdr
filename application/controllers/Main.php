@@ -24,9 +24,10 @@ class Main extends CI_Controller {
 
         $id = '1';
 
-        $data['title'] = 'Garage - Удаление вмятин без покраски';
-        $data['examples'] = $this->examples_model->get_examples($id);
-        $data['cat'] = $this->config->item('categories');
+        //$data['title'] = 'Garage - Удаление вмятин без покраски';
+        $data['title'] = "Garage - ".$data['examp_cat']['pdr'];
+        $data['examples'] = $this->examples_model->get_examples($id, $data['lang']);
+        //$data['cat'] = $this->config->item('categories');
 
         echo $this->twig->render('start_view', $data);
     }
@@ -35,11 +36,12 @@ class Main extends CI_Controller {
     public function examples($id = 0, $offset='')
     {
         $data = $this->_language();
-        $data['title'] = 'Garage - Примеры работ';
+        // $data['title'] = 'Garage - Примеры работ';
+        $data['title'] = "Garage - ".$data['main_menu']['Menu_example'];
 
         if($id != 0)
         {
-            $data['examples'] = $this->examples_model->get_examples($id);
+            $data['examples'] = $this->examples_model->get_examples($id, $data['lang']);
         }
         else
         {
@@ -48,10 +50,10 @@ class Main extends CI_Controller {
             // $limit - кол-во запрашиваемых записей
             // $offset - смещение, т.е. с какой записи начинать выборку
 
-            $data['examples'] = $this->examples_model->get_scrolling($limit,$offset);
+            $data['examples'] = $this->examples_model->get_scrolling($limit, $offset, $data['lang']);
         }
 
-        $data['cat'] = $this->config->item('categories');
+        // $data['cat'] = $this->config->item('categories');
 
         echo $this->twig->render('examples_view', $data);
     }
@@ -61,7 +63,7 @@ class Main extends CI_Controller {
         $limit = 3;
         $offset = $_POST['startFrom'];
 
-        $data['examples'] = $this->examples_model->get_scrolling($limit,$offset);
+        $data['examples'] = $this->examples_model->get_scrolling($limit,$offset, $data['lang']);
 
         echo json_encode($data['examples']);
         die(); //чтоб лишнего не передавал, а именно HTML
@@ -69,15 +71,18 @@ class Main extends CI_Controller {
 
     public function config_arr()
     {
-        echo json_encode($this->config->item('categories'));
+        $data = $this->_language();
+        echo json_encode($data['examp_cat']);
+        // echo json_encode($this->config->item('categories'));
     }
 
     //Education page
     public function education()
     {
         $data = $this->_language();
-        $data['title'] = 'Обучение';
-        $data['cat'] = $this->config->item('categories');
+        //$data['title'] = 'Обучение';
+        $data['title'] = "Garage - ".$data['main_menu']['Menu_education'];
+        //$data['cat'] = $this->config->item('categories');
 
         echo $this->twig->render('education_view', $data);
     }
@@ -86,8 +91,9 @@ class Main extends CI_Controller {
     public function contact()
     {
         $data = $this->_language();
-        $data['title'] = 'Garage - Контакты';
-        $data['cat'] = $this->config->item('categories');
+        // $data['title'] = 'Garage - Контакты';
+        $data['title'] = "Garage - ".$data['main_menu']['Menu_contacts'];
+        //$data['cat'] = $this->config->item('categories');
 
         echo $this->twig->render('contact_view', $data);
     }
@@ -95,14 +101,14 @@ class Main extends CI_Controller {
     public function _language()
     {
         // read language from session
-        if (!($userLang = $this->session->userdata('language'))) 
+        if (!($userLang = $this->session->userdata('language')))
         {
             $this->session->set_userdata('language', 'russian');
         }
 
         // load language file
-        //$lang = $this->uri->segment(1);
-        $lang = $this->input->get('lang');
+        $lang = $this->uri->segment(1);
+        //$lang = $this->input->get('lang');
         switch ($lang) {
             case 'en':
                 $userLang = 'english';
@@ -115,6 +121,10 @@ class Main extends CI_Controller {
                 $userLang = 'russian';
                 break;
         }
+
+        if(!(isset($userLang))) $userLang = 'russian';
+        $data['lang'] = $userLang;
+        // $data['lang'] = $this->userLang; var_dump($data['lang']);
 
         $this->session->set_userdata('language', $userLang);
         // $dataTime = time() + 30*24*60*60;
@@ -137,7 +147,7 @@ class Main extends CI_Controller {
         // $data['Menu_shop'] = $this->lang->line('Menu_shop');
         // $data['Menu_reviews'] = $this->lang->line('Menu_reviews');
         // $data['Menu_contacts'] = $this->lang->line('Menu_contacts');
-        
+
         $data['main_menu'] = array(
                     'Menu_main' => $this->lang->line('Menu_main'),
                     'Menu_example' => $this->lang->line('Menu_example'),
@@ -158,14 +168,14 @@ class Main extends CI_Controller {
         // $data['LM_pnt'] = $this->lang->line('LM_pnt');
 
         $data['examp_cat'] = array(
-                            'LM_pdr' => $this->lang->line('LM_pdr'),
-                            'LM_pol' => $this->lang->line('LM_pol'),
-                            'LM_brn' => $this->lang->line('LM_brn'),
-                            'LM_chm' => $this->lang->line('LM_chm'),
-                            'LM_gls' => $this->lang->line('LM_gls'),
-                            'LM_atk' => $this->lang->line('LM_atk'),
-                            'LM_pnt' => $this->lang->line('LM_pnt'),
-                            'LM_nvi' => $this->lang->line('LM_nvi'),
+                            'pdr' => $this->lang->line('LM_pdr'),
+                            'pol' => $this->lang->line('LM_pol'),
+                            'brn' => $this->lang->line('LM_brn'),
+                            'chm' => $this->lang->line('LM_chm'),
+                            'gls' => $this->lang->line('LM_gls'),
+                            'atk' => $this->lang->line('LM_atk'),
+                            'pnt' => $this->lang->line('LM_pnt'),
+                            'nvi' => $this->lang->line('LM_nvi'),
                             );
         //$data['lang'] = (array)$this->lang;
         //var_dump($data['examp_cat']);
