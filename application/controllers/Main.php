@@ -24,10 +24,8 @@ class Main extends MY_Controller {
 
         $id = '1';
 
-        //$data['title'] = 'Garage - Удаление вмятин без покраски';
         $data['title'] = "Garage - ".$data['examp_cat']['pdr'];
         $data['examples'] = $this->examples_model->get_examples($id, $data['lang']);
-        //$data['cat'] = $this->config->item('categories');
 
         echo $this->twig->render('start_view', $data);
     }
