@@ -123,6 +123,11 @@ body {
 .siteNav li a:active{
     color: rgba(0,0,0,.1);
 }
+
+.siteNav .dropdown-menu li{
+    font-size: 12px;
+}
+
 .firstSection{
 
 }

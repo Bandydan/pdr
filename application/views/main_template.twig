@@ -83,10 +83,12 @@
                                         </a>
                                         <ul class="dropdown-menu">
                                             {% for cat in examp_cat %}
-                                                <li style="font-size: 12px;">
-                                                    <a href="{{ base_url() }}main/examples/{{ loop.index }}">{{ cat }}</a>
+                                                <li>
+                                                    <a href="{{ base_url() }}main/examples/{{ loop.index }}" >{{ cat }}</a>
                                                 </li>
                                             {% endfor %}
+                                            <div class="dropdown-divider"></div>
+                                            <li><a tabindex="-1" href="{{ base_url() }}main/examples">{{main_menu.Menu_example}}</a></li>
                                         </ul>
                                     </li>
                                     <li>
