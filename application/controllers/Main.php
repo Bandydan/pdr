@@ -55,6 +55,8 @@ class Main extends MY_Controller {
 
     public function works()
     {
+        $data = MY_Controller::_language();
+
         $limit = 3;
         $offset = $_POST['startFrom'];
 

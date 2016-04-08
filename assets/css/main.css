@@ -14,16 +14,17 @@ body {
 }
 
 .header .news a img{
-    height: 70px;
-    width: 70px;
+    height: 50%;
+    width: 50%;
     display: inline-block;
-    margin: 25px 40px;
+    margin: 10%;
 }
 
 .header .wrapImg{
-    height: 250px;
-    width: 550px;
+    height: 50%;
+    width: 50%;
     overflow: hidden;
+    margin: 10% 25%;
 }
 
 /*.header .slider p{
@@ -71,14 +72,16 @@ body {
 .header .callBack a img{
     width: 21%;
     display: inline-block;
-    margin-left:15px;
+    /*margin-left:15px;*/
+    margin: 10px;
 }
 .header .info{
     text-transform: uppercase;
     color:#1F1F20;
     font-size: 15px;
     text-align: center;
-    padding-top: 20px;
+    line-height: 0.5;
+    /*padding-top: 15px;*/
 }
 
 

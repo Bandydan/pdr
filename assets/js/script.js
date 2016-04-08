@@ -24,8 +24,9 @@ var config,
                 data: {"startFrom" : startFrom},
                 /* что нужно сделать до отправки запрса */
                 beforeSend: function() {
-                /* меняем значение флага на true, т.е. запрос сейчас в процессе выполнения */
-                inProgress = true;},
+                    /* меняем значение флага на true, т.е. запрос сейчас в процессе выполнения */
+                    inProgress = true;
+                },
 
                 error: function(){
                 console.log("ajaxError");},
