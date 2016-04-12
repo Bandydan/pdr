@@ -22,7 +22,7 @@ class MY_Controller extends CI_Controller {
     public function _language()
     {
         // read language from session
-        if (!($userLang = $this->session->userdata('language')))
+        if (!($this->userLang = $this->session->userdata('language')))
         {
             $this->session->set_userdata('language', 'russian');
         }
@@ -32,25 +32,32 @@ class MY_Controller extends CI_Controller {
         //$lang = $this->input->get('lang');
         switch ($lang) {
             case 'en':
-                $userLang = 'english';
+                $this->userLang = 'english';
+                $data['uri_string'] = substr(uri_string(),2);
                 break;
             case 'uk':
-                $userLang = 'ukrainian';
+                $this->userLang = 'ukrainian';
+                $data['uri_string'] = substr(uri_string(),2);
                 break;
 
             case 'ru':
-                $userLang = 'russian';
+                $this->userLang = 'russian';
+                $data['uri_string'] = substr(uri_string(),2);
                 break;
+
+            default:
+                $data['uri_string'] = uri_string();
+
         }
 
-        if(!(isset($userLang))) $userLang = 'russian';
-        $data['lang'] = $userLang;
+        // if(!(isset($userLang))) $userLang = 'russian';
+        $data['lang'] = $this->userLang;
 
-        $this->session->set_userdata('language', $userLang);
-        // $dataTime = time() + 30*24*60*60;
-        // set_cookie('lang', $userLang, $dataTime);
+        $this->session->set_userdata('language', $this->userLang);
+        $dataTime = time() + 30*24*60*60;
+        set_cookie('lang', $this->userLang, $dataTime);
 
-        $this->lang->load('interface', $userLang);
+        $this->lang->load('interface', $this->userLang);
 
         // set up some info...
         $data['Header_entrance'] = $this->lang->line('Header_entrance');
@@ -79,6 +86,10 @@ class MY_Controller extends CI_Controller {
                             'pnt' => $this->lang->line('LM_pnt'),
                             'nvi' => $this->lang->line('LM_nvi'),
                             );
+
+        // $data['current_url'] = current_url();
+
+        // $data['anch'] = anchor($this->userLang.'/'.$data['uri_string'],$this->userLang);
 
         return $data;
     }
