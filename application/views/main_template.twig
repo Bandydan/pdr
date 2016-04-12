@@ -49,9 +49,13 @@
                     </div>
                     <div class="col-xs-3">
                     <div class="language">
-                            <a href="/ru">Рус </a>|
-                            <a href="/uk"> Укр </a>|
-                            <a href="/en">Eng</a> <!-- ?lang=en -->
+
+                            <!-- {{ current_url }} <br/> -->
+                           <!--  {{ uri_string }} <br/>
+                            {{ anch }}<br/> -->
+                            <a href="/ru/{{ uri_string }}"> Рус </a>|
+                            <a href="/uk/{{ uri_string }}"> Укр </a>|
+                            <a href="/en/{{ uri_string }}">Eng</a> <!-- ?lang=en -->
                         </div>
                         <div class="regist">
                             <a href="{{ base_url() }}login">{{Header_entrance}}</a>

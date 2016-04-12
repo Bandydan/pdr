@@ -3,8 +3,6 @@
 class Main extends MY_Controller {
 
     public $data = array();
-    public $userLang = 'russian';
-
 
     public function __construct()
     {
