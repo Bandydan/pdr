@@ -78,6 +78,14 @@ $config['url_suffix'] = '';
 */
 $config['language'] = 'russian';
 
+// $config['language_site'] = array(
+//     'default' => 'ru', // язык по – умолчанию (загружается первым, если не выбрано другое)
+//     /* Языки сайта */
+//     'ru' => 'russian',
+//     'en' => 'english',
+//     'uk' => 'ukrainian'
+//     );
+
 /*
 |--------------------------------------------------------------------------
 | Default Character Set

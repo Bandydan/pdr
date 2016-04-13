@@ -17,7 +17,7 @@
 
     <script src="{{ base_url() }}assets/js/jquery-1.11.3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
-    
+
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <script src="{{ base_url() }}assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ base_url() }}assets/libs/slick/slick.min.js"></script>
@@ -44,14 +44,18 @@
                     </div>
                     <div class="col-xs-6">
                         <div class="wrapImg">
-                            <img src="{{ base_url() }}img/example/after/1_0.jpg" class="img-fluid"> <!-- для примера, в будующем нужно уточнить какое фото будет выводиться -->
+                            <img src="{{ base_url() }}assets/img/head.png" class="img-fluid"> <!-- для примера, в будующем нужно уточнить какое фото будет выводиться -->
                         </div>
                     </div>
                     <div class="col-xs-3">
                     <div class="language">
-                            <a href="?lang=ru">Рус </a>|
-                            <a href="?lang=uk"> Укр </a>|
-                            <a href="?lang=en">Eng</a> <!-- ?lang=en -->
+
+                            <!-- {{ current_url }} <br/> -->
+                           <!--  {{ uri_string }} <br/>
+                            {{ anch }}<br/> -->
+                            <a href="/ru/{{ uri_string }}"> Рус </a>|
+                            <a href="/uk/{{ uri_string }}"> Укр </a>|
+                            <a href="/en/{{ uri_string }}">Eng</a> <!-- ?lang=en -->
                         </div>
                         <div class="regist">
                             <a href="{{ base_url() }}login">{{Header_entrance}}</a>
@@ -62,9 +66,9 @@
                                 <img src="{{ base_url() }}assets/img/callback.png" class="img-fluid"></a>
                             </div>
                             <div class="info">
-                                <p>тел. (057)000-00-00</p>
-                                <p>моб. (057)000-00-00</p>
-                                <p>моб. (057)000-00-00</p>
+                                <p>(057)000-00-00</p>
+                                <p>(057)000-00-00</p>
+                                <p>(057)000-00-00</p>
 
                             </div>
                         </div>
@@ -88,17 +92,19 @@
                                     <li>
                                         <a href="{{ base_url() }}">{{main_menu.Menu_main}}</a>
                                     </li>
-                                    
+
                                     <li class="dropdown">
                                         <a id="drop1" href="{{ base_url() }}main/examples" class="dropdown-toggle" data-toggle="dropdown">
                                             {{main_menu.Menu_example}}
                                         </a>
                                         <ul class="dropdown-menu">
                                             {% for cat in examp_cat %}
-                                                <li style="font-size: 12px;">
-                                                    <a href="{{ base_url() }}main/examples/{{ loop.index }}">{{ cat }}</a>
+                                                <li>
+                                                    <a href="{{ base_url() }}main/examples/{{ loop.index }}" >{{ cat }}</a>
                                                 </li>
                                             {% endfor %}
+                                            <div class="dropdown-divider"></div>
+                                            <li><a tabindex="-1" href="{{ base_url() }}main/examples">{{main_menu.Menu_example}}</a></li>
                                         </ul>
                                     </li>
                                     <li>
@@ -138,7 +144,7 @@
         <section class="firstSection">
             <div class="container">
                 <div class="row">
-                    
+
 {% endblock %}
 
 {% block nav %}

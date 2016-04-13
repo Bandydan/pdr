@@ -20,13 +20,33 @@
 
         <div class="advertising"></div></div>
             <div class="col-md-12 col-lg-12 col-xl-12 main">
-                <img src="{{examples.0.photo_after.0}}" class="img-fluid">
-                <h3>{{cat[examples.0.category]}}</h3>
-                <p>{{examples.0.about}}</p>
-                
-                <h3>Видео для сайта</h3>
+
+            {% for item in examples %}
+                <div class="wrapSlider">
+                    <div class="slider">
+                        <div>
+                            <img src="{{ item.photo_before.0 }}" class="img-fluid">
+                        </div>
+
+                        <div>
+                            <img src="{{ item.photo_after.0 }}" class="img-fluid">
+                        </div>
+
+                        <div>
+                            <img src="{{ item.photo_before.1 }}" class="img-fluid">
+                        </div>
+                        <div>
+                            <img src="{{ item.photo_after.1 }}" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <h3 style="text-align: center;">{{ examp_cat[item.category] }}</h3>
+                <p>{{ item.about| raw }}</p>
+            {% endfor %}
+
+                <h3 style="text-align: center;">Видео для сайта</h3>
                 <div class="embed-responsive embed-responsive-16by9 col-md-12 col-lg-12 col-xl-12">
-                    <iframe class="embed-responsive-item" width="854" height="480" 
+                    <iframe class="embed-responsive-item" width="854" height="480"
                     src="https://www.youtube.com/embed/bvTD2skPnN4"></iframe>
                 </div>
             </div>
