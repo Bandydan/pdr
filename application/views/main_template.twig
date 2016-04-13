@@ -70,8 +70,20 @@
                         </div>
                     </div>
                     <div class="row hedSecRow">
-                        <div class="hidden-xs-down">
-                            <nav class="nav">
+                        <div class="col-xs-12">
+                            
+<nav role="navigation" class="navbar navbar-default navbar-static-top">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                                    data-target="#navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                </button>
+                            </div>
+
+                            <div class="collapse navbar-collapse nav" id="navbar-collapse">
                                 <ul class="siteNav">
                                     <li>
                                         <a href="{{ base_url() }}">{{main_menu.Menu_main}}</a>
@@ -108,7 +120,11 @@
                                         <a href="#">{{main_menu.Menu_shop}}</a>
                                     </li>
                                 </ul>
-                            </nav>
+                            </div>
+
+
+
+</nav>
                         </div>
                     </div>
                 </div>
