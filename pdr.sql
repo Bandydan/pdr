@@ -94,6 +94,51 @@ AUTO_INCREMENT = 6;
 -- ---------------------------------------------------------
 
 
+-- CREATE TABLE "example_works_english" --------------------
+CREATE TABLE `example_works_english` ( 
+	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
+	`category` VarChar( 10 ) NOT NULL,
+	`photo_before` Int( 11 ) NOT NULL,
+	`photo_after` Int( 11 ) NOT NULL,
+	`about` Text NOT NULL,
+	`additionally` VarChar( 255 ) NOT NULL,
+	PRIMARY KEY ( `id` ) )
+COLLATE = utf8_unicode_ci
+ENGINE = InnoDB
+AUTO_INCREMENT = 13;
+-- ---------------------------------------------------------
+
+
+-- CREATE TABLE "example_works_russian" --------------------
+CREATE TABLE `example_works_russian` ( 
+	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
+	`category` VarChar( 10 ) NOT NULL,
+	`photo_before` Int( 11 ) NOT NULL,
+	`photo_after` Int( 11 ) NOT NULL,
+	`about` Text NOT NULL,
+	`additionally` VarChar( 255 ) NOT NULL,
+	PRIMARY KEY ( `id` ) )
+COLLATE = utf8_unicode_ci
+ENGINE = InnoDB
+AUTO_INCREMENT = 13;
+-- ---------------------------------------------------------
+
+
+-- CREATE TABLE "example_works_ukrainian" ------------------
+CREATE TABLE `example_works_ukrainian` ( 
+	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
+	`category` VarChar( 10 ) NOT NULL,
+	`photo_before` Int( 11 ) NOT NULL,
+	`photo_after` Int( 11 ) NOT NULL,
+	`about` Text NOT NULL,
+	`additionally` VarChar( 255 ) NOT NULL,
+	PRIMARY KEY ( `id` ) )
+COLLATE = utf8_unicode_ci
+ENGINE = InnoDB
+AUTO_INCREMENT = 13;
+-- ---------------------------------------------------------
+
+
 -- CREATE TABLE "mediafiles" -------------------------------
 CREATE TABLE `mediafiles` ( 
 	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
@@ -159,51 +204,6 @@ CREATE TABLE `users` (
 COLLATE = utf8_unicode_ci
 ENGINE = InnoDB
 AUTO_INCREMENT = 73;
--- ---------------------------------------------------------
-
-
--- CREATE TABLE "example_works_english" --------------------
-CREATE TABLE `example_works_english` ( 
-	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
-	`category` VarChar( 10 ) NOT NULL,
-	`photo_before` Int( 11 ) NOT NULL,
-	`photo_after` Int( 11 ) NOT NULL,
-	`about` Text NOT NULL,
-	`additionally` VarChar( 255 ) NOT NULL,
-	PRIMARY KEY ( `id` ) )
-COLLATE = utf8_unicode_ci
-ENGINE = InnoDB
-AUTO_INCREMENT = 14;
--- ---------------------------------------------------------
-
-
--- CREATE TABLE "example_works_russian" --------------------
-CREATE TABLE `example_works_russian` ( 
-	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
-	`category` VarChar( 10 ) NOT NULL,
-	`photo_before` Int( 11 ) NOT NULL,
-	`photo_after` Int( 11 ) NOT NULL,
-	`about` Text NOT NULL,
-	`additionally` VarChar( 255 ) NOT NULL,
-	PRIMARY KEY ( `id` ) )
-COLLATE = utf8_unicode_ci
-ENGINE = InnoDB
-AUTO_INCREMENT = 12;
--- ---------------------------------------------------------
-
-
--- CREATE TABLE "example_works_ukrainian" ------------------
-CREATE TABLE `example_works_ukrainian` ( 
-	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
-	`category` VarChar( 10 ) NOT NULL,
-	`photo_before` Int( 11 ) NOT NULL,
-	`photo_after` Int( 11 ) NOT NULL,
-	`about` Text NOT NULL,
-	`additionally` VarChar( 255 ) NOT NULL,
-	PRIMARY KEY ( `id` ) )
-COLLATE = utf8_unicode_ci
-ENGINE = InnoDB
-AUTO_INCREMENT = 23;
 -- ---------------------------------------------------------
 
 
@@ -1454,69 +1454,6 @@ INSERT INTO `comments`(`id`,`user_id`,`avto_id`,`comment_created`,`comment_text`
 -- ---------------------------------------------------------
 
 
--- Dump data of "mediafiles" -------------------------------
-INSERT INTO `mediafiles`(`id`,`user_id`,`media_link`) VALUES ( '1', '20', 'foto.jpg' );
--- ---------------------------------------------------------
-
-
--- Dump data of "order_for_assessment" ---------------------
-INSERT INTO `order_for_assessment`(`id`,`user_id`,`avto_id`,`photo_id`,`order_text`,`order_created`) VALUES ( '2', '20', '55', '1', 'fgxrfdxfxfgxfxfg', '2016-02-23 10:17:10' );
-INSERT INTO `order_for_assessment`(`id`,`user_id`,`avto_id`,`photo_id`,`order_text`,`order_created`) VALUES ( '3', '20', '55', '1', 'fgxrfdxfxfgxfxfdcgf', '2016-02-23 10:17:22' );
-INSERT INTO `order_for_assessment`(`id`,`user_id`,`avto_id`,`photo_id`,`order_text`,`order_created`) VALUES ( '4', '20', '55', '1', 'fgxrfdxfxfgxfvnv m gmgm mbxfdcgf', '2016-02-23 10:17:29' );
--- ---------------------------------------------------------
-
-
--- Dump data of "order_in_shop" ----------------------------
--- ---------------------------------------------------------
-
-
--- Dump data of "statistics" -------------------------------
--- ---------------------------------------------------------
-
-
--- Dump data of "users" ------------------------------------
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '20', 'skvak', 'Alex', 'Bobov', 'ddt3000@ukr.net', '0991234567', '0000-00-00', 'мужчина', '1', NULL, '2016-01-31 16:46:23', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '26', 'alenija', 'Alena', 'Verzina', 'alenija23@gmail.com', '0967673008', '0000-00-00', 'женщина', NULL, NULL, '2016-01-30 15:26:22', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '36', 'etyrn', 'mdtgyujm', 'vnmg', 'htgdx@db.yh', '7676767676', '2006-06-20', 'женщина', '9', NULL, '2016-02-09 22:58:41', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '37', 'iuhiuh', 'juhiuhiuh', 'iuyuhgy', 'jhbhb@jhb.uy', '0666666666', '0000-00-00', 'мужчина', '5', NULL, '2016-02-11 21:19:28', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '38', 'iuhiujbhui', 'juhiuhiuh', 'iuyuhgy', 'jhbhb@jhb.u', '0666666668', '0000-00-00', 'мужчина', '9', NULL, '2016-02-11 21:22:13', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '39', 'uihijniouhn', 'kjhbkghvgf', 'fgvkhjnl', 'ygfty@tyufvgu.uhg', '0909889898', '0000-00-00', 'женщина', '20', NULL, '2016-02-11 21:45:28', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '40', 'asd', 'asdfg', 'daherth', 'tht@gfrhy.ui', '0991234577', '0000-00-00', 'мужчина', NULL, NULL, '2016-02-18 19:19:10', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '41', 'dfshh', 'rtwhsrh', 'dykudyk', 'wer@sdfs.esrgf', '0876594939', '2008-09-20', 'мужчина', '20', NULL, '2016-02-21 13:33:43', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '42', 'mfa', 'salkdjweih', 'owifhwoierhjc', 'sdfgad45f@ukr.net', '6565656544', '2006-06-20', 'мужчина', NULL, NULL, '2016-02-26 12:02:33', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '43', 'sdfd', 'ewrfwe', 'sdfwe', 'dyte@ert.try', '6554566545', '0000-00-00', 'мужчина', NULL, NULL, '2016-02-29 15:07:55', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '44', 'duke', 'fred', 'kogan', 'duke@ukr.net', '0449998878', '0000-00-00', 'мужчина', NULL, NULL, '2016-02-29 20:21:12', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '45', 'rtedf', 'ert', 'gfhf', 'hjlk@ddgf.ui', '0449998878', '0000-00-00', 'женщина', NULL, NULL, '2016-03-01 09:12:38', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '46', 'ertgef', 'erferf', 'slkdcsckm', 'lk@klfd.fd', '0573920720', '1986-04-19', 'женщина', NULL, NULL, '2016-03-01 11:15:15', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '47', 'jkjkk', 'jkuiuh', 'hjkuio', 'rur@tutyu.yui', '0991234569', '1980-06-25', 'женщина', NULL, NULL, '2016-03-01 13:39:35', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '48', 'login', 'name', 'surname', 'hjfh@iuoy.uy', '0889988999', '2016-02-17', 'мужчина', NULL, NULL, '2016-03-01 13:41:55', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '49', 'qwerty', 'asdfgh', 'qwerfdsa', 'rt45@ert.ytr', '0449998875', '2016-03-01', 'женщина', NULL, NULL, '2016-03-01 13:45:51', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '50', 'mfamfa', 'Alexandr', 'Petrov', 'email@mail.ua', '0557777755', '2016-03-01', 'мужчина', NULL, NULL, '2016-03-01 15:45:32', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '51', 'jkghkhjk', 'gjkljkl', 'hjkhkhkl', 'ryrty@rwr.yuu', '0779988999', '1989-06-14', 'мужчина', NULL, NULL, '2016-03-01 15:49:15', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '52', 'kjljk', 'kjlhj', 'jklhj', 'dfg@dfg.yt', '0667788777', '1999-02-10', 'мужчина', '43', NULL, '2016-03-01 15:57:22', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '53', 'rtyrty', 'tryutyu', 'tyioui', 'za@sd.gthy', '05766688866', '2016-02-29', 'женщина', '327', NULL, '2016-03-01 16:02:07', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '54', 'reggy', 'john', 'erdfsaf', 'dg@dfg.rth', '0889696955', '2000-02-09', 'женщина', '597', NULL, '2016-03-01 16:06:03', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '55', 'tyueh', 'tyh', 'tyht', 'rty@rte.ty', '0988776654', '2016-02-02', 'мужчина', NULL, NULL, '2016-03-01 16:07:27', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '56', 'rtyrtyryutyu', 'rtyrtyrtyw', 'wevdwec', 'dsrtd@ertry.tyh', '0502793045', '2016-03-01', 'мужчина', '577', '2001', '2016-03-04 21:30:42', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '57', 'slfklsfkgj', 'kojeoijf', 'okjoire', 'ldksaf@kjs.sfd', '0453453423', '2016-03-02', 'мужчина', '3', '0', '2016-03-05 10:33:39', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '58', 'wer', 'oioik', 'oioijew', 'lkjdsfj@lkfd.df', '0897986859', '2016-03-08', 'Мужчина', '358', '2002', '2016-03-05 13:05:50', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '59', 'rtyrtyert', 'oiuewrjfcwo', 'oiceoir', 'kjdgh@kjdd.dfo', '0699685849', '2016-02-11', 'Мужчина', '39', '2002', '2016-03-05 13:42:05', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '60', 'poiwrtio', 'oieui', 'oieorui', 'opirtoi@opoit.tr', '7654321234', '2016-03-01', 'Мужчина', '0', '0', '2016-03-05 14:01:33', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '61', 'eryrty', 'tjyut', 'yujyu', 'ghjfgu@yuj.yu', '0998888877', '2016-03-01', 'Мужчина', '0', '0', '2016-03-05 14:02:47', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '62', 'eryrtyty', 'tjyut', 'yujyu', 'ghjfrtygu@yuj.yu', '0998888877', '2016-03-01', 'Мужчина', '0', '0', '2016-03-05 14:07:59', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '63', 'tr54', 'weert', 'ertesrt', 'vdc@try.iuyi', '8098765432', '2016-02-10', 'Мужчина', '0', '0', '2016-03-05 14:12:09', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '64', 'khkyuk', 'wetyt', 'asfertgyy', 'kjliu@uiku.uyi', '0909898988', '2016-02-03', 'Мужчина', '477', '2000', '2016-03-05 14:15:20', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '65', 'tyutuuyii', 'tyjtjyl', 'zxcvxcv', 'zxvs@wre.ukj', '6785674565', '2016-03-01', 'Мужчина', '0', '0', '2016-03-05 14:33:39', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '66', 'tyutyu', 'tyty', 'ytrr55', 'ui@erte.oi', '7654566543', '2016-03-01', 'Женщина', '0', '0', '2016-03-05 14:34:49', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '67', 'xcvbb', 'terfs', 'refsdfw', 'zxcvv@wer.uo', '6544566543', '2016-02-03', 'Мужчина', '577', '2001', '2016-03-05 14:37:18', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '68', 'gdsgergter', 'erfedrfdr', 'erdfdsfer', 'dftdrtr@wtretr.yik', '0788976979', '2016-03-03', 'мужчина', '456', '0', '2016-03-05 14:38:48', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '69', 'eryttryrty', 'ytutu', 'tyutyurt', 'rtytu6@rety.ui', '9877655432', '2016-03-02', 'мужчина', '286', '2001', '2016-03-05 14:41:54', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '70', 'poioijre', 'pokpeoirk', 'opeirkoaik', 'thtyt@etyrty.uy', '0665544555', '2016-01-06', 'мужчина', '359', '2005', '2016-03-05 14:44:44', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '71', 'rtyrtyrt', 'ytutyiu', 'yuiyi', 'tyuty@erte.uiklu', '0889988765', '2016-03-01', 'Мужчина', '288', '2002', '2016-03-05 14:48:29', NULL );
-INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '72', 'phpoop', 'phpoop', 'phpoop', 'phpoop@phpoop.com', '0959379992', '2009-02-28', 'мужчина', '576', '2006', '2016-03-06 13:52:43', NULL );
--- ---------------------------------------------------------
-
-
 -- Dump data of "example_works_english" --------------------
 INSERT INTO `example_works_english`(`id`,`category`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '1', 'pdr', '2', '2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat mollis diam. Fusce nec tempus ipsum, in mattis neque. Nunc lacinia velit eros, ac interdum ante faucibus ac. Proin ultrices imperdiet diam, vitae tempus nulla fringilla non. Curabitur a odio sed risus vestibulum mattis vel nec sem. Donec nunc elit, consectetur ac dignissim nec, tincidunt et orci. Integer a augue velit. In porta tortor nisl, ac lobortis leo auctor in. Maecenas ullamcorper aliquet risus. Sed eget vehicula magna. Etiam malesuada rutrum est quis laoreet. Curabitur tincidunt dignissim ante, ut euismod nulla ultrices quis. Pellentesque quis leo ac leo pulvinar consequat.
 
@@ -1578,6 +1515,69 @@ INSERT INTO `example_works_ukrainian`(`id`,`category`,`photo_before`,`photo_afte
 INSERT INTO `example_works_ukrainian`(`id`,`category`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '10', 'gls', '3', '3', 'Вже давно відомо, що читабельний зміст буде заважати зосередитись людині, яка оцінює композицію сторінки. Сенс використання Lorem Ipsum полягає в тому, що цей текст має більш-менш нормальне розподілення літер на відміну від, наприклад, "Тут іде текст. Тут іде текст." Це робить текст схожим на оповідний. Багато програм верстування та веб-дизайну використовують Lorem Ipsum як зразок і пошук за терміном "lorem ipsum" відкриє багато веб-сайтів, які знаходяться ще в зародковому стані. Різні версії Lorem Ipsum з\'явились за минулі роки, деякі випадково, деякі було створено зумисно (зокрема, жартівливі).', 'Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів' );
 INSERT INTO `example_works_ukrainian`(`id`,`category`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '11', 'brn', '5', '6', 'Існує багато варіацій уривків з Lorem Ipsum, але більшість з них зазнала певних змін на кшталт жартівливих вставок або змішування слів, які навіть не виглядають правдоподібно. Якщо ви збираєтесь використовувати Lorem Ipsum, ви маєте упевнитись в тому, що всередині тексту не приховано нічого, що могло б викликати у читача конфуз. Більшість відомих генераторів Lorem Ipsum в Мережі генерують текст шляхом повторення наперед заданих послідовностей Lorem Ipsum. Принципова відмінність цього генератора робить його першим справжнім генератором Lorem Ipsum. Він використовує словник з більш як 200 слів латини та цілий набір моделей речень - це дозволяє генерувати Lorem Ipsum, який виглядає осмислено. Таким чином, згенерований Lorem Ipsum не міститиме повторів, жартів, нехарактерних для латини слів і т.ін.', 'Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів' );
 INSERT INTO `example_works_ukrainian`(`id`,`category`,`photo_before`,`photo_after`,`about`,`additionally`) VALUES ( '12', 'nvi', '2', '2', 'Вже давно відомо, що читабельний зміст буде заважати зосередитись людині, яка оцінює композицію сторінки. Сенс використання Lorem Ipsum полягає в тому, що цей текст має більш-менш нормальне розподілення літер на відміну від, наприклад, "Тут іде текст. Тут іде текст." Це робить текст схожим на оповідний. Багато програм верстування та веб-дизайну використовують Lorem Ipsum як зразок і пошук за терміном "lorem ipsum" відкриє багато веб-сайтів, які знаходяться ще в зародковому стані. Різні версії Lorem Ipsum з\'явились за минулі роки, деякі випадково, деякі було створено зумисно (зокрема, жартівливі).', 'Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів' );
+-- ---------------------------------------------------------
+
+
+-- Dump data of "mediafiles" -------------------------------
+INSERT INTO `mediafiles`(`id`,`user_id`,`media_link`) VALUES ( '1', '20', 'foto.jpg' );
+-- ---------------------------------------------------------
+
+
+-- Dump data of "order_for_assessment" ---------------------
+INSERT INTO `order_for_assessment`(`id`,`user_id`,`avto_id`,`photo_id`,`order_text`,`order_created`) VALUES ( '2', '20', '55', '1', 'fgxrfdxfxfgxfxfg', '2016-02-23 10:17:10' );
+INSERT INTO `order_for_assessment`(`id`,`user_id`,`avto_id`,`photo_id`,`order_text`,`order_created`) VALUES ( '3', '20', '55', '1', 'fgxrfdxfxfgxfxfdcgf', '2016-02-23 10:17:22' );
+INSERT INTO `order_for_assessment`(`id`,`user_id`,`avto_id`,`photo_id`,`order_text`,`order_created`) VALUES ( '4', '20', '55', '1', 'fgxrfdxfxfgxfvnv m gmgm mbxfdcgf', '2016-02-23 10:17:29' );
+-- ---------------------------------------------------------
+
+
+-- Dump data of "order_in_shop" ----------------------------
+-- ---------------------------------------------------------
+
+
+-- Dump data of "statistics" -------------------------------
+-- ---------------------------------------------------------
+
+
+-- Dump data of "users" ------------------------------------
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '20', 'skvak', 'Alex', 'Bobov', 'ddt3000@ukr.net', '0991234567', '0000-00-00', 'мужчина', '1', NULL, '2016-01-31 16:46:23', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '26', 'alenija', 'Alena', 'Verzina', 'alenija23@gmail.com', '0967673008', '0000-00-00', 'женщина', NULL, NULL, '2016-01-30 15:26:22', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '36', 'etyrn', 'mdtgyujm', 'vnmg', 'htgdx@db.yh', '7676767676', '2006-06-20', 'женщина', '9', NULL, '2016-02-09 22:58:41', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '37', 'iuhiuh', 'juhiuhiuh', 'iuyuhgy', 'jhbhb@jhb.uy', '0666666666', '0000-00-00', 'мужчина', '5', NULL, '2016-02-11 21:19:28', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '38', 'iuhiujbhui', 'juhiuhiuh', 'iuyuhgy', 'jhbhb@jhb.u', '0666666668', '0000-00-00', 'мужчина', '9', NULL, '2016-02-11 21:22:13', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '39', 'uihijniouhn', 'kjhbkghvgf', 'fgvkhjnl', 'ygfty@tyufvgu.uhg', '0909889898', '0000-00-00', 'женщина', '20', NULL, '2016-02-11 21:45:28', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '40', 'asd', 'asdfg', 'daherth', 'tht@gfrhy.ui', '0991234577', '0000-00-00', 'мужчина', NULL, NULL, '2016-02-18 19:19:10', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '41', 'dfshh', 'rtwhsrh', 'dykudyk', 'wer@sdfs.esrgf', '0876594939', '2008-09-20', 'мужчина', '20', NULL, '2016-02-21 13:33:43', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '42', 'mfa', 'salkdjweih', 'owifhwoierhjc', 'sdfgad45f@ukr.net', '6565656544', '2006-06-20', 'мужчина', NULL, NULL, '2016-02-26 12:02:33', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '43', 'sdfd', 'ewrfwe', 'sdfwe', 'dyte@ert.try', '6554566545', '0000-00-00', 'мужчина', NULL, NULL, '2016-02-29 15:07:55', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '44', 'duke', 'fred', 'kogan', 'duke@ukr.net', '0449998878', '0000-00-00', 'мужчина', NULL, NULL, '2016-02-29 20:21:12', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '45', 'rtedf', 'ert', 'gfhf', 'hjlk@ddgf.ui', '0449998878', '0000-00-00', 'женщина', NULL, NULL, '2016-03-01 09:12:38', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '46', 'ertgef', 'erferf', 'slkdcsckm', 'lk@klfd.fd', '0573920720', '1986-04-19', 'женщина', NULL, NULL, '2016-03-01 11:15:15', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '47', 'jkjkk', 'jkuiuh', 'hjkuio', 'rur@tutyu.yui', '0991234569', '1980-06-25', 'женщина', NULL, NULL, '2016-03-01 13:39:35', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '48', 'login', 'name', 'surname', 'hjfh@iuoy.uy', '0889988999', '2016-02-17', 'мужчина', NULL, NULL, '2016-03-01 13:41:55', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '49', 'qwerty', 'asdfgh', 'qwerfdsa', 'rt45@ert.ytr', '0449998875', '2016-03-01', 'женщина', NULL, NULL, '2016-03-01 13:45:51', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '50', 'mfamfa', 'Alexandr', 'Petrov', 'email@mail.ua', '0557777755', '2016-03-01', 'мужчина', NULL, NULL, '2016-03-01 15:45:32', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '51', 'jkghkhjk', 'gjkljkl', 'hjkhkhkl', 'ryrty@rwr.yuu', '0779988999', '1989-06-14', 'мужчина', NULL, NULL, '2016-03-01 15:49:15', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '52', 'kjljk', 'kjlhj', 'jklhj', 'dfg@dfg.yt', '0667788777', '1999-02-10', 'мужчина', '43', NULL, '2016-03-01 15:57:22', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '53', 'rtyrty', 'tryutyu', 'tyioui', 'za@sd.gthy', '05766688866', '2016-02-29', 'женщина', '327', NULL, '2016-03-01 16:02:07', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '54', 'reggy', 'john', 'erdfsaf', 'dg@dfg.rth', '0889696955', '2000-02-09', 'женщина', '597', NULL, '2016-03-01 16:06:03', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '55', 'tyueh', 'tyh', 'tyht', 'rty@rte.ty', '0988776654', '2016-02-02', 'мужчина', NULL, NULL, '2016-03-01 16:07:27', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '56', 'rtyrtyryutyu', 'rtyrtyrtyw', 'wevdwec', 'dsrtd@ertry.tyh', '0502793045', '2016-03-01', 'мужчина', '577', '2001', '2016-03-04 21:30:42', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '57', 'slfklsfkgj', 'kojeoijf', 'okjoire', 'ldksaf@kjs.sfd', '0453453423', '2016-03-02', 'мужчина', '3', '0', '2016-03-05 10:33:39', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '58', 'wer', 'oioik', 'oioijew', 'lkjdsfj@lkfd.df', '0897986859', '2016-03-08', 'Мужчина', '358', '2002', '2016-03-05 13:05:50', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '59', 'rtyrtyert', 'oiuewrjfcwo', 'oiceoir', 'kjdgh@kjdd.dfo', '0699685849', '2016-02-11', 'Мужчина', '39', '2002', '2016-03-05 13:42:05', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '60', 'poiwrtio', 'oieui', 'oieorui', 'opirtoi@opoit.tr', '7654321234', '2016-03-01', 'Мужчина', '0', '0', '2016-03-05 14:01:33', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '61', 'eryrty', 'tjyut', 'yujyu', 'ghjfgu@yuj.yu', '0998888877', '2016-03-01', 'Мужчина', '0', '0', '2016-03-05 14:02:47', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '62', 'eryrtyty', 'tjyut', 'yujyu', 'ghjfrtygu@yuj.yu', '0998888877', '2016-03-01', 'Мужчина', '0', '0', '2016-03-05 14:07:59', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '63', 'tr54', 'weert', 'ertesrt', 'vdc@try.iuyi', '8098765432', '2016-02-10', 'Мужчина', '0', '0', '2016-03-05 14:12:09', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '64', 'khkyuk', 'wetyt', 'asfertgyy', 'kjliu@uiku.uyi', '0909898988', '2016-02-03', 'Мужчина', '477', '2000', '2016-03-05 14:15:20', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '65', 'tyutuuyii', 'tyjtjyl', 'zxcvxcv', 'zxvs@wre.ukj', '6785674565', '2016-03-01', 'Мужчина', '0', '0', '2016-03-05 14:33:39', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '66', 'tyutyu', 'tyty', 'ytrr55', 'ui@erte.oi', '7654566543', '2016-03-01', 'Женщина', '0', '0', '2016-03-05 14:34:49', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '67', 'xcvbb', 'terfs', 'refsdfw', 'zxcvv@wer.uo', '6544566543', '2016-02-03', 'Мужчина', '577', '2001', '2016-03-05 14:37:18', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '68', 'gdsgergter', 'erfedrfdr', 'erdfdsfer', 'dftdrtr@wtretr.yik', '0788976979', '2016-03-03', 'мужчина', '456', '0', '2016-03-05 14:38:48', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '69', 'eryttryrty', 'ytutu', 'tyutyurt', 'rtytu6@rety.ui', '9877655432', '2016-03-02', 'мужчина', '286', '2001', '2016-03-05 14:41:54', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '70', 'poioijre', 'pokpeoirk', 'opeirkoaik', 'thtyt@etyrty.uy', '0665544555', '2016-01-06', 'мужчина', '359', '2005', '2016-03-05 14:44:44', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '71', 'rtyrtyrt', 'ytutyiu', 'yuiyi', 'tyuty@erte.uiklu', '0889988765', '2016-03-01', 'Мужчина', '288', '2002', '2016-03-05 14:48:29', NULL );
+INSERT INTO `users`(`id`,`login`,`name`,`surname`,`email`,`tel`,`birthsday`,`sex`,`avto_id`,`car_year`,`user_created`,`avatar`) VALUES ( '72', 'phpoop', 'phpoop', 'phpoop', 'phpoop@phpoop.com', '0959379992', '2009-02-28', 'мужчина', '576', '2006', '2016-03-06 13:52:43', NULL );
 -- ---------------------------------------------------------
 
 

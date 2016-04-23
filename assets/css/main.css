@@ -255,8 +255,9 @@ body {
     font-size: 12px;
     text-align: center;
 }
-.footer p{
+.footer .links{
     margin: 0;
+    text-align: center;
 }
 
 .EducImg{

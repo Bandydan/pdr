@@ -50,7 +50,7 @@ class MY_Controller extends CI_Controller {
 
         }
 
-        // if(!(isset($userLang))) $userLang = 'russian';
+        if(!(isset($this->userLang))) $this->userLang = 'russian';
         $data['lang'] = $this->userLang;
 
         $this->session->set_userdata('language', $this->userLang);

@@ -23,6 +23,11 @@
     <script type="text/javascript" src="{{ base_url() }}assets/libs/slick/slick.min.js"></script>
     <script src="{{ base_url() }}assets/js/common.js"></script>
 
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
+<!--     <script type="text/javascript">
+        VK.init({apiId: 5416088, onlyWidgets: true});
+    </script>
+ -->
 {% endblock %}
 
 {% block header %}
@@ -155,7 +160,24 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <p>Командос!</p>
+                        <div class="links">
+                            <span class="vk">
+                            <!-- VK Widget -->
+<!--                             <div id="vk_like"></div>
+                                <script type="text/javascript">
+                                    VK.Widgets.Like("vk_like", {type: "button", height: 24});
+                                </script> -->
+                                <div id="vk_subscribe"></div>
+                                <script type="text/javascript">
+                                    VK.Widgets.Subscribe("vk_subscribe", {}, -119481933);
+                                </script>
+                            </span>
+                            <span class="in">
+                                <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: ru_RU</script>
+                                <script type="IN/Share" data-url="http://pdrm.byethost24.com/" data-counter="right"></script>
+                            </span>
+                        </div>
+                        <!-- <p>Командос!</p> -->
                     </div>
                 </div>
             </div>
