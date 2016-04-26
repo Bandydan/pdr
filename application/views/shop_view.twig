@@ -12,80 +12,116 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ base_url() }}assets/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="row hedFirstRow">
-                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                    <a href="{{ base_url() }}"><img src="{{ base_url() }}assets/img/logo.png" class="img-fluid"></a>
-                    <a href="{{ base_url() }}news"><img src="{{ base_url() }}assets/img/NEWS.gif" style="height:70px; width:70px"></a>
-                </div>
-                <div class="hidden-xs col-sm-6 col-md-6 col-lg-6">
-                    <div class="wrapImg">
-                        <img src="{{ base_url() }}img/example/after/1_0.jpg" class="img-fluid"> <!-- для примера, в будующем нужно уточнить какое фото будет выводиться -->
+    <div class="myMain">
+        <header class="header">
+            <div class="container">
+                <div class="row hedFirstRow">
+                    <div class="col-xs-3">
+                        <a href="{{ base_url() }}">
+                            <img src="{{ base_url() }}assets/img/logo.png" class="img-fluid">
+                        </a>
+                        <div class="news">
+                            <a href="{{ base_url() }}news">
+                                <img src="{{ base_url() }}assets/img/NEWS.gif">
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                    <div class="regist">
-                        <a href="{{ base_url() }}login">Вход</a>
-                        <a href="{{ base_url() }}register">Регистрация</a>
-                    </div>  
-                    <div class="callBack">
-                        <a href="#">Заказать звонок<img src="{{ base_url() }}assets/img/callback.png" class="img-fluid"></a>
+                    <div class="col-xs-6">
+                        <div class="wrapImg">
+                            <img src="{{ base_url() }}assets/img/head.png" class="img-fluid"> <!-- для примера, в будующем нужно уточнить какое фото будет выводиться -->
+                        </div>
                     </div>
-                    <div class="info">
-                        <p>тел. (057)000-00-00</p>
-                        <p>моб. (057)000-00-00</p>
-                        <p>моб. (057)000-00-00</p>
-                    </div>
-                    <div class="callBack">
-                        <a href="{{ base_url() }}shop"><img src="{{base_url() }}assets/img/shopping-cart.png" style="height:70px; width:100px"/></a>
-                    </div>  
-                </div>
-            </div>
-            <div class="row hedSecRow">
-                <div class="navbar">
-                    <div class="navbar-header">
-                        <button type="button" data-target="#navCollapse" data-toggle="collapse" class="navbar-toggle">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
+                    <div class="col-xs-3">
+                    <div class="language">
 
-                    <div id="navCollapse" class="collapse navbar-collapse nav-pills">
-                        <ul class="siteNav nav-pills">
-                            <li>
-                                <a href="{{ base_url() }}">{{Menu_main}}</a>
-                            </li>
-                            <li>
-                                <a href="{{ base_url() }}main/examples">{{Menu_example}}</a>
-                            </li>
-                            <li>
-                                <a href="{{ base_url() }}main/education">{{Menu_education}}</a>
-                            </li>
-                            <li>
-                                <a href="#">{{Menu_rent}}</a>
-                            </li>
-                            <li>
-                                <a href="#">{{Menu_evaluation}}</a>
-                            </li>
-                            <li>
-                                <a href="{{ base_url() }}shop">{{Menu_shop}}</a>
-                            </li>
-                            <li>
-                                <a href="#">{{Menu_reviews}}</a>
-                            </li>
-                            <li>
-                                <a href="{{ base_url() }}main/contact">{{Menu_contacts}}</a>
-                            </li>
-                        </ul>
+                            <!-- {{ current_url }} <br/> -->
+                           <!--  {{ uri_string }} <br/>
+                            {{ anch }}<br/> -->
+                            <a href="/ru/{{ uri_string }}"> Рус </a>|
+                            <a href="/uk/{{ uri_string }}"> Укр </a>|
+                            <a href="/en/{{ uri_string }}">Eng</a> <!-- ?lang=en -->
+                        </div>
+                        <div class="regist">
+                            <a href="{{ base_url() }}login">{{Header_entrance}}</a>
+                            <a href="{{ base_url() }}register">{{Header_registration}}</a>
+                        </div>
+                        <div class="callBack">
+                            <a href="#">{{Header_coll}}
+                                <img src="{{ base_url() }}assets/img/callback.png" class="img-fluid"></a>
+                            </div>
+                            <div class="info">
+                                <p>(057)000-00-00</p>
+                                <p>(057)000-00-00</p>
+                                <p>(057)000-00-00</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row hedSecRow">
+                        <div class="col-xs-12">
+                            
+<nav role="navigation" class="navbar navbar-default navbar-static-top">
+                            {# <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                                    data-target="#navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                </button>
+                            </div> #}
+
+                            <div class="siteNav">
+                                <ul class="siteNav">
+                                    <li>
+                                        <a href="{{ base_url() }}">{{main_menu.Menu_main}}</a>
+                                    </li>
+
+                                    <li class="dropdown">
+                                        <a id="drop1" href="{{ base_url() }}main/examples" class="dropdown-toggle" data-toggle="dropdown">
+                                            {{main_menu.Menu_example}}
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            {% for cat in examp_cat %}
+                                                <li>
+                                                    <a href="{{ base_url() }}main/examples/{{ loop.index }}" >{{ cat }}</a>
+                                                </li>
+                                            {% endfor %}
+                                            <div class="dropdown-divider"></div>
+                                            <li><a tabindex="-1" href="{{ base_url() }}main/examples">{{main_menu.Menu_example}}</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="{{ base_url() }}main/education">{{main_menu.Menu_education}}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">{{main_menu.Menu_rent}}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">{{main_menu.Menu_evaluation}}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">{{main_menu.Menu_reviews}}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ base_url() }}main/contact">{{main_menu.Menu_contacts}}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ base_url() }}shop">{{main_menu.Menu_shop}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+</nav>
+                        </div>
                     </div>
                 </div>
-            </div>
-    </header>
+            </header>
+
+                {{ error }}
 
     <section class="firstSection">
         <div class="container">
@@ -95,22 +131,22 @@
                         <nav class="secNav">
                             <ul class="secSiteNav">
                                 <li>
-                                    <a href="{{ base_url() }}main/examples/">Коврики</a>
+                                    <a href="#">Коврики</a>
                                 </li>
                                 <li>
-                                    <a href="{{ base_url() }}main/examples/">Дворники</a>
+                                    <a href="#">Дворники</a>
                                 </li>
                                 <li>
-                                    <a href="{{ base_url() }}main/examples/">Освежители</a>
+                                    <a href="#">Освежители</a>
                                 </li>
                                 <li>
-                                    <a href="{{ base_url() }}main/examples/">Коврики</a>
+                                    <a href="#">Коврики</a>
                                 </li>
                                 <li>
-                                    <a href="{{ base_url() }}main/examples/">Омывайки</a>
+                                    <a href="#">Омывайки</a>
                                 </li>
                                 <li>
-                                    <a href="{{ base_url() }}main/examples/">Резина</a>
+                                    <a href="#">Резина</a>
                                 </li>
                             </ul>
                         </nav>
@@ -127,11 +163,11 @@
                                 <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
                             </div>
                             <div id='info_product'>
-                                <div id='name'>name</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'><b>Price</b>:<big style="color:green">$</big></div>
+                                <div id='name'>Товар</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'><b>Цена</b>:<big style="color:green">$</big></div>
                                 <div id='add_button'>
                                     <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
                                     <input type="submit" value="Купить в один клик" class="alt_btn">
@@ -143,45 +179,11 @@
                                 <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
                             </div>
                             <div id='info_product'>
-                                <div id='name'>name</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'><b>Price</b>:<big style="color:green">$</big></div>
-                                <div id='add_button'>
-                                    <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
-                                    <input type="submit" value="Купить в один клик" class="alt_btn">
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div id='product_div'>  
-                            <div id='image_div'>
-                                <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
-                            </div>
-                            <div id='info_product'>
-                                <div id='name'>name</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'><b>Price</b>:<big style="color:green">$</big></div>
-                                <div id='add_button'>
-                                    <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
-                                    <input type="submit" value="Купить в один клик" class="alt_btn">
-                                </div>
-                            </div>
-                        </div>
-                        <div id='product_div'>  
-                            <div id='image_div'>
-                                <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
-                            </div>
-                            <div id='info_product'>
-                                <div id='name'>name</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'><b>Price</b>:<big style="color:green">$</big></div>
+                                <div id='name'>Товар</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'><b>Цена</b>:<big style="color:green">$</big></div>
                                 <div id='add_button'>
                                     <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
                                     <input type="submit" value="Купить в один клик" class="alt_btn">
@@ -189,16 +191,17 @@
                             </div>
                         </div>
 
+
                         <div id='product_div'>  
                             <div id='image_div'>
                                 <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
                             </div>
                             <div id='info_product'>
-                                <div id='name'>name</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'><b>Price</b>:<big style="color:green">$</big></div>
+                                <div id='name'>Товар</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'><b>Цена</b>:<big style="color:green">$</big></div>
                                 <div id='add_button'>
                                     <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
                                     <input type="submit" value="Купить в один клик" class="alt_btn">
@@ -210,11 +213,44 @@
                                 <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
                             </div>
                             <div id='info_product'>
-                                <div id='name'>name</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'>description</div>
-                                <div id='desc'><b>Price</b>:<big style="color:green">$</big></div>
+                                <div id='name'>Товар</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'><b>Цена</b>:<big style="color:green">$</big></div>
+                                <div id='add_button'>
+                                    <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
+                                    <input type="submit" value="Купить в один клик" class="alt_btn">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id='product_div'>  
+                            <div id='image_div'>
+                                <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
+                            </div>
+                            <div id='info_product'>
+                                <div id='name'>Товар</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'><b>Цена</b>:<big style="color:green">$</big></div>
+                                <div id='add_button'>
+                                    <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
+                                    <input type="submit" value="Купить в один клик" class="alt_btn">
+                                </div>
+                            </div>
+                        </div>
+                        <div id='product_div'>  
+                            <div id='image_div'>
+                                <img height="100px" width="130px" src="{{base_url() }}assets/img/shopping-cart.png"/>
+                            </div>
+                            <div id='info_product'>
+                                <div id='name'>Товар</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'>Описание</div>
+                                <div id='desc'><b>Цена</b>:<big style="color:green">$</big></div>
                                 <div id='add_button'>
                                     <input type="submit" value="В корзину" class="alt_btn" style="margin-right: 2%;">
                                     <input type="submit" value="Купить в один клик" class="alt_btn">

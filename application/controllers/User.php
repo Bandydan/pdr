@@ -24,7 +24,6 @@ class User extends CI_Controller {
 		$this->load->helper('language');
 	}
 	
-	
 	public function index() 
 	{	
 	}

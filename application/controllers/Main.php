@@ -22,6 +22,8 @@ class Main extends MY_Controller {
 
         $id = '1';
 
+        $data['lang'] = 'russian';
+
         $data['title'] = "Garage - ".$data['examp_cat']['pdr'];
         $data['examples'] = $this->examples_model->get_examples($id, $data['lang']);
 
@@ -86,6 +88,15 @@ class Main extends MY_Controller {
         $data['title'] = "Garage - ".$data['main_menu']['Menu_contacts'];
 
         echo $this->twig->render('contact_view', $data);
+    }
+
+    public function shop()
+    {
+        $data['title'] = 'Garage - Магазин';
+        $data = MY_Controller::_language();
+        $this->load->library('twig');
+
+        echo $this->twig->render('shop_view', $data);
     }
 
 }
